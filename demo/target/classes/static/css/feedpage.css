@@ -21,7 +21,7 @@ body {
     margin-left: 2em;
     margin-right: auto;
     font-size: x-large;
-    color: #FCF2D7;
+    color: #F19830;
     font-weight: lighter;
     text-transform: uppercase;
 }
@@ -38,7 +38,7 @@ body {
 .dogBoneIcon {
     width: 50px;
     height: auto;
-    transform: rotate(20deg);
+    transform: rotate(130deg);
 }
 
 .username {
@@ -71,8 +71,9 @@ body {
 }
 
 #createPostArea {
-    display: block;
+    display: inline-block;
     position: relative;
+    width: 100%;
 }
 
 #createPost {
@@ -82,4 +83,30 @@ body {
     color: black;
     font-family: Righteous;
     font-size: larger;
+    text-align: center;
+}
+
+#icons {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 2em;
+    margin-right: 25%;
+}
+
+.iconBtn {
+    display: inline-block;
+    border: none;
+    margin: 0;
+    text-decoration: none;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 0px;
+    background: transparent;
+    align-items: center;
+}
+
+.icon {
+    width: 40px;
+    -webkit-filter: invert(100%); /* Safari/Chrome */
+    filter: invert(100%);
 }
