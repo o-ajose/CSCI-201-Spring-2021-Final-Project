@@ -5,6 +5,13 @@
     <link rel="stylesheet" href="css/feedpage.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <script>
+        // When the user clicks on <div>, open the popup
+        function myFunction() {
+            let popup = document.getElementById("postPopUp");
+            popup.classList.toggle("show");
+        }
+    </script>
     <title>Tirebiters</title>
 </head>
 <body>
@@ -23,7 +30,9 @@
     </div>
     <div id="createPostArea">
         <p class="pageName">Newsfeed</p>
-        <button type="button" id="createPost">Create Post</button>
+        <button type="button" id="createPost" onclick="myFunction()">Create Post
+            <span class="popUp" id="postPopUp"></span>
+        </button>
     </div>
 </body>
 </html>
