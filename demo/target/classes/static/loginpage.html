@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/loginRegister.css"/>
+    <title>Tirebiters</title>
+</head>
+
+<body>
+
+<div id="login_div" class="main-div">
+
+    <!-- display login form -->
+    <script>
+        document.getElementById("login_div").style.display = "block";
+    </script>
+
+
+    <form name="loginForm" method = "GET" action="LoginServlet">
+        <h2 style="text-align:center"> Log in to tirebiters </h2>
+        <input type="email" placeholder="Username (email)" name="username" id="email_field" required>
+        <input type="password" placeholder="Password" name="password" id="password_field" required>
+        <input type="submit" name="login" value="🐶  Login  🐶">
+
+
+        <!-- does not use servlets
+        <button onclick="login()">Login </button>
+        <button onclick="register()">or input new user info and click to register.</button>
+        -->
+    </form>
+s
+    <!-- open register form when clicked on "Don't have an account? Register here" -->
+    <div id="Registerbtn" class="Registerbtn">
+        <button onclick="document.getElementById('registerForm').style.display='block'"> Don't have an account? Register here</button>
+    </div>
+
+    <div id="GuestNavigate" class="GuestNavigate">
+        <form name ="guestNavigate" method = "GET" action = "GuestServlet">
+            <button type="submit" name = "guestNavigate" id = "guestNavigate" formaction="GuestServlet">Navigate with a guest account</button>
+        </form>
+    </div>
+
+</div>
+
+<div id="registerForm" class="registerForm">
+    <span onclick="document.getElementById('registerForm').style.display='none'" class="close" title="Close registerForm">&times;</span>
+
+    <!-- content within register form. Only opens up when click on register-->
+    <form class="registerFormContent" action="RegisterServlet">
+        <div class="container">
+            <h1>🐶  Register for Tirebiters!  🐶</h1>
+            <p>Enter the information below to join tirebiters</p>
+            <hr>
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="email" required>
+
+            <label for="email"><b>Display Name</b></label>
+            <input type="text" placeholder="Enter a display name" name="displayName" required>
+
+            <label for="email"><b>Bio</b></label>
+            <input type="text" placeholder="Write short bio about yourself!" name="bio" required>
+
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+
+            <label for="confirmPassword"><b>Please re-type your password to confirm</b></label>
+            <input type="password" placeholder="Confirm Password" name="confirmPassword" required>
+
+
+            <p>We hope you enjoy tirebiters! Welcome</p>
+
+            <!-- when pressing cancel or register -->
+            <div class="clear">
+                <button type="button" onclick="document.getElementById('registerForm').style.display='none'" class="cancelbtn">Cancel</button>
+                <button type="submit" class="signupbtn">Register</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- script that handles closing register form -->
+<script>
+    var registerForm = document.getElementById('registerForm');
+
+    // When the user clicks anywhere outside of the registerForm, close it
+    window.onclick = function(event) {
+        if (event.target == registerForm) {
+            registerForm.style.display = "none";
+        }
+    }
+</script>
+</body>
+</html>
