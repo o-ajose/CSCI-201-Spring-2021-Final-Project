@@ -111,3 +111,32 @@ body {
     filter: invert(100%);
 }
 
+/*Wrapper for posts*/
+#postsSpace {
+    margin: 20px;
+}
+
+/*Table used for collection of posts*/
+#posts {
+    border: 0;
+    width: 100%;
+    cellpadding: 10
+}
+
+/* Styling for post type 1 - white background */
+/* contains username, photo, description */
+.post1 {
+    color: blanchedalmond;
+}
+
+/* Styling for post type 2 - gray background */
+.post2 {
+    color: cornflowerblue;
+}
+
+.photo {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+}
+
