@@ -123,7 +123,7 @@ input[type=submit]{
 /* Full-width input fields */
 input[type=text], input[type=password], input[type=email] {
     width: 100%;
-    padding: 15px;
+    padding: 5px;
     margin: 5px 0 22px 0;
     display: inline-block;
     border: none;
@@ -152,7 +152,7 @@ button {
 /* background and padding for cancel button */
 .cancelbtn {
     padding: 14px 20px;
-    background-color: red;
+    background-color: #ff0000;
 }
 
 /* Float cancel and signup buttons and add an equal width */
