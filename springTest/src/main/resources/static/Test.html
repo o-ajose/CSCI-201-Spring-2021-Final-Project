@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 <!-- Go to localhost:8080/Test.html to test file-->
 <!-- Enter Test in the input to see "Joe Johnson" from database -->
-<form id="nameForm" action="/getUserDetails" method="GET">
+<form id="nameForm" method="POST">
     <div>
         <label for="username">What's your username?</label>
         <input name="username" id="username" >
         <label for="password">What is your Password?</label>
         <input name ="password" id="password" type="password">
-        <button>Find User!</button>
+        <button type = "button" onClick="checkLogIn()">Find User!</button>
     </div>
 </form>
 <form id = "signUpForm" action ="/createUser" method="POST">
@@ -28,7 +29,54 @@
     </div>
 </form>
 
-
+<script>
+    function checkLogIn(){
+        var username1 = $('#username').val();
+        var password1 = $('#password').val();
+        $.ajax({
+            url: "getUserDetails",
+            type:"GET",
+            //contentType: "text/plain",
+            data: {"username": username1, "password":password1},
+            // dataType: "text/plain",
+            success: function(response) {
+                //if(response==="HERE"){
+                //window.location.href = "/loggedInHome.html";
+                //}
+                //else{
+                console.log(response);
+                /*
+                if(response.includes("Success")){
+                    //alert("yes");
+                    window.location.href = 'loggedInHome.html';
+                }
+                else{*/
+                    alert(response);
+               // }
+                //	}
+            },
+            error: function(jqXHR,exception){
+                var msg = '';
+                if (jqXHR.status === 0) {
+                    msg = 'Not connect.\n Verify Network.';
+                } else if (jqXHR.status == 404) {
+                    msg = 'Requested page not found. [404]';
+                } else if (jqXHR.status == 500) {
+                    msg = 'Internal Server Error [500].';
+                } else if (exception === 'parsererror') {
+                    msg = 'Requested JSON parse failed.';
+                } else if (exception === 'timeout') {
+                    msg = 'Time out error.';
+                } else if (exception === 'abort') {
+                    msg = 'Ajax request aborted.';
+                } else {
+                    msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                }
+                alert(msg);
+            }
+        });
+    }
+</script>
 
 
 </body>

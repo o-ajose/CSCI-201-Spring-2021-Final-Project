@@ -29,7 +29,7 @@ public class UserService {
         if(document.exists()) {
             user = document.toObject(User.class);
             if(user.getPassword().equals(password)){
-                return "Logged in";
+                return "Success: Logged in";
             }
             else{
                 return "Incorrect password";

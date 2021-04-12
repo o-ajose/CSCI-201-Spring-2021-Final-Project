@@ -14,8 +14,7 @@ public class UserController {
     @GetMapping("/getUserDetails")
     @ResponseBody
     public String getUser(@RequestParam String username, @RequestParam String password ) throws InterruptedException, ExecutionException {
-        return "<html>\n" + "<header><title>Welcome</title></header>\n" +
-                "<body><h1>" + userService.getUserDetails(username,password)+ "</h1></body>\n" + "</html>";
+        return userService.getUserDetails(username,password);
     }
 
     @PostMapping("/createUser")
