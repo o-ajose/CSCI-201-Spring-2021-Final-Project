@@ -1,0 +1,68 @@
+/*@font-face {*/
+/*    font-family: ProjectFont;*/
+/*    src: url("https://fonts.google.com/specimen/Righteous") format("truetype");*/
+/*}*/
+
+* {
+    /* Couldn't figure out how to add righteous so I focused on doing
+            Arial for now*/
+    font-family: Arial, serif;
+}
+.UserContainer {
+    display: flex;
+    align-items: center;
+    /*font-family: Righteous, serif;*/
+}
+.PetContainer {
+    display: flex;
+}
+.AddFriend {
+    position: absolute;
+    right: 10px;
+    width: 200px;
+    height: 50px;
+}
+
+.button {
+    border-radius: 12px;
+    background-color: antiquewhite;
+    text-align: center;
+}
+
+.image {
+    flex-basis: 20%;
+    display: flex;
+    /* TODO: Am going to have to add JSS to this to automatically
+        calculate the aspect ratios */
+}
+
+.audio {
+    display: block;
+    position: relative;
+    bottom: 0;
+    padding-top: 10px;
+}
+
+.text {
+    font-size: 20px;
+    padding-left: 20px;
+    align-items: center;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.column {
+    float: left;
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
