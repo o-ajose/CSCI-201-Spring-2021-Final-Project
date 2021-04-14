@@ -1,10 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="0fd20a42-b1ad-43e9-a59a-1bfa7b0bd7d1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/Application.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/FBInitialize.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/FirebaseStorageStrategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Test.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/serviceaccount.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springTest/src/main/java/com/example/demo/Cat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springTest/src/main/java/com/example/demo/Dog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springTest/src/main/java/com/example/demo/FirebaseStorageStrategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springTest/src/main/java/com/example/demo/Pet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springTest/src/test/CSS/EditPage.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springTest/src/test/CSS/ProfilePage.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springTest/src/test/HTML/EditPage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springTest/src/test/HTML/ProfilePage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springTest/src/test/Images/boki.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springTest/src/test/Images/milky.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springTest/src/test/Images/tan.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springTest/src/test/Images/tommy.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springTest/src/test/Music/All You Need Is Love.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/feedpage.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/feedpage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/feedpage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/feedpage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/demo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springTest/src/main/java/com/example/demo/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springTest/src/main/java/com/example/demo/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +70,22 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.google.cloudcode.ide_session_index" value="20210414_0000" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -62,6 +102,7 @@
       <workItem from="1618259224426" duration="1943000" />
       <workItem from="1618369944595" duration="95000" />
       <workItem from="1618372701176" duration="5800000" />
+      <workItem from="1618419146484" duration="1225000" />
     </task>
     <servers />
   </component>
