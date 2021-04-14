@@ -38,15 +38,27 @@
     <!-- Create Post Pop Up -->
     <div id="popUp">
         <div id="leftside">
-            <h2>Share a Photo!</h2>
+            <h2 style="color:white; font-weight: lighter; font-size: 35px; font-style: normal">Share a Photo!</h2>
             <label for="file-upload" class="custom-file-upload" style="text-align: center">
                 <p id="uploadText">Upload your photo here!</p>
             </label>
             <input id="file-upload" type="file"/>
-            <p>Recommendation: Use high-quality jpg files less than 10 MB.</p>
+            <p style="text-align:center;">Recommendation: Use high-quality jpg files less than 10 MB.</p>
         </div>
         <div id="rightside">
-
+            <div id="userInfo">
+                <span id="bigCircle" class="circle"><img class="profileImage" src="images/defaultProfilePic.jpeg"></span>
+                <h4 id="bigU" class="username">USERNAME</h4>
+            </div>
+            <div id="textArea">
+                <label for="descript"></label>
+                <textarea id="descript" name="descript" rows="13" cols="45" maxlength = "280" placeholder="Add a cool caption here! Text limit is 280 characters."></textarea>
+                <p id="remaining">Characters left: 280</p>
+            </div>
+            <div id="buttons">
+                <input id="cancel" class="button" type="button" value="Cancel">
+                <input id="post" class="button" type="button" value="Post">
+            </div>
         </div>
     </div>
 
