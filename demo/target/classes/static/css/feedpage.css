@@ -55,7 +55,6 @@ td {
 
 .circle {
     display: inline-block;
-    position: relative;
     width: 50px;
     height: 50px;
     overflow: hidden;
@@ -181,10 +180,40 @@ td {
 
 #popUp {
     background: #B6A697;
+    width: 750px;
+    height: 500px;
+    border-radius: 30px;
+    margin: 0 auto;
 }
 
 #uploadForm {
     background-color: white;
+}
+
+#leftside {
+    text-align: center;
+    display: inline-block;
+    padding-left: 15px;
+    padding-top: 10px;
+    width: 300px;
+    float: left;
+    overflow: auto;
+}
+
+#rightside {
+    width: 400px;
+    float: right;
+}
+
+#bigCircle {
+    width: 75px;
+    height: 75px;
+}
+
+#bigU {
+    font-size: 30px;
+    font-weight: lighter;
+    margin: 0px;
 }
 
 #uploadIcon {
@@ -201,8 +230,8 @@ input[type="file"] {
 }
 
 .custom-file-upload {
-    width: 300px;
-    height: 400px;
+    width: 250px;
+    height: 300px;
     border: 1px solid #ccc;
     display: inline-block;
     padding: 6px 12px;
@@ -215,11 +244,53 @@ input[type="file"] {
 }
 
 #uploadText {
-    padding-top: 300px;
+    padding-top: 200px;
     font-size: x-large;
     color: black;
 }
 
+#textArea {
+    height: 300px;
+}
+
+#descript {
+    margin-top: 15px;
+    background: #C4C4C4;
+    border: none;
+    padding: 10px;
+    font-family: Righteous;
+    color: white;
+    border-radius: 11px;;
+}
+
+#remaining {
+    float: right;
+    margin-right: 60px;
+}
+
+#buttons {
+    padding-right: 60px;
+}
+
+.button {
+    font-family: Righteous;
+    border: none;
+    border-radius: 15px;
+    width: 100px;
+    height: 50px;
+    font-size: x-large;
+    color: white;
+}
+
+#cancel {
+    float: left;
+    background-color: #F13030;
+}
+
+#post {
+    float: right;
+    background-color: rgba(110, 241, 48, 0.81);
+}
 
 
 
