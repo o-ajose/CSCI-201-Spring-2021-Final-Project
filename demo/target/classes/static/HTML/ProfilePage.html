@@ -8,11 +8,30 @@
 <link rel="stylesheet" href="../CSS/ProfilePage.css">
 <link href='https://fonts.google.com/specimen/Righteous' rel='stylesheet' type='text/css'>
 
+<!-- Code for navigation bar -->
+<div id="feedHeader" class = "navbar">
+    <div id="icons">
+        <button type="button" class="iconBtn"><img class="icon" src="../Images/exploreIcon.webp"></button>
+        <button type="button" class="iconBtn"><img class="icon" src="../Images/feedIcon.png"></button>
+        <button type="button" class="iconBtn"><img class="icon" src="../Images/messageIcon.png"></button>
+    </div>
+    <span><img class="dogBoneIcon" src="../Images/dogBoneIcon.png"></span>
+    <h3 class="websiteName">Tirebiters</h3>
+    <div id="userDisplay">
+        <span class="circle"><img class="profileImage" src="../Images/defaultProfilePic.jpeg"></span>
+        <h4 class="username">USERNAME</h4>
+    </div>
+</div>
+
+<!-- TODO: add a function that checks with the backend if the user is the owner of the page. If they are, present the
+        Edit Profile button. Otherwise, present the Add Friend button-->
 <div class="AddFriend">
     <button class="button" onclick="myFunction()"> Add Friend</button>
 </div>
 
 <br>
+<br>
+
 <!-- Divider for Printing out User Info
         Main groups:
             - Profile picture
@@ -21,7 +40,7 @@
             -->
 <div class = "UserContainer">
     <div class="image">
-        <img src="../../../../../IdeaProjects/CSCI-201-Spring-Final-Project/src/test/Images/tommy.jpeg" alt="Tommy's Profile Picture">
+        <img src="../Images/tommy.jpeg" alt="Tommy's Profile Picture">
     </div>
     <div class="text">
         <p>tommy_t</p>
@@ -31,12 +50,13 @@
     <br>
 </div>
 <div class="audio">
-    <audio id="song" src="../../../../../IdeaProjects/CSCI-201-Spring-Final-Project/src/test/Music/All%20You%20Need%20Is%20Love.mp3" preload="auto">
+    <audio id="song" src="../Music/All%20You%20Need%20Is%20Love.mp3" preload="auto">
         <p>If you are reading this, it is because your browser does not support the audio element.</p>
     </audio>
     <button class="button" onclick="playPause()">Chosen Song: All You Need Is Love by The Beatles</button>
 
-    <!-- Script to play my song -->
+    <!-- Script to play the song -->
+
     <script>
         var play = document.getElementById('song');
 
@@ -51,18 +71,18 @@
             - Pet's picture (if given)
             - Pet's info
 -->
-    <!-- Will need to actually pull from our database once ready
-            but I haven't been able to look into how that'd actually
-            work yet, assuming it'd be somewhat similar to the code
-            Alex may be using for his servlet?  -->
-        <!--  Would most likely have to be that when we're pulling it in the
-            servlet, we iterate through all the pets and after every two pets
-             we add a break line-->
+<!-- Will need to actually pull from our database once ready
+        but I haven't been able to look into how that'd actually
+        work yet, assuming it'd be somewhat similar to the code
+        Alex may be using for his servlet?  -->
+<!--  Would most likely have to be that when we're pulling it in the
+    servlet, we iterate through all the pets and after every two pets
+     we add a break line-->
 <div class = "PetContainer">
     <div class="row">
         <div class="column">
             <div class="image">
-                <img src="../../../../../IdeaProjects/CSCI-201-Spring-Final-Project/src/test/Images/milky.jpg" alt="Milky">
+                <img src="../Images/milky.jpg" alt="Milky">
             </div>
             <div class="text">
                 <p>Name: Milky</p>
@@ -74,7 +94,7 @@
         </div>
         <div class="column">
             <div class="image">
-                <img src="../../../../../IdeaProjects/CSCI-201-Spring-Final-Project/src/test/Images/boki.jpg" alt="Gwangbok">
+                <img src="../Images/boki.jpg" alt="Gwangbok">
             </div>
             <div class="text">
                 <p>Name: Gwangbok</p>
@@ -87,7 +107,7 @@
         <br/>
         <div class="column">
             <div class="image">
-                <img src="../../../../../IdeaProjects/CSCI-201-Spring-Final-Project/src/test/Images/tan.jpg" alt="Tan">
+                <img src="../Images/tan.jpg" alt="Tan">
             </div>
             <div class="text">
                 <p>Name: Tan</p>
