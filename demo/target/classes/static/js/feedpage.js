@@ -10,6 +10,15 @@ function cancel() {
     $("#postsSpace").show();
 }
 
-function post() {
+// once user gets on feedpage or refreshes, get all the posts to be display
+function getPosts() {
+    var username;
+    // will send username as input to servlet and expect an array of json
 
+}
+
+// waiting for servlet
+function post() {
+    var username;
+    var email;
 }
