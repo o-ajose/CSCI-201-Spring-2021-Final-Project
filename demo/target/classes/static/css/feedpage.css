@@ -184,6 +184,7 @@ td {
     height: 500px;
     border-radius: 30px;
     margin: 0 auto;
+    display: none;
 }
 
 #uploadForm {
