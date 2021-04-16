@@ -9,7 +9,7 @@
     <script src="js/feedpage.js"></script>
     <title>Tirebiters</title>
 </head>
-<body>
+<body onload="getPosts()">
 <div id="feedHeader" class = "navbar">
     <div id="icons">
         <button type="button" class="iconBtn" onclick=""><img class="icon" src="images/exploreIcon.webp"></button>
@@ -61,7 +61,8 @@
 <!-- Collection of Posts -->
 <div id="postsSpace">
     <table id="posts">
-        <tr>
+        <tr id="row">
+            <!--
             <td>
                 <div class="post1">
                     <div class="photos">
@@ -84,72 +85,8 @@
                     </p>
                 </div>
             </td>
-            <td>
-                <div class="post1">
-                    <div class="photos">
-                        <img class="photo" src="images/dog3.jpeg">
-                    </div>
-                    <p class="user">USERNAME</p>
-                    <p class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                </div>
-            </td>
-            <td>
-                <div class="post2">
-                    <div class="photos">
-                        <img class="photo" src="images/dog4.jpeg">
-                    </div>
-                    <p class="user">USERNAME</p>
-                    <p class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                </div>
-            </td>
-            <td>
-                <div class="post1">
-                    <div class="photos">
-                        <img class="photo" src="images/defaultProfilePic.jpeg">
-                    </div>
-                    <p class="user">USERNAME</p>
-                    <p class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                </div>
-            </td>
-            <td>
-                <div class="post2">
-                    <div class="photos">
-                        <img class="photo" src="images/defaultProfilePic.jpeg">
-                    </div>
-                    <p class="user">USERNAME</p>
-                    <p class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                </div>
-            </td>
-            <td>
-                <div class="post1">
-                    <div class="photos">
-                        <img class="photo" src="images/defaultProfilePic.jpeg">
-                    </div>
-                    <p class="user">USERNAME</p>
-                    <p class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                </div>
-            </td>
-            <td>
-                <div class="post2">
-                    <div class="photos">
-                        <img class="photo" src="images/defaultProfilePic.jpeg">
-                    </div>
-                    <p class="user">USERNAME</p>
-                    <p class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                </div>
-            </td>
+            -->
+        </tr>
     </table>
 </div>
 </body>
