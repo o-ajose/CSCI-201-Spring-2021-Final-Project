@@ -293,5 +293,17 @@ input[type="file"] {
     background-color: rgba(110, 241, 48, 0.81);
 }
 
-
+/* Upload Image Preview */
+#previewHolder {
+    border-radius: 3px;
+    border: 5px solid white;
+    width:250px;
+    height:300px;
+    display: none;
+    background: white;
+    margin-left: 15px;
+}
+#instructions {
+    text-align: center;
+}
 
