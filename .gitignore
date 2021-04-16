@@ -27,3 +27,4 @@ hs_err_pid*
 
 # ignore OSX files:
 .DS_Store
+demo/.idea/workspace.xml
