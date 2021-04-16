@@ -9,7 +9,7 @@
     <script src="js/feedpage.js"></script>
     <title>Tirebiters</title>
 </head>
-<body>
+<body onload="getPosts()">
 <div id="feedHeader" class = "navbar">
     <div id="icons">
         <button type="button" class="iconBtn" onclick=""><img class="icon" src="images/exploreIcon.webp"></button>
@@ -61,7 +61,7 @@
 <!-- Collection of Posts -->
 <div id="postsSpace">
     <table id="posts">
-        <tr>
+        <tr id="row">
             <td>
                 <div class="post1">
                     <div class="photos">
@@ -150,6 +150,7 @@
                     </p>
                 </div>
             </td>
+        </tr>
     </table>
 </div>
 </body>
