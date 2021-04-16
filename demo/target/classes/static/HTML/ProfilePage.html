@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile Page</title>
+    <link href='https://fonts.google.com/specimen/Righteous' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <link rel="stylesheet" href="../css/ProfilePage.css">
-<link href='https://fonts.google.com/specimen/Righteous' rel='stylesheet' type='text/css'>
+
 
 <!-- Code for navigation bar -->
 <div id="feedHeader" class = "navbar">
@@ -26,7 +27,7 @@
 <!-- TODO: add a function that checks with the backend if the user is the owner of the page. If they are, present the
         Edit Profile button. Otherwise, present the Add Friend button-->
 <div class="AddFriend">
-    <button class="button" onclick="myFunction()"> Add Friend</button>
+    <button class="button" onclick="window.location.href='../feedpage.html'"> Add Friend</button>
 </div>
 
 <br>
@@ -78,6 +79,9 @@
 <!--  Would most likely have to be that when we're pulling it in the
     servlet, we iterate through all the pets and after every two pets
      we add a break line-->
+<hr style="size:10px; color:#C19770">
+<h2>Tommy's Pets</h2>
+
 <div class = "PetContainer">
     <div class="row">
         <div class="column">
@@ -120,10 +124,5 @@
     </div>
 </div>
 
-<script>
-    function myFunction() {
-        window.location.href="https://reactjs.org/"
-    }
-</script>
 </body>
 </html>

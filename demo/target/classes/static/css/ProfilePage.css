@@ -1,21 +1,25 @@
-/*@font-face {*/
-/*    font-family: ProjectFont;*/
-/*    src: url("https://fonts.google.com/specimen/Righteous") format("truetype");*/
-/*}*/
 
-/** {*/
-/*    !* Couldn't figure out how to add righteous so I focused on doing*/
-/*            Arial for now*!*/
-/*    font-family: Arial, serif;*/
-/*}*/
+body {
+    background-color: white;
+    font-family: Righteous, Arial, sans-serif;
+    margin: 0px;
+}
+
+/* Container holding the user's info */
 .UserContainer {
     display: flex;
     align-items: center;
+    padding-left: 10px;
     /*font-family: Righteous, serif;*/
 }
+
+/* Container holding the pet's info*/
 .PetContainer {
     display: flex;
 }
+
+/* Button for Adding Friends, TODO: need to add a button for Edit Profile and see which should be displayed based on if
+                               the user is logged in or not */
 .AddFriend {
     position: absolute;
     right: 10px;
@@ -24,28 +28,32 @@
     padding-top: 10px;
 }
 
+/* Buttons CSS for Add Friends, Music, and Edit Profile */
 .button {
     border-radius: 12px;
-    background-color: antiquewhite;
+    background-color: rgb(215, 197, 155);
     text-align: center;
+    font-family: 'Righteous', sans-serif;
 }
 
 .image {
-    flex-basis: 20%;
-    width: 250px;
-    height: auto;
     display: flex;
+    width: 400px;
+    height: auto;
     /* TODO: Am going to have to add JSS to this to automatically
         calculate the aspect ratios */
 }
 
+/* Settings for audio */
 .audio {
     display: block;
     position: relative;
     bottom: 0;
     padding-top: 10px;
+    padding-left: 10px;
 }
 
+/* All text in the profile should be relatively of the same size*/
 .text {
     font-size: 20px;
     padding-left: 20px;
@@ -68,12 +76,6 @@ img {
     content: "";
     display: table;
     clear: both;
-}
-
-body {
-    background-color: white;
-    font-family: Righteous, Arial, sans-serif;
-    margin: 0px;
 }
 
 td {
