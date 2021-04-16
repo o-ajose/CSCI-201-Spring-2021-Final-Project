@@ -20,13 +20,21 @@
     height: 50px;
 }
 
-.inputInfo {
+.inputPersonInfo {
+    display: block;
     position: relative;
     font-size: 20px;
     padding-left: 20px;
     align-items: center;
 }
 
+.inputPetInfo {
+    display: none;
+    position: relative;
+    font-size: 20px;
+    padding-left: 20px;
+    align-items: center;
+}
 .button {
     border-radius: 12px;
     background-color: antiquewhite;

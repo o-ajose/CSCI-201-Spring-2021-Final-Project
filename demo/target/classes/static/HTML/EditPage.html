@@ -3,32 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit Profile Page</title>
+    <script src="https://ajax.google.apis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
+        /* TODO: figure out why this isn't working*/
         function switchPages() {
             <!-- If we're on the user page, set
                 the href the pets, opposite if we're on the pets page
                 -->
-            window.location.href ="editPets.html"
+            d1 = document.getElementById("inputPersonInfo");
+            d2 = document.getElementById("inputPetInfo");
+
+            if(d2.style.display === "none") {
+                d1.style.display = "none";
+                d2.style.display = "block";
+            }
+            else {
+                d1.style.display = "block";
+                d2.style.display = "none";
+            }
         }
     </script>
 
     <!--src/ -->
 </head>
 <body>
-<link rel="stylesheet" href="../CSS/EditPage.css">
+<link rel="stylesheet" href="../css/EditPage.css">
 <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
 
 <!-- Code for navigation bar -->
 <div id="feedHeader" class = "navbar">
     <div id="icons">
-        <button type="button" class="iconBtn"><img class="icon" src="../Images/exploreIcon.webp"></button>
-        <button type="button" class="iconBtn"><img class="icon" src="../Images/feedIcon.png"></button>
-        <button type="button" class="iconBtn"><img class="icon" src="../Images/messageIcon.png"></button>
+        <button type="button" class="iconBtn"><img class="icon" src="../images/exploreIcon.webp"></button>
+        <button type="button" class="iconBtn"><img class="icon" src="../images/feedIcon.png"></button>
+        <button type="button" class="iconBtn"><img class="icon" src="../images/messageIcon.png"></button>
     </div>
-    <span><img class="dogBoneIcon" src="../Images/dogBoneIcon.png"></span>
+    <span><img class="dogBoneIcon" src="../images/dogBoneIcon.png"></span>
     <h3 class="websiteName">Tirebiters</h3>
     <div id="userDisplay">
-        <span class="circle"><img class="profileImage" src="../Images/defaultProfilePic.jpeg"></span>
+        <span class="circle"><img class="profileImage" src="../images/defaultProfilePic.jpeg"></span>
         <h4 class="username">USERNAME</h4>
     </div>
 </div>
@@ -41,16 +53,18 @@
         <button class="button" onclick="switchPages()"> Pets</button>
     </div>
 </div>
-<div class="inputInfo">
-    <form name="EditPage" onsubmit="alert('Changes Saved')";>
-        Profile Picture <input type="image" name="avi"> <br/>
+<div class="inputPersonInfo" style="display:block">
+    <form name="EditPersonPage" onsubmit="alert('Changes Saved')">
+        <label for="avi">Change Profile Photo: </label>
+        <input type="file" id="avi" name="avi" accept="image/*">
+        <br/>
 
         <!-- TODO: Need to add code that does the image preview stuff
                 where there's an automatic pfp if they don't choose
                 one -->
-        Name <input type="text" name="name" REQUIRED/> <br />
-        Username <input type="text" name="username" REQUIRED /> <br/>
-        Location <input type="text" name="location" required /> <br/>
+        Name <input type="text" name="name" placeholder="Tommy Trojan" REQUIRED/> <br />
+        Username <input type="text" name="username" placeholder="tommy_t" REQUIRED /> <br/>
+        Location <input type="text" name="location" placeholder="Los Angeles, CA" required /> <br/>
         <label for="song">Chosen Song</label>
         <select name="song" id="song">
             <option value="Who Let the Dogs Out?">Who Let the
@@ -59,6 +73,24 @@
             <option value="What's New Pussycat?">What's New Pussycat?</option>
         </select>
         <br><br>
+        <input class="button" type="submit" value="Saves Changes">
+    </form>
+</div>
+<div class="inputPetInfo" style="display:none">
+    <form name="EditPetPage" onsubmit="alert('Changes Saved')">
+        <label for="petAvi">Change Pet Profile Photo</label>
+        <input type="file" id="petAvi" name="petAvi" accept="image/*">
+        <br/>
+
+        Name <input type="text" name="name" placeholder="George Tirebiter" REQUIRED/> <br />
+        Age <input type="text" name="age"/> <br>
+        <label for="personality"> Personality</label>
+        <textarea id="personality" name="personality" rows="3" cols="50" ></textarea>
+        <br>
+        <label for="relStatus"> Relationship Status</label>
+        <textarea id="relStatus" name="relStatus" rows="3" cols="50" ></textarea>
+        <br>
+
         <input class="button" type="submit" value="Saves Changes">
     </form>
 </div>
