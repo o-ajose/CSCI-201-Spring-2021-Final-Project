@@ -35,12 +35,14 @@ function toggle() {
 
 // remove the create post pop up and show the posts
 function cancel() {
+    console.log("User cancel post");
     // put back the upload image option
     $("#uploadHeader").show();
     // inform user on how to change photo
     $("#instructions").html("Recommendation: Use high-quality.jpg files less than 10 MB.");
-    // hide photo preview
+    // hide photo preview and remove uploaded file
     $("#previewHolder").hide();
+    document.getElementById("file-upload").value = null;
     $("#popUp").hide();
     $("#postsSpace").show();
 }
@@ -135,4 +137,12 @@ function getPosts() {
 function post() {
     var file;
     var caption;
+    // if image file is null, then alert user
+    if (document.getElementById("file-upload").files[0] == null) {
+        alert("Please select a photo to upload!");
+    }
+    else {
+        console.log("Image was selected");
+    }
+
 }
