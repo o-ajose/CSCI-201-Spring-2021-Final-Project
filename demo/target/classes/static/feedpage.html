@@ -34,11 +34,12 @@
 <div id="popUp">
     <div id="leftside">
         <h2 style="color:white; font-weight: lighter; font-size: 35px; font-style: normal">Share a Photo!</h2>
-        <label for="file-upload" class="custom-file-upload" style="text-align: center">
+        <label id="uploadHeader" for="file-upload" class="custom-file-upload" style="text-align: center">
             <p id="uploadText">Upload your photo here!</p>
         </label>
-        <input id="file-upload" type="file" accept="image/*"/>
-        <p style="text-align:center;">Recommendation: Use high-quality jpg files less than 10 MB.</p>
+        <input id="file-upload" type="file" accept="image/*" data-errormsg="PhotoUploadErrorMsg"/>
+        <div id="previewHolder"><img id="preview" alt="Uploaded Image Preview Holder" style="height: 100%; width: 100%; object-fit: contain"/></div>
+        <p id="instructions">Recommendation: Use high-quality jpg files less than 10 MB.</p>
     </div>
     <div id="rightside">
         <div id="userInfo">

@@ -1,3 +1,32 @@
+// when user uploads image file, it will show preview
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#preview').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+        // hide the upload button area
+        $('#uploadHeader').hide();
+        // show preview area
+        $('#previewHolder').show();
+        // inform user on how to change photo
+        $('#instructions').html("Preview of uploaded image. To upload a different image," +
+            " please press Cancel.")
+    } else {
+        alert('Please upload an image file.');
+        $('#preview').attr('src', '');
+    }
+}
+
+$(function(ready){
+    $("#file-upload").change(function() {
+        console.log("photo picked");
+        readURL(this);
+    });
+});
+
+
 // When the user clicks on <div>, open the popup and hide posts
 function toggle() {
     $("#popUp").show();
@@ -6,6 +35,14 @@ function toggle() {
 
 // remove the create post pop up and show the posts
 function cancel() {
+    console.log("User cancel post");
+    // put back the upload image option
+    $("#uploadHeader").show();
+    // inform user on how to change photo
+    $("#instructions").html("Recommendation: Use high-quality.jpg files less than 10 MB.");
+    // hide photo preview and remove uploaded file
+    $("#previewHolder").hide();
+    document.getElementById("file-upload").value = null;
     $("#popUp").hide();
     $("#postsSpace").show();
 }
@@ -98,5 +135,14 @@ function getPosts() {
 
 // sends user's file image and description
 function post() {
+    var file;
+    var caption;
+    // if image file is null, then alert user
+    if (document.getElementById("file-upload").files[0] == null) {
+        alert("Please select a photo to upload!");
+    }
+    else {
+        console.log("Image was selected");
+    }
 
 }
