@@ -51,7 +51,7 @@ input, button {
 
 
 /* Style for the submit button (input) */
-input[type=submit]{
+.main-div input[type=submit]{
     background: rgb(215, 197, 155);
     color: #fff;
     border: 1px solid black;
@@ -64,6 +64,10 @@ input[type=submit]{
     -webkit-transition: 0.3s;
     -moz-transition: 0.3s;
 }
+
+
+
+
 
 /* When you hover over the submit button (input), change colors */
 .main-div input[type=submit]:hover{
@@ -137,16 +141,7 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
 }
 
 /* Set style for register button in register form */
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.9;
-}
+
 
 
 /* background and padding for cancel button */
@@ -159,6 +154,16 @@ button {
 .cancelbtn, .signupbtn {
     float: left;
     width: 100%;
+}
+.signupbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
 }
 
 /* Add padding to container elements */
