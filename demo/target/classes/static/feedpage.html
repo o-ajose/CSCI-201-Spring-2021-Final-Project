@@ -9,7 +9,7 @@
     <script src="js/feedpage.js"></script>
     <title>Tirebiters</title>
 </head>
-<body onload="getPosts()">
+<body onload="getFeed()">
 <div id="feedHeader" class = "navbar">
     <div id="icons">
         <button type="button" class="iconBtn" onclick=""><img class="icon" src="images/exploreIcon.webp"></button>
@@ -49,7 +49,7 @@
         <div id="textArea">
             <label for="descript"></label>
             <textarea id="descript" name="descript" rows="13" cols="45" maxlength = "280" placeholder="Add a cool caption here! Text limit is 280 characters."></textarea>
-            <p id="remaining">Characters left: 280</p>
+            <div id="remaining">Characters left: 280</div>
         </div>
         <div id="buttons">
             <input id="cancel" onclick="cancel()" class="button" type="button" value="Cancel">
