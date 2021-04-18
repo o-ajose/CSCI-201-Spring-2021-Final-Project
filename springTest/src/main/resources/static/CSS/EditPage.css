@@ -1,0 +1,33 @@
+
+
+* {
+    /* Couldn't figure out how to add righteous so I focused on doing
+            Arial for now*/
+    font-family: Arial, serif;
+}
+
+.Edit {
+    display: flex;
+    align-items: center;
+}
+
+.switch {
+    position: relative;
+    padding-top: 10px;
+    left: 10px;
+    width: 200px;
+    height: 50px;
+}
+
+.inputInfo {
+    position: relative;
+    font-size: 20px;
+    padding-left: 20px;
+    align-items: center;
+}
+
+.button {
+    border-radius: 12px;
+    background-color: antiquewhite;
+    text-align: center;
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile Page</title>
+</head>
+<body>
+<link rel="stylesheet" href="CSS/ProfilePage.css">
+<link href='https://fonts.google.com/specimen/Righteous' rel='stylesheet' type='text/css'>
+
+<div class="AddFriend">
+    <button class="button" onclick="myFunction()"> Add Friend</button>
+</div>
+
+<br>
+<!-- Divider for Printing out User Info
+        Main groups:
+            - Profile picture
+            - Personal info
+            - Song
+            -->
+<div class = "UserContainer">
+    <div class="image">
+        <img src="../../../../../IdeaProjects/CSCI-201-Spring-Final-Project/src/test/Images/tommy.jpeg" alt="Tommy's Profile Picture">
+    </div>
+    <div class="text">
+        <p>tommy_t</p>
+        <p>Name: Tommy Trojan</p>
+        <p>Location: Los Angeles, CA</p>
+    </div>
+    <br>
+</div>
+<div class="audio">
+    <audio id="song" src="Music/All%20You%20Need%20Is%20Love.mp3" preload="auto">
+        <p>If you are reading this, it is because your browser does not support the audio element.</p>
+    </audio>
+    <button class="button" onclick="playPause()">Chosen Song: All You Need Is Love by The Beatles</button>
+
+    <!-- Script to play my song -->
+    <script>
+        var play = document.getElementById('song');
+
+        function playPause() {
+            return play.paused ? play.play() : play.pause();
+        }
+    </script>
+</div>
+<br>
+<!-- Divider for Printing out Pet Info
+        Main groups:
+            - Pet's picture (if given)
+            - Pet's info
+-->
+    <!-- Will need to actually pull from our database once ready
+            but I haven't been able to look into how that'd actually
+            work yet, assuming it'd be somewhat similar to the code
+            Alex may be using for his servlet?  -->
+        <!--  Would most likely have to be that when we're pulling it in the
+            servlet, we iterate through all the pets and after every two pets
+             we add a break line-->
+<div class = "PetContainer">
+    <div class="row">
+        <div class="column">
+            <div class="image">
+                <img src="Images/milky.jpg" alt="Milky">
+            </div>
+            <div class="text">
+                <p>Name: Milky</p>
+                <p>Breed: Samoyed</p>
+                <p>Age: 3 years (28 dog years) </p>
+                <p>Personality: Very friendly, playful, easily excitable</p>
+                <p>Relationship status: Focused on his bros</p>
+            </div>
+        </div>
+        <div class="column">
+            <div class="image">
+                <img src="../../../../../IdeaProjects/CSCI-201-Spring-Final-Project/src/test/Images/boki.jpg" alt="Gwangbok">
+            </div>
+            <div class="text">
+                <p>Name: Gwangbok</p>
+                <p>Breed: Norwegian Forest</p>
+                <p>Age: 3 years (28 cat years)</p>
+                <p>Personality: Regal, calm, somewhat friendly, oldest energy for sure</p>
+                <p>Relationship status: 'I have risen above the need for a mate' - Boki</p>
+            </div>
+        </div>
+        <br/>
+        <div class="column">
+            <div class="image">
+                <img src="../../../../../IdeaProjects/CSCI-201-Spring-Final-Project/src/test/Images/tan.jpg" alt="Tan">
+            </div>
+            <div class="text">
+                <p>Name: Tan</p>
+                <p>Breed: Ginger Domestic Shorthair</p>
+                <p>Age: 1 year (15 cat years) </p>
+                <p>Personality: Goofy, curious, loves playing with his older brothers</p>
+                <p>Relationship status: It's my first year out, I'm just here </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function myFunction() {
+        window.location.href="https://reactjs.org/"
+    }
+</script>
+</body>
+</html>
