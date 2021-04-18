@@ -5,7 +5,29 @@ body {
     margin: 0px;
 }
 
-/* Container holding the user's info */
+
+/* Button for Adding Friends, TODO: need to add a button for Edit Profile and see which should be displayed based on if
+                               the user is logged in or not --> will mostly be dependent on how we do the onload function
+                                */
+.AddFriend {
+    position: absolute;
+    display: none;
+    right: 10px;
+    width: 200px;
+    height: 50px;
+    padding-top: 10px;
+}
+
+.EditProfile {
+    position: absolute;
+    display: block;
+    right: 10px;
+    width: 200px;
+    height: 50px;
+    padding-top: 10px;
+}
+
+/* ***** Container holding the user's info and all associated classes ***** */
 .UserContainer {
     display: flex;
     align-items: center;
@@ -13,35 +35,17 @@ body {
     /*font-family: Righteous, serif;*/
 }
 
-/* Container holding the pet's info*/
-.PetContainer {
-    display: flex;
-}
-
-/* Button for Adding Friends, TODO: need to add a button for Edit Profile and see which should be displayed based on if
-                               the user is logged in or not */
-.AddFriend {
-    position: absolute;
-    right: 10px;
-    width: 200px;
-    height: 50px;
-    padding-top: 10px;
-}
-
-/* Buttons CSS for Add Friends, Music, and Edit Profile */
-.button {
-    border-radius: 12px;
-    background-color: rgb(215, 197, 155);
-    text-align: center;
-    font-family: 'Righteous', sans-serif;
-}
-
-.image {
+.userImage {
     display: flex;
     width: 400px;
     height: auto;
-    /* TODO: Am going to have to add JSS to this to automatically
-        calculate the aspect ratios */
+}
+
+.userText { /* This text is slightly larger than the header and pet text, might make it smaller depending on
+                    aesthetics */
+    font-size: 35px;
+    padding-left: 20px;
+    align-items: center;
 }
 
 /* Settings for audio */
@@ -53,7 +57,30 @@ body {
     padding-left: 10px;
 }
 
-/* All text in the profile should be relatively of the same size*/
+/* ***** Container holding the pet's info and all associated classes ***** */
+.PetContainer {
+    display: flex;
+    padding-left: 10px;
+}
+.text {
+    font-size: 20px;
+    padding-left: 20px;
+    align-items: center;
+}
+
+/* Class needed to set up rows for pets as they print */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+/* *** Classes / extra areas for images *** */
+.image {
+    display: flex;
+    width: 450px;
+    height: auto;
+}
+
 .text {
     font-size: 20px;
     padding-left: 20px;
@@ -72,12 +99,19 @@ img {
     align-items: center;
 }
 
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
+/* Buttons CSS for Add Friends, Music, and Edit Profile */
+.button {
+    width: auto;
+    height: 40px;
+    border-radius: 20px;
+    background-color: rgb(215, 197, 155);
+    text-align: center;
+    font-family: 'Righteous', sans-serif;
+    color: white;
 }
 
+
+/* *** Navigation CSS from feedpage.css *** */
 td {
     padding:0 10px;
     width: 300px;

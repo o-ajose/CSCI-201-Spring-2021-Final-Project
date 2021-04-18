@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Profile Page</title>
-    <link href='https://fonts.google.com/specimen/Righteous' rel='stylesheet' type='text/css'>
+    <title>Tirebiters Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/ProfilePage.css">
 </head>
-<body>
-<link rel="stylesheet" href="../css/ProfilePage.css">
-
+<!-- TODO: update this with the needed servlet / webSocket to pull user information -->
+<body onload="">
 
 <!-- Code for navigation bar -->
 <div id="feedHeader" class = "navbar">
@@ -18,16 +18,29 @@
     </div>
     <span><img class="dogBoneIcon" src="../images/dogBoneIcon.png"></span>
     <h3 class="websiteName">Tirebiters</h3>
+
     <div id="userDisplay">
+        <!-- TODO: should be dependent on the feedback from the database on the user image -->
         <span class="circle"><img class="profileImage" src="../images/defaultProfilePic.jpeg"></span>
-        <h4 class="username">USERNAME</h4>
+
+        <!-- TODO: change the formatting back so it doesn't look like -->
+        <button type="button" class="username" onclick="window.location.href='ProfilePage.html'">USERNAME</button>
+
     </div>
 </div>
 
 <!-- TODO: add a function that checks with the backend if the user is the owner of the page. If they are, present the
-        Edit Profile button. Otherwise, present the Add Friend button-->
+        Edit Profile button. Otherwise, present the Add Friend button -->
+        <!-- This would be dependent on the onload function probably? If we're doing it similar to
+                assignment 4, then we'd have a cookie that would tell us if the user is logged in or not,
+                so if there's been a cookie set that matches the username of the visited profile page, then
+                dynamically show the add friend button or the edit profile page button-->
 <div class="AddFriend">
     <button class="button" onclick="window.location.href='../feedpage.html'"> Add Friend</button>
+</div>
+
+<div class="EditProfile">
+    <button class="button" onclick="window.location.href='EditPage.html'">Edit Profile</button>
 </div>
 
 <br>
@@ -38,12 +51,18 @@
             - Profile picture
             - Personal info
             - Song
+
+       Everything would need to be pulled dynamically from database and properly inserted, userContainer would be
+            an empty div
+
+        *** NOTE: thinking I might make everything smaller if we decide to add the user's past posts to this page?
+                Since there'd be less space that needs to be filled by the profile info
             -->
 <div class = "UserContainer">
-    <div class="image">
+    <div class="userImage">
         <img src="../images/tommy.jpeg" alt="Tommy's Profile Picture">
     </div>
-    <div class="text">
+    <div class="userText">
         <p>tommy_t</p>
         <p>Name: Tommy Trojan</p>
         <p>Location: Los Angeles, CA</p>
@@ -56,8 +75,7 @@
     </audio>
     <button class="button" onclick="playPause()">Chosen Song: All You Need Is Love by The Beatles</button>
 
-    <!-- Script to play the song -->
-
+    <!-- Script to play the song, might move this to it's own JS for profilePage if we end up using more JS functions -->
     <script>
         var play = document.getElementById('song');
 
@@ -67,21 +85,20 @@
     </script>
 </div>
 <br>
+
+
 <!-- Divider for Printing out Pet Info
         Main groups:
             - Pet's picture (if given)
             - Pet's info
+       Would most likely have to be that when we're pulling it in the
+            servlet, we iterate through all the pets and after every two pets
+            we add a break line, and the petContainer is actually an empty div that gets
+            filled with servlet info
 -->
-<!-- Will need to actually pull from our database once ready
-        but I haven't been able to look into how that'd actually
-        work yet, assuming it'd be somewhat similar to the code
-        Alex may be using for his servlet?  -->
-<!--  Would most likely have to be that when we're pulling it in the
-    servlet, we iterate through all the pets and after every two pets
-     we add a break line-->
-<hr style="size:10px; color:#C19770">
-<h2>Tommy's Pets</h2>
+<hr style="size:10px; color:#C19770"> <!-- Break line to divide the page into user and pets -->
 
+<h1 style="font-size: 30px; padding-left: 10px">Tommy's Pets</h1>
 <div class = "PetContainer">
     <div class="row">
         <div class="column">

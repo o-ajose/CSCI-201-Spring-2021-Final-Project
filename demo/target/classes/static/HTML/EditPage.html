@@ -6,12 +6,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
     <script src="https://ajax.google.apis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
+        var formSubmitting = false;
+        var setFormSubmitting = function() { formSubmitting = true;}
+        var isDirty = function() { return false; }
+        window.onload = function() {
+            window.addEventListener("beforeunload", function(e) {
+                if(formSubmitting || !isDirty()) {
+                    return undefined;
+                }
+
+                var confirmationMessage = 'It looks like you\'ve been editing your page.'
+                                            + 'If you leave before saving, your changes will be lost.';
+
+                (e || window.Event).returnValue = confirmationMessage;
+                return confirmationMessage;
+            });
+        };
 
     </script>
 
     <!--src/ -->
 </head>
-<body>
+<body> <!-- TODO: onload should load the page with all user's information for them to update as needed-->
 <link rel="stylesheet" href="../css/EditPage.css">
 
 
@@ -19,12 +35,14 @@
 <div id="feedHeader" class = "navbar">
     <div id="icons">
         <button type="button" class="iconBtn"><img class="icon" src="../images/exploreIcon.webp"></button>
+        <!-- TODO: could set this onclick to redirect to the feedPage for all navs -->
         <button type="button" class="iconBtn"><img class="icon" src="../images/feedIcon.png"></button>
         <button type="button" class="iconBtn"><img class="icon" src="../images/messageIcon.png"></button>
     </div>
     <span><img class="dogBoneIcon" src="../images/dogBoneIcon.png"></span>
     <h3 class="websiteName">Tirebiters</h3>
     <div id="userDisplay">
+        <!-- TODO: mentioned changes from ProfilePage to make sure this directs to the user's page-->
         <span class="circle"><img class="profileImage" src="../images/defaultProfilePic.jpeg"></span>
         <h4 class="username">USERNAME</h4>
     </div>
@@ -32,29 +50,31 @@
 <br>
 
 <div class="Edit">
+    <!-- TODO: get the function to work that says if the user is leaving the page with
+            unsaved changes-->
     <div class="switch">
-        <!-- TODO: Should we add a check that makes sure the user has saved all their info before
-                moving to the other page?-->
         <button class="button"> You</button>
         <br/>
         <button class="button" onclick="window.location.href='EditPets.html'"> Pets</button>
     </div>
 </div>
 <div class="inputPersonInfo">
-    <form name="EditPersonPage" onsubmit="alert('Changes Saved')">
-        <label for="avi">Change Profile Photo: </label>
-        <input type="file" id="avi" name="avi" accept="image/*">
+    <!-- TODO: add in servlet to communicate changes to the database, need to make
+            sure this is also shown on other user's pages when they've refreshed
+            a page -->
+    <form name="EditPersonPage" onsubmit="return setFormSubmitting() & alert('Changes Saved')">
+        <p>Change Profile Photo: </p>
+            <!-- TODO: would need the onload to also make sure this image is sent over -->
+        <label for="avi"><img class="userImage" src="../images/tommy.jpeg"></label>
+        <input style="display: none;" type="file" id="avi" name="avi" accept="image/*">
         <br/>
         <fieldset>
-            <!-- TODO: Need to add code that does the image preview stuff
-                    where there's an automatic pfp if they don't choose
-                    one -->
             Name <input type="text" name="name" placeholder="Tommy Trojan" REQUIRED/> <br />
-            <hr size="4px" width="100%" color="black">
+            <hr size="2px" width="100%" color="black">
             Username <input type="text" name="username" placeholder="tommy_t" REQUIRED /> <br/>
-            <hr size="4px" width="100%" color="black">
+            <hr size="2px" width="100%" color="black">
             Location <input type="text" name="location" placeholder="Los Angeles, CA" required /> <br/>
-            <hr size="4px" width="100%" color="black">
+            <hr size="2px" width="100%" color="black">
             <label for="song">Chosen Song</label>
             <select name="song" id="song">
                 <option value="Who Let the Dogs Out?">Who Let the
@@ -68,23 +88,6 @@
         <input class="button" type="submit" value="Save Changes">
     </form>
 </div>
-<div class="inputPetInfo" style="display:none">
-    <form name="EditPetPage" onsubmit="alert('Changes Saved')">
-        <label for="petAvi">Change Pet Profile Photo</label>
-        <input type="file" id="petAvi" name="petAvi" accept="image/*">
-        <br/>
 
-        Name <input type="text" name="name" placeholder="George Tirebiter" REQUIRED/> <br />
-        Age <input type="text" name="age"/> <br>
-        <label for="personality"> Personality</label>
-        <textarea id="personality" name="personality" rows="3" cols="50" ></textarea>
-        <br>
-        <label for="relStatus"> Relationship Status</label>
-        <textarea id="relStatus" name="relStatus" rows="3" cols="50" ></textarea>
-        <br>
-
-        <input class="button" type="submit" value="Save Changes">
-    </form>
-</div>
 </body>
 </html>
