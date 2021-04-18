@@ -1,3 +1,11 @@
+// when user gets to feed page
+function getFeed() {
+    // load user's name and image
+    
+    // load posts
+    getPosts();
+}
+
 // when user uploads image file, it will show preview
 function readURL(input) {
     if (input.files && input.files[0]) {
