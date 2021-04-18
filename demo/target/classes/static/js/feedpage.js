@@ -1,7 +1,7 @@
 // when user gets to feed page
 function getFeed() {
     // load user's name and image
-    
+    // TODO
     // load posts
     getPosts();
 }
@@ -31,6 +31,25 @@ $(function(ready){
     $("#file-upload").change(function() {
         console.log("photo picked");
         readURL(this);
+    });
+});
+
+function countCharacters() {
+    // set up variables
+    var textEntered, countRemaining, counter;
+    // get the number of characters in the description box
+    textEntered = document.getElementById("descript").value;
+    // number left = number of characters - our max (280)
+    counter = (280 - (textEntered.length));
+    console.log(counter);
+    countRemaining = document.getElementById("remaining");
+    // update the character count on user's page
+    countRemaining.innerHTML = "Characters remaining: " + counter;
+}
+
+$(function(){ // this will be called when the DOM is ready
+    $('#descript').keyup(function() {
+       countCharacters();
     });
 });
 
@@ -106,7 +125,7 @@ function getPosts() {
 
      */
 
-    // loop through row and continue appending posts (altering between post1 and post2 styles)
+    // TEST: loop through row and continue appending posts (altering between post1 and post2 styles)
     for (i=0; i < 6; i++) {
         // if we are on even number -> post1 style
         if (i % 2 == 0) {
