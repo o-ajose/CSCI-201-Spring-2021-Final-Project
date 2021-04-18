@@ -55,6 +55,7 @@ function getPosts() {
     $.ajax ({
         type: 'POST',
         url: 'getPosts',
+        dataType: 'json',
         success: function(response) {
             console.log("retrieved json post objects");
             posts = response;
@@ -130,19 +131,39 @@ function getPosts() {
                 "</td>";
         }
     }
-
 }
 
 // sends user's file image and description
 function post() {
-    var file;
-    var caption;
+    var file = document.getElementById("file-upload").files[0];
+    var caption = document.getElementById("descript").value;
     // if image file is null, then alert user
-    if (document.getElementById("file-upload").files[0] == null) {
+    if (file == null) {
         alert("Please select a photo to upload!");
+        return;
     }
     else {
         console.log("Image was selected");
     }
+    // if caption is empty
+    if (!caption || (caption == "")) {
+        alert("Please add a caption!");
+        return;
+    }
+    // call servlet to put post into database
+    $.ajax ({
+        type: 'POST',
+        url: 'createPost',
+        data: {
+            file: file,
+            comments: descript
+        },
+        success: function(response) {
+            alert(response);
+            // call getPost to refresh for new posts
+            getPosts();
+        }
+    });
 
 }
+
