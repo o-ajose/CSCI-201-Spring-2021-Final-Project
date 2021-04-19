@@ -148,6 +148,7 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
 .cancelbtn {
     padding: 14px 20px;
     background-color: #ff0000;
+    border-radius: 25px;
 }
 
 /* Float cancel and signup buttons and add an equal width */
@@ -164,6 +165,7 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
     cursor: pointer;
     width: 100%;
     opacity: 0.9;
+    border-radius: 25px;
 }
 
 /* Add padding to container elements */
@@ -190,6 +192,7 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
     background-color: rgb(215, 197, 155);
     margin: 5% auto 15% auto;
     border: 1px solid #888;
+    border-radius: 25px;
     width: 50%;
 }
 
