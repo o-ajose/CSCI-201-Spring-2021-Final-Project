@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/CSCI-201-Spring-2021-Final-Project.iml" filepath="$PROJECT_DIR$/.idea/CSCI-201-Spring-2021-Final-Project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springTest/demo.iml" filepath="$PROJECT_DIR$/springTest/demo.iml" />
     </modules>
   </component>
 </project>

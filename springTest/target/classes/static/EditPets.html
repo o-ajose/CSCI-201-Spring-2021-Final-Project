@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Pets</title>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <script>
+        function createNewElement() {
+            const newInputBox = document.getElementById("newPetInfo").innerHTML.toString();
+            /* TODO: need to also make sure this gets updated within the database if we add a new one */
+            document.getElementById("Pet").innerHTML += newInputBox;
+        }
+    </script>
+</head>
+<body>
+<link rel="stylesheet" href="css/EditPage.css">
+
+
+<!-- Code for navigation bar -->
+<div id="feedHeader" class = "navbar">
+    <div id="icons">
+        <button type="button" class="iconBtn"><img class="icon" src="../../../../../demo/target/classes/static/images/exploreIcon.webp"></button>
+        <button type="button" class="iconBtn"><img class="icon" src="../../../../../demo/target/classes/static/images/feedIcon.png"></button>
+        <button type="button" class="iconBtn"><img class="icon" src="../../../../../demo/target/classes/static/images/messageIcon.png"></button>
+    </div>
+    <span><img class="dogBoneIcon" src="../../../../../demo/target/classes/static/images/dogBoneIcon.png"></span>
+    <h3 class="websiteName">Tirebiters</h3>
+    <div id="userDisplay">
+        <span class="circle"><img class="profileImage" src="../../../../../demo/target/classes/static/images/defaultProfilePic.jpeg"></span>
+        <h4 class="username">USERNAME</h4>
+    </div>
+</div>
+<br>
+
+<div class="Edit">
+    <div class="switch">
+        <button class="button" onclick="window.location.href='EditPage.html'"> You</button>
+        <br/>
+        <button class="button"> Pets</button>
+    </div>
+</div>
+<!-- Need to add the switch button to go between pets and person
+        Add way to update pet info
+        Need to also add the add pets functionality
+        Save Changes functionality-->
+
+<div class="inputPetInfo" >
+    <!-- TODO: figure out how we'd print out as many update sections as pets -->
+        <!-- Would probably just be dependent on an onload function that gives us each pet's
+                   info as the placeholders-->
+    <form name="EditPetPage" onsubmit="alert('Changes Saved')">
+        <div class="updatePets">
+            <div class="row">
+                <div class="column">
+                    <p>Change Milky's Profile Photo: </p>
+                    <label for="pet1Avi"><img class="userImage" src="images/milky.jpg"></label>
+                    <input style="display: none;" type="file" id="pet1Avi" name="pet1Avi" accept="image/*">
+                    <br/>
+
+                    Name <input type="text" name="name" placeholder="Milky" REQUIRED/> <br>
+                    Age <input type="text" name="age" placeholder="3 years"/> <br>
+                    <!-- shift these up to be the center of the textarea -->
+                    <p class="formfield">
+                        <label for="personality1" class="alignTop"> Personality</label>
+                        <textarea id="personality1" name="personality1" rows="3" cols="50" placeholder="Very friendly, playful, easily excitable" ></textarea>
+                    </p>
+                    <p class="formfield">
+                        <label for="relStatus1" style="height: 50px;"> Relationship Status</label>
+                        <textarea id="relStatus1" name="relStatus1" rows="3" cols="50" placeholder="Focused on my bros"></textarea>
+                    </p>
+                </div>
+                <br>
+                <div class="column">
+                    <p>Change Boki's Profile Photo: </p>
+                    <label for="pet2Avi"><img class="userImage" src="images/boki.jpg"></label>
+                    <input style="display: none;" type="file" id="pet2Avi" name="pet2Avi" accept="image/*">
+                    <br/>
+
+                    Name <input type="text" name="name" placeholder="Boki" REQUIRED/> <br>
+                    Age <input type="text" name="age" placeholder="3 years"/> <br>
+                    <!-- shift these up to be the center of the textarea -->
+                    <p class="formfield">
+                        <label for="personality2" class="alignTop"> Personality</label>
+                        <textarea id="personality2" name="personality2" rows="3" cols="50" placeholder="Regal, calm, somewhat friendly, oldest energy for sure" ></textarea>
+                    </p>
+                    <p class="formfield">
+                        <label for="relStatus2" style="height: 50px;"> Relationship Status</label>
+                        <textarea id="relStatus2" name="relStatus2" rows="3" cols="50" placeholder="'I have risen above the need for a mate' - Boki"></textarea>
+                    </p>
+                </div>
+                <br>
+                <div class="column">
+                    <p>Change Tan's Profile Photo: </p>
+                    <label for="pet3Avi"><img class="userImage" src="images/tan.jpg"></label>
+                    <input style="display: none;" type="file" id="pet3Avi" name="pet3Avi" accept="image/*">
+                    <br/>
+
+                    Name <input type="text" name="name" placeholder="Tan" REQUIRED/> <br>
+                    Age <input type="text" name="age" placeholder="1 year"/> <br>
+                    <!-- shift these up to be the center of the textarea -->
+                    <p class="formfield">
+                        <label for="personality3" class="alignTop"> Personality</label>
+                        <textarea id="personality3" name="personality3" rows="3" cols="50" placeholder="Goofy, curious, loves playing with his older brothers" ></textarea>
+                    </p>
+                    <p class="formfield">
+                        <label for="relStatus3" style="height: 50px;"> Relationship Status</label>
+                        <textarea id="relStatus3" name="relStatus3" rows="3" cols="50" placeholder="It's my first year out, I'm just here"></textarea>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TODO: current thought -- to get a new pet div, we'd need to communicate with the backend that
+                a new element needs to be created, added to the pet database for the user and added to this newPet div -->
+        <div id="Pet"></div>
+
+        <div class="addPet">
+            <input type="button" value="Add Another Pet" onclick="createNewElement();"
+                   style="background-color: #C19770; color: white"/>
+        </div>
+        <br>
+        <input class="button" type="submit" value="Saves Changes">
+    </form>
+    <br>
+</div>
+
+<div id="newPetInfo" style="display: none">
+    <p>Add your pet's photo</p>
+    <label for="newPet"><img class="userImage" src="images/dog1.jpeg"></label>
+    <input style="display: none;" type="file" id="newPet" name="newPet" accept="image/*">
+    <br/>
+
+    Name <input type="text" name="name" placeholder="Milky" REQUIRED/> <br>
+    Age <input type="text" name="age" placeholder="3 years"/> <br>
+    <!-- shift these up to be the center of the textarea -->
+    <p class="formfield">
+        <label for="newPersonality" class="alignTop"> Personality</label>
+        <textarea id="newPersonality" name="newPersonality" rows="3" cols="50" placeholder="Very friendly, playful, easily excitable" ></textarea>
+    </p>
+    <p class="formfield">
+        <label for="newRelStatus" style="height: 50px;"> Relationship Status</label>
+        <textarea id="newRelStatus" name="newRelStatus" rows="3" cols="50" placeholder="Focused on my bros"></textarea>
+    </p>
+</div>
+
+</body>
+</html>
