@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.concurrent.ExecutionException;
@@ -34,8 +35,10 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String register(HttpServletRequest request,@RequestParam String username1, @RequestParam String password1, @RequestParam String email1, @RequestParam String bio) throws InterruptedException, ExecutionException {
-        User newUser = new User(username1,email1,password1,bio);
+    public String register(HttpServletRequest request,@RequestParam String username1, @RequestParam String password1, @RequestParam String email1, @RequestParam String bio, @RequestParam String location, @RequestParam("file") MultipartFile multipartFile) throws InterruptedException, ExecutionException {
+        logger.info("HIT -/upload | File Name : {}"+multipartFile.getOriginalFilename());
+        String profilePic = fileService.upload(multipartFile);
+        User newUser = new User(username1,email1,password1,bio,location,profilePic);
         HttpSession session = request.getSession();
         //return (String)session.getAttribute("username");
         session.setAttribute("username",username1);
@@ -50,12 +53,82 @@ public class UserController {
         String username= (String)session.getAttribute("username");
         return userService.createPost(username,imageURL,comments);
     }
+    @PutMapping("/updateUser")
+    public String updateUser(HttpServletRequest request,@RequestParam String displayName,@RequestParam String password, @RequestParam("file") MultipartFile multipartFile,@RequestParam String email, @RequestParam String bio,@RequestParam String location) throws InterruptedException, ExecutionException {
+        HttpSession session = request.getSession();
+        String username = (String)session.getAttribute("username");
+        return userService.updateUserDetails(username,displayName,password,email,location,bio,multipartFile);
+    }
 
+    @PutMapping("/updatePet")
+    public String updatePet(HttpServletRequest request,@RequestBody Pet pet ) throws InterruptedException, ExecutionException {
+        HttpSession session = request.getSession();
+        String username = (String)session.getAttribute("username");
+        return userService.updatePetDetails(username,pet);
+    }
+
+    @PostMapping("/setSong")
+    @ResponseBody
+    public String setSong(@RequestParam String username2, @RequestParam String song ) throws InterruptedException, ExecutionException {
+        return userService.setUserSong(username2, song);
+    }
+
+    @PostMapping("/getSong")
+    @ResponseBody
+    public String getSong(@RequestParam String username3) throws InterruptedException, ExecutionException {
+        return userService.getUserSong(username3);
+    }
+
+
+
+    @PostMapping("/createPet")
+    public String createPet(@RequestParam String username4,
+                            @RequestParam String name,
+                            @RequestParam String personality,
+                            @RequestParam String age,
+                            @RequestParam String breed,
+                            @RequestParam String relationshipStatus,
+                            @RequestParam String size) throws InterruptedException, ExecutionException {
+        Pet newPet = null;
+        /*if(animaltype.equals("dog")){
+            // how do you want to get the input of age? right now moving String to int
+            newPet = new Dog(name, Integer.parseInt(age));
+            newPet.setPersonality(personality);
+            newPet.setBreed(breed);
+            newPet.setRelationshipStatus(relationshipStatus);
+            newPet.setSize(size);
+        } else if(animaltype.equals("cat")){
+            newPet = new Cat(name, Integer.parseInt(age));
+            newPet.setPersonality(personality);
+            newPet.setBreed(breed);
+            newPet.setRelationshipStatus(relationshipStatus);
+            newPet.setSize(size);
+        }*/
+
+        newPet = new Pet(name, Integer.parseInt(age));
+        newPet.setPersonality(personality);
+        newPet.setBreed(breed);
+        newPet.setRelationshipStatus(relationshipStatus);
+        newPet.setSize(size);
+
+        return userService.savePetDetails(username4, newPet);
+    }
+
+    @GetMapping("/getAllPetDetails")
+    @ResponseBody
+    public String getAllPets(@RequestParam String username) throws InterruptedException, ExecutionException {
+        return userService.getAllPetDetails(username);
+    }
     @PostMapping("/getPosts")
     public ResponseEntity<List<Post>> getPosts(HttpServletRequest request) throws IOException,ExecutionException,InterruptedException {
        // logger.info("HIT -/download | File Name : {}"+ fileName);
         HttpSession session = request.getSession();
         String username = (String)session.getAttribute("username");
+        if(username==null){
+            List<Post> loggedOut = new ArrayList<Post>();
+            loggedOut.add(new Post());
+            return ResponseEntity.ok(loggedOut);
+        }
         return ResponseEntity.ok(userService.getPosts(username));
     }
 

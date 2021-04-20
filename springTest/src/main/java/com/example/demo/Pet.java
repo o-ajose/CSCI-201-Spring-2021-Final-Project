@@ -1,16 +1,29 @@
 package com.example.demo;
-public abstract class Pet {
-        private String name;
-        private String personality;
-        public int age;
-        private String breed;
-        private String relationshipStatus;
-        private String size;
+
+import java.util.ArrayList;
+
+public /*abstract*/ class Pet {
+    private String name;
+    private String personality;
+    public int age;
+    private String breed;
+    private String relationshipStatus;
+    private String size;
+
+    public Pet(){
+        name = "BROKEN";
+        personality = "BROKEN";
+        age = -1;
+        breed = "BROKEN";
+        relationshipStatus = "BROKEN";
+        size = "BROKEN";
+    }
 
     public Pet(String name,int age){
         this.name = name;
         this.age = age;
     }
+
     void setName(String name){
         this.name = name;
     }
@@ -38,7 +51,9 @@ public abstract class Pet {
     public String getBreed(){
         return breed;
     }
-    public abstract int getAge();
+    public /*abstract*/ int getAge(){
+        return age;
+    }
     public String getRelationshipStatus(){
         return relationshipStatus;
     }
@@ -46,3 +61,4 @@ public abstract class Pet {
         return size;
     }
 }
+

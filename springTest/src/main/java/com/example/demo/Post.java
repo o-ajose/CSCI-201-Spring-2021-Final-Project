@@ -12,6 +12,7 @@ public class Post {
         username = us;
     }
     Post(){
-
+        num = -1;
+    comments = "Please log in again; session expired.";
     }
 }
