@@ -164,7 +164,16 @@ public class UserService {
         ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection(COL_NAME).document(person.getName()).set(person);
         return collectionsApiFuture.get().getUpdateTime().toString();
     }*/
-
+public String checkForPosts(String username) throws InterruptedException, ExecutionException{
+        List<Post>initialList = getPosts(username);
+        while(true){
+            Thread.sleep(1000);
+            List<Post>newList = getPosts(username);
+            if(newList.size()>initialList.size()){
+                return "New posts!";
+            }
+        }
+    }
     public List<Post> getPosts(String username) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         DocumentReference docRef = dbFirestore.collection("posts").document("info");
