@@ -6,6 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
+<img  alt ="why don't you work" height="125" width="100"/>
 <!-- Go to localhost:8080/Test.html to test file-->
 <!-- Enter Test in the input to see "Joe Johnson" from database -->
 <form id="nameForm" method="POST">
@@ -17,7 +18,7 @@
         <button type = "button" onClick="checkLogIn()">Find User!</button>
     </div>
 </form>
-<form id = "signUpForm" action ="/createUser" method="POST">
+<form id = "signUpForm" action ="/register" method="POST">
     <div>
         <label for="username1">What's your new username?</label>
         <input name="username1" id="username1" >
@@ -25,16 +26,76 @@
         <input name="email1" id ="email1">
         <label for="password1">What is your new password?</label>
         <input name ="password1" id="password1" type="password">
+        <label for="bio">What's a bio?</label>
+        <input name ="bio" id="bio" type = "text">
+        <label for="location">What's your location?</label>
+        <input name="location" id="location" type ="location">
         <button>Sign me up!</button>
     </div>
 </form>
 
+<label for="friend">Who would you like to add as a friend?</label>
+<input name = "friend" id ="friend">
+<button onClick="addFriend()">Add friend!</button>
+<button onClick="getReqs()">Get my friend requests!</button>
+
+<form id = "setSongForm" action ="/setSong" method="POST">
+    <div class="custom-select" style="width:200px;">
+        <label for="username2">What user is currently logged in?</label>
+        <input name="username2" id="username2" >
+        <select name = "song">
+            <option value="Music/All%20You%20Need%20Is%20Love.mp3">All You Need Is Love - The Beatles</option>
+            <option value="Music/Who%20Let%20the%20Dogs%20Out.mp3">Who Let the Dogs Out - Baha Men</option>
+            <option value="Music/Loving%20is%20easy.mp3">Loving is Easy - Rex Orange County</option>
+        </select>
+        <button>Set as my song!</button>
+    </div>
+</form>
+<form id = "getSongForm" action ="/getSong" method="POST">
+    <div class="custom-select" style="width:200px;">
+        <label for="username3">What user is currently logged in?</label>
+        <input name="username3" id="username3" >
+        <button>Get the MP3 filepath for this user's song!</button>
+    </div>
+</form>
+<form id = "addPetForm" action ="/createPet" method="POST">
+    <div>
+        <label for="username4">What's your new username?</label>
+        <input name="username4" id="username4" >
+
+        <!--<select name = "animaltype">
+            <option value="dog">Dog</option>
+            <option value="cat">Cat</option>
+        </select>-->
+
+        <label for="name">What's your pet's name?</label>
+        <input name="name" id="name">
+        <label for="personality">What's your pet's personality?</label>
+        <input name="personality" id="personality" >
+
+        <label for="age">What's your pet's age (human years)?</label>
+        <input name="age" id="age">
+
+        <label for="breed">What's your pet's breed?</label>
+        <input name="breed" id="breed">
+
+        <label for="relationshipStatus">What's your pet's relationship status?</label>
+        <input name="relationshipStatus" id="relationshipStatus">
+
+        <label for="size">What's your pet's size?</label>
+        <input name="size" id="size">
+
+        <button>Add Pet!</button>
+    </div>
+</form>
+
 <script>
+    document.querySelector('img').src = "https://firebasestorage.googleapis.com/v0/b/csci201finalproject-310216/o/pupp2.jpg?alt=media";
     function checkLogIn(){
         var username1 = $('#username').val();
         var password1 = $('#password').val();
         $.ajax({
-            url: "getUserDetails",
+            url: "login",
             type:"GET",
             //contentType: "text/plain",
             data: {"username": username1, "password":password1},
@@ -51,8 +112,98 @@
                     window.location.href = 'loggedInHome.html';
                 }
                 else{*/
-                    alert(response);
-               // }
+                alert(response);
+                // }
+                //	}
+            },
+            error: function(jqXHR,exception){
+                var msg = '';
+                if (jqXHR.status === 0) {
+                    msg = 'Not connect.\n Verify Network.';
+                } else if (jqXHR.status == 404) {
+                    msg = 'Requested page not found. [404]';
+                } else if (jqXHR.status == 500) {
+                    msg = 'Internal Server Error [500].';
+                } else if (exception === 'parsererror') {
+                    msg = 'Requested JSON parse failed.';
+                } else if (exception === 'timeout') {
+                    msg = 'Time out error.';
+                } else if (exception === 'abort') {
+                    msg = 'Ajax request aborted.';
+                } else {
+                    msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                }
+                alert(msg);
+            }
+        });
+    }
+
+    function addFriend(){
+        var friend = $('#friend').val();
+        $.ajax({
+            url: "requestFriend",
+            type:"POST",
+            //contentType: "text/plain",
+            data: {"friend": friend},
+            // dataType: "text/plain",
+            success: function(response) {
+                //if(response==="HERE"){
+                //window.location.href = "/loggedInHome.html";
+                //}
+                //else{
+                console.log(response);
+                /*
+                if(response.includes("Success")){
+                    //alert("yes");
+                    window.location.href = 'loggedInHome.html';
+                }
+                else{*/
+                alert(response);
+                // }
+                //	}
+            },
+            error: function(jqXHR,exception){
+                var msg = '';
+                if (jqXHR.status === 0) {
+                    msg = 'Not connect.\n Verify Network.';
+                } else if (jqXHR.status == 404) {
+                    msg = 'Requested page not found. [404]';
+                } else if (jqXHR.status == 500) {
+                    msg = 'Internal Server Error [500].';
+                } else if (exception === 'parsererror') {
+                    msg = 'Requested JSON parse failed.';
+                } else if (exception === 'timeout') {
+                    msg = 'Time out error.';
+                } else if (exception === 'abort') {
+                    msg = 'Ajax request aborted.';
+                } else {
+                    msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                }
+                alert(msg);
+            }
+        });
+    }
+
+    function getReqs(){
+        $.ajax({
+            url: "getRequests",
+            type:"POST",
+            //contentType: "text/plain",
+            // dataType: "text/plain",
+            success: function(response) {
+                //if(response==="HERE"){
+                //window.location.href = "/loggedInHome.html";
+                //}
+                //else{
+                console.log(response);
+                /*
+                if(response.includes("Success")){
+                    //alert("yes");
+                    window.location.href = 'loggedInHome.html';
+                }
+                else{*/
+                alert(response);
+                // }
                 //	}
             },
             error: function(jqXHR,exception){

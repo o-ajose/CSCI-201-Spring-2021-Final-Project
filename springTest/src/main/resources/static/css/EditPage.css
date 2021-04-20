@@ -67,6 +67,10 @@ textarea {
     text-align: center;
 }
 
+.inputPersonInfo .fieldsetAutoWidth {
+    width: 50%;
+}
+
 /* ***** Code for navigation bar formatting ***** */
 
 td {
