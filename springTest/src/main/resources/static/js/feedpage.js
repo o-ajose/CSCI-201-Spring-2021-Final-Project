@@ -6,6 +6,28 @@ function getFeed() {
     getPosts();
 }
 
+// redirects to account page
+function getAccountPage() {
+    console.log("Redirecting to account page");
+    location.href = "test.html";
+}
+
+// nav bar redirects to different pages
+function goToFriends() {
+    console.log("Redirecting to friends page");
+    location.href = "friendsPage.html";
+}
+// nav bar redirects to different pages
+function goToExplore() {
+    console.log("Redirecting to explore page");
+    location.href = "explorepage.html";
+}
+// nav bar redirects to different pages
+function goToFeed() {
+    console.log("Redirecting to explore page");
+    location.href = "feedpage.html";
+}
+
 // when user uploads image file, it will show preview
 function readURL(input) {
     if (input.files && input.files[0]) {
@@ -70,6 +92,8 @@ function cancelFunc() {
     // hide photo preview and remove uploaded file
     $("#previewHolder").hide();
     document.getElementById("file-upload").value = null;
+    // clear the text description input
+    document.getElementById("descript").value = null;
     $("#popUp").hide();
     $("#postsSpace").show();
 }
@@ -86,84 +110,122 @@ function getPosts() {
         success: function(response) {
             console.log("retrieved json post objects");
             console.log(response);
-            posts = response;
+            var posts = response;
+            // reset newsfeed posts to be the original ones
+            document.getElementById("row").innerHTML = "<td>\n" +
+                "<div class=\"post1\">\n" +
+                "<div class=\"photos\">\n" +
+                "<img class=\"photo\" src=\"images/alex.jpeg\">\n" +
+                "</div>\n" +
+                "<p class=\"user\">Alex Bruckhaus</p>\n" +
+                "<p class=\"description\">\n" +
+                "This is Snowball, a 7 year old (49 dog years) Bichon Frise. He got his license when he was 3 years old and is driving a fresh new Red Ferrari. He loves tirebiters because he can meet new friends and loves to go on long drives down the Pacific Coast Highway.\n" +
+                "</p>\n" +
+                "</div>\n" +
+                "</td>\n" +
+                "<td>\n" +
+                "<div class=\"post2\">\n" +
+                "<div class=\"photos\">\n" +
+                "<img class=\"photo\" src=\"images/steven.jpeg\">\n" +
+                "</div>\n" +
+                "<p class=\"user\">Steven Alexander</p>\n" +
+                "<p class=\"description\">\n" +
+                "This is Oscar— a friendly black, white, and brown short-haired chihuahua. He is a belly rub-loving puppy who loves food, napping, and the occasional walk.\n" +
+                "</p>\n" +
+                "</div>\n" +
+                "</td>\n" +
+                "<td>\n" +
+                "<div class=\"post1\">\n" +
+                "<div class=\"photos\">\n" +
+                "<img class=\"photo\" src=\"images/max.jpg\">\n" +
+                "</div>\n" +
+                "<p class=\"user\">Max Bacani</p>\n" +
+                "<p class=\"description\">\n" +
+                "Chillin' out on the beach with my dog Chonky! No one is cooler than this dog right here!!\n" +
+                "</p>\n" +
+                "</div>\n" +
+                "</td>\n" +
+                "<td>\n" +
+                "<div class=\"post2\">\n" +
+                "<div class=\"photos\">\n" +
+                "<img class=\"photo\" src=\"images/karen.jpeg\">\n" +
+                "</div>\n" +
+                "<p class=\"user\">Karen Ly</p>\n" +
+                "<p class=\"description\">\n" +
+                "Today has been ruff, but I've been up coding this website the past week! It's paw-some right???\n" +
+                "#living #staypawsitive #coder #dogs\n" +
+                "</p>\n" +
+                "</div>\n" +
+                "</td>\n" +
+                "<td>\n" +
+                "<div class=\"post1\">\n" +
+                "<div class=\"photos\">\n" +
+                "<img class=\"photo\" src=\"images/allison.jpeg\">\n" +
+                "</div>\n" +
+                "<p class=\"user\">Allison Ohara</p>\n" +
+                "<p class=\"description\">\n" +
+                "My dog Bijou can only seem to lift one of her ears...\n" +
+                "</p>\n" +
+                "</div>\n" +
+                "</td>\n" +
+                "<td>\n" +
+                "<div class=\"post2\">\n" +
+                "<div class=\"photos\">\n" +
+                "<img class=\"photo\" src=\"images/karen.jpeg\">\n" +
+                "</div>\n" +
+                "<p class=\"user\">Oju Ajose</p>\n" +
+                "<p class=\"description\">\n" +
+                "Today has been ruff, but I've been up coding this website the past week! It's paw-some right???\n" +
+                "#living #staypawsitive #coder #dogs\n" +
+                "</p>\n" +
+                "</div>\n" +
+                "</td>";
+            // append from old to new posts
+            for (i = posts.length - 1; i >= 0; i--) {
+                // if we are on even number -> post1 style
+                if (i % 2 == 0) {
+                    document.getElementById("row").innerHTML =
+                        "<td>\n" +
+                        "<div class=\"post1\">\n" +
+                        "<div class=\"photos\">\n" +
+                        "<img class=\"photo\" src=\"" + posts[i].URL + "\">\n" +
+                        "</div>\n" +
+                        "<p class=\"user\">" + posts[i].username + "</p>\n" +
+                        "<p class=\"description\">\n" + posts[i].comments +
+                        "</p>\n" +
+                        "</div>\n" +
+                        "</td>" + document.getElementById("row").innerHTML;
+                }
+                // if we are on an odd number -> post2 style
+                else {
+                    document.getElementById("row").innerHTML =
+                        "<td>\n" +
+                        "<div class=\"post2\">\n" +
+                        "<div class=\"photos\">\n" +
+                        "<img class=\"photo\" src=\"" + posts[i].URL + "\">\n" +
+                        "</div>\n" +
+                        "<p class=\"user\">" + posts[i].username + "</p>\n" +
+                        "<p class=\"description\">\n" + posts[i].comments +
+                        "</p>\n" +
+                        "</div>\n" +
+                        "</td>" + document.getElementById("row").innerHTML;
+                }
+            }
+            // start async function to check for posts from friends
+            $.ajax ({
+                type: 'POST',
+                url: 'areNewPosts',
+                success: function(response) {
+                    // returns if there are new posts so call get posts again
+                    getPosts();
+                }
+            });
         }
     });
-    // sort the post objects from new to old (descending order of num key of json object)
-    //posts.sort((a, b) => parseInt(b.num) - parseInt(a.num));
-
-    /*
-    for (i = 0; i < posts.length; i++) {
-        // if we are on even number -> post1 style
-        if (i % 2 == 0) {
-            document.getElementById("row").innerHTML +=
-                "<td>\n" +
-                "<div class=\"post1\">\n" +
-                "<div class=\"photos\">\n" +
-                "<img class=\"photo\" src=\"" + posts[i].URL + "\">\n" +
-                "</div>\n" +
-                "<p class=\"user\">" + posts[i].username + "</p>\n" +
-                "<p class=\"description\">\n" + posts[i].comments +
-                "</p>\n" +
-                "</div>\n" +
-                "</td>";
-        }
-        // if we are on an odd number -> post2 style
-        else {
-            document.getElementById("row").innerHTML +=
-                "<td>\n" +
-                "<div class=\"post2\">\n" +
-                "<div class=\"photos\">\n" +
-                "<img class=\"photo\" src=\"" + posts[i].URL + "\">\n" +
-                "</div>\n" +
-                "<p class=\"user\">" + posts[i].username + "</p>\n" +
-                "<p class=\"description\">\n" + posts[i].comments +
-                "</p>\n" +
-                "</div>\n" +
-                "</td>";
-        }
-    }
-
-     */
-
-    // TEST: loop through row and continue appending posts (altering between post1 and post2 styles)
-    for (i=0; i < 6; i++) {
-        // if we are on even number -> post1 style
-        if (i % 2 == 0) {
-            document.getElementById("row").innerHTML +=
-                "<td>\n" +
-                "<div class=\"post1\">\n" +
-                "<div class=\"photos\">\n" +
-                "<img class=\"photo\" src=\"images/dog1.jpeg\">\n" +
-                "</div>\n" +
-                "<p class=\"user\">USERNAME</p>\n" +
-                "<p class=\"description\">\n" +
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n" +
-                "</p>\n" +
-                "</div>\n" +
-                "</td>";
-        }
-        // elif we are on odd number -> post2 style
-        else {
-            document.getElementById("row").innerHTML +=
-                "<td>\n" +
-                "<div class=\"post2\">\n" +
-                "<div class=\"photos\">\n" +
-                "<img class=\"photo\" src=\"images/dog3.jpeg\">\n" +
-                "</div>\n" +
-                "<p class=\"user\">USERNAME</p>\n" +
-                "<p class=\"description\">\n" +
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n" +
-                "</p>\n" +
-                "</div>\n" +
-                "</td>";
-        }
-    }
 }
 
 // sends user's file image and description
 function createPost() {
-    //<!--name="descript"-->
     var file = document.getElementById("file-upload").files[0];
     var caption = document.getElementById("descript").value;
 
@@ -197,9 +259,11 @@ function createPost() {
         timeout: 600000,
         success: function(response) {
             alert(response);
+            // hide the upload pop up and restart it by calling cancel
+            cancelFunc();
+
             // call getPost to refresh for new posts
             getPosts();
         }
     });
-
 }
