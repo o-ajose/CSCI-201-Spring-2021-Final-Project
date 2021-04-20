@@ -169,6 +169,12 @@ public class UserController {
         String username = (String)session.getAttribute("username");
         return userService.acceptRequest(username,friend);
     }
+    @PostMapping("/areNewPosts")
+    public String areNewPosts(HttpServletRequest request) throws InterruptedException, ExecutionException{
+        HttpSession session = request.getSession();
+        String username = (String)session.getAttribute("username");
+        return userService.checkForPosts(username);
+    }
     /*
     @PutMapping("/updateUser")
     public String updateUser(@RequestBody User user ) throws InterruptedException, ExecutionException {
