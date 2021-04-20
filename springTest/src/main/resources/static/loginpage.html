@@ -62,10 +62,10 @@
     </script>
 
 
-    <form name="loginForm" method = "post">
+    <form name="loginForm" method = "GET">
         <h2 style="text-align:center"> Log in to tirebiters </h2>
-        <input type="email" placeholder="Username (email)" name="username" id="email_field" required>
-        <input type="password" placeholder="Password" name="password" id="password_field" required>
+        <input type="text" placeholder="Username" name="username" id="username" required>
+        <input type="password" placeholder="Password" name="password" id="password" required>
         <input type="submit" name="login" value="Login" onclick="validateLogin();">
 
 
@@ -110,13 +110,13 @@
             <h1>Register for Tirebiters! </h1>
             <p>Enter the information below to join tirebiters</p>
             <hr>
-            <label for="email"><b>Email</b></label>
-            <input id="email" type="text" placeholder="Enter Email" name="email1" required>
+            <label for="email1"><b>Email</b></label>
+            <input id="email1" type="text" placeholder="Enter Email" name="email1" required>
 
-            <label for="displayName"><b>Display Name</b></label>
-            <input id="displayName" type="text" placeholder="Enter a display name" name="username1" required>
+            <label for="username1"><b>Display Name</b></label>
+            <input id="username1" type="text" placeholder="Enter a display name" name="username1" required>
 
-            <label for="email"><b>Bio</b></label>
+            <label for="bio"><b>Bio</b></label>
             <input id="bio" type="text" placeholder="Write short bio about yourself!" name="bio" required>
 
             <label for="location">Choose a location:</label>
