@@ -52,7 +52,26 @@
             }
         });
     }
+function checkForPosts(){
+        $.ajax({
+            type: "POST",
+            url: "areNewPosts",
+            success: function (data) {
 
+                console.log(data);
+                getPosts();
+                //  $("#btnSubmit").prop("disabled", false);
+
+            },
+            error: function (e) {
+
+                //  $("#result").text(e.responseText);
+                console.log("ERROR : ", e);
+                //   $("#btnSubmit").prop("disabled", false);
+
+            }
+        });
+    }
     function getPosts(){
         $.ajax({
             type: "POST",
