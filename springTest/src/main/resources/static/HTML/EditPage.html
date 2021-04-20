@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<!--TODO: add bio desc, password -->
 <head>
     <meta charset="UTF-8">
     <title>Edit Profile Page</title>
@@ -34,16 +35,16 @@
 <!-- Code for navigation bar -->
 <div id="feedHeader" class = "navbar">
     <div id="icons">
-        <button type="button" class="iconBtn"><img class="icon" src="../images/exploreIcon.webp"></button>
+        <button type="button" class="iconBtn"><img class="icon" src="../../../../../../demo/target/classes/static/images/exploreIcon.webp"></button>
         <!-- TODO: could set this onclick to redirect to the feedPage for all navs -->
-        <button type="button" class="iconBtn"><img class="icon" src="../images/feedIcon.png"></button>
-        <button type="button" class="iconBtn"><img class="icon" src="../images/messageIcon.png"></button>
+        <button type="button" class="iconBtn"><img class="icon" src="../../../../../../demo/target/classes/static/images/feedIcon.png"></button>
+        <button type="button" class="iconBtn"><img class="icon" src="../../../../../../demo/target/classes/static/images/messageIcon.png"></button>
     </div>
-    <span><img class="dogBoneIcon" src="../images/dogBoneIcon.png"></span>
+    <span><img class="dogBoneIcon" src="../../../../../../demo/target/classes/static/images/dogBoneIcon.png"></span>
     <h3 class="websiteName">Tirebiters</h3>
     <div id="userDisplay">
         <!-- TODO: mentioned changes from ProfilePage to make sure this directs to the user's page-->
-        <span class="circle"><img class="profileImage" src="../images/defaultProfilePic.jpeg"></span>
+        <span class="circle"><img class="profileImage" src="../../../../../../demo/target/classes/static/images/defaultProfilePic.jpeg"></span>
         <h4 class="username">USERNAME</h4>
     </div>
 </div>
@@ -62,7 +63,7 @@
     <!-- TODO: add in servlet to communicate changes to the database, need to make
             sure this is also shown on other user's pages when they've refreshed
             a page -->
-    <form name="EditPersonPage" onsubmit="return setFormSubmitting() & alert('Changes Saved')">
+    <form class="EditPersonPage" name="EditPersonPage" onsubmit="return setFormSubmitting() & alert('Changes Saved')">
         <p>Change Profile Photo: </p>
             <!-- TODO: would need the onload to also make sure this image is sent over -->
         <label for="avi"><img class="userImage" src="../images/tommy.jpeg"></label>
