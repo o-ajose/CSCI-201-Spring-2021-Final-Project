@@ -6,10 +6,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="js/feedpage.js"></script>
+    <script src="js/friendspage.js"></script>
     <title>Tirebiters</title>
 </head>
-<body>
+<body onload="loadFriendsPage()">
 <div id="friendsHeader" class = "navbar">
     <div id="icons">
         <button type="button" class="iconBtn" onclick="goToExplore()"><img class="icon" src="images/exploreIcon.webp"></button>
@@ -24,6 +24,72 @@
         <button id="userBtn" class="username" onclick="getAccountPage()">USERNAME</button>
     </div>
 </div>
-<h2>Friends</h2>
+<div id="addFriendsArea">
+    <p class="pageName">Friend Requests</p>
+    <button type="button" id="addFriend" onclick="toggle()">Add a friend!</button>
+</div>
+
+<!-- Add Friend Pop Up -->
+<div id="popUp">
+    <div id="leftside">
+        <h1>test</h1>
+    </div>
+    <div id="rightside">
+
+    </div>
+</div>
+
+
+<!-- Collection of Friend Requests -->
+<div id="requestsSpace">
+    <table id="requests">
+        <tr>
+            <div class="request">
+                <div class="userPic">
+                    <span class="bigCircle"><img class="profileImage" src="images/defaultProfilePic.jpeg"></span>
+                </div>
+                <div class="userInfo">
+                    <h2 class="friendname">USERNAME</h2>
+                    <h4 class="bio">Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ornare urna malesuada hendrerit porta. Curabitur ut leo sit amet eturpis justo ut nisl. Quisque ut purus a nisl gravida aliquet.</h4>
+                </div>
+                <div class="options">
+                    <button class="accept" onclick="acceptFriend()">Accept</button>
+                    <button class="ignore" onclick="ignoreFriend()">Ignore</button>
+                </div>
+            </div>
+        </tr>
+        <tr>
+            <div class="request">
+                <div class="userPic">
+                    <span class="bigCircle"><img class="profileImage" src="images/defaultProfilePic.jpeg"></span>
+                </div>
+                <div class="userInfo">
+                    <h2 class="friendname">USERNAME</h2>
+                    <h4 class="bio">Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ornare urna malesuada hendrerit porta. Curabitur ut leo sit amet eturpis justo ut nisl. Quisque ut purus a nisl gravida aliquet.</h4>
+                </div>
+                <div class="options">
+                    <button class="accept" onclick="acceptFriend()">Accept</button>
+                    <button class="ignore" onclick="ignoreFriend()">Ignore</button>
+                </div>
+            </div>
+        </tr>
+        <tr>
+            <div class="request">
+                <div class="userPic">
+                    <span class="bigCircle"><img class="profileImage" src="images/defaultProfilePic.jpeg"></span>
+                </div>
+                <div class="userInfo">
+                    <h2 class="friendname">USERNAME</h2>
+                    <h4 class="bio">Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ornare urna malesuada hendrerit porta. Curabitur ut leo sit amet eturpis justo ut nisl. Quisque ut purus a nisl gravida aliquet.</h4>
+                </div>
+                <div class="options">
+                    <button class="accept" onclick="acceptFriend()">Accept</button>
+                    <button class="ignore" onclick="ignoreFriend()">Ignore</button>
+                </div>
+            </div>
+        </tr>
+    </table>
+</div>
+
 </body>
 </html>

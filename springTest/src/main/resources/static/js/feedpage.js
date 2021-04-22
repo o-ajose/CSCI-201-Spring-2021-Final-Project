@@ -81,7 +81,7 @@ $(function(){ // this will be called when the DOM is ready
 });
 
 
-// When the user clicks on <div>, open the popup and hide posts
+// When the user clicks on createpost button, open the popup and hide posts
 function toggle() {
     $("#popUp").show();
     $("#postsSpace").hide();
@@ -111,7 +111,6 @@ function getPosts() {
     $.ajax ({
         type: 'POST',
         url: 'getPosts',
-        //dataType: 'json',
         success: function(response) {
             console.log("retrieved json post objects");
             console.log(response);
