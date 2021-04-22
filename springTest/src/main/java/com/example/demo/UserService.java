@@ -1,4 +1,4 @@
-    package com.example.demo;
+ package com.example.demo;
 
 import com.example.demo.User;
 import com.google.api.core.ApiFuture;
@@ -112,6 +112,9 @@ public class UserService {
         }
         if(index==-1){
             return "ERROR: could not update pet.";
+        }
+        if(pet.getPic().equals("")){
+            pet.setPic(tempPetList.get(index).getPic());
         }
         tempPetList.set(index,pet);
         //pets = document.toObject(PetDocument.class).pets;
