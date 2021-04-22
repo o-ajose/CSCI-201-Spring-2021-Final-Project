@@ -35,10 +35,10 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String register(HttpServletRequest request,@RequestParam String username1, @RequestParam String password1, @RequestParam String email1, @RequestParam String bio, @RequestParam String location /*, @RequestParam("file") MultipartFile multipartFile*/) throws InterruptedException, ExecutionException {
+    public String register(HttpServletRequest request,@RequestParam String username1, @RequestParam String password1, @RequestParam String email1, @RequestParam String bio, @RequestParam String location,@RequestParam String name /*, @RequestParam("file") MultipartFile multipartFile*/) throws InterruptedException, ExecutionException {
         //logger.info("HIT -/upload | File Name : {}"+multipartFile.getOriginalFilename());
-       // String profilePic = fileService.upload(multipartFile);
-        User newUser = new User(username1,email1,password1,bio,location,"https://firebasestorage.googleapis.com/v0/b/csci201finalproject-310216/o/eb937cd9-37f7-45af-87ed-7533f7f1826b.jpg?alt=media");
+        // String profilePic = fileService.upload(multipartFile);
+        User newUser = new User(name,username1,email1,password1,bio,location,"https://firebasestorage.googleapis.com/v0/b/csci201finalproject-310216/o/eb937cd9-37f7-45af-87ed-7533f7f1826b.jpg?alt=media");
         HttpSession session = request.getSession();
         //return (String)session.getAttribute("username");
         session.setAttribute("username",username1);
@@ -55,10 +55,10 @@ public class UserController {
         return userService.createPost(username,imageURL,comments);
     }
     @PutMapping("/updateUser")
-    public String updateUser(HttpServletRequest request,@RequestParam String displayName,@RequestParam String password, @RequestParam("file") MultipartFile multipartFile,@RequestParam String email, @RequestParam String bio,@RequestParam String location) throws InterruptedException, ExecutionException {
+    public String updateUser(HttpServletRequest request,@RequestParam String password, @RequestParam("file") MultipartFile multipartFile,@RequestParam String email, @RequestParam String bio,@RequestParam String location) throws InterruptedException, ExecutionException {
         HttpSession session = request.getSession();
         String username = (String)session.getAttribute("username");
-        return userService.updateUserDetails(username,displayName,password,email,location,bio,multipartFile);
+        return userService.updateUserDetails(username,password,email,location,bio,multipartFile);
     }
 
     @PutMapping("/updatePet")
@@ -122,7 +122,7 @@ public class UserController {
     }
     @PostMapping("/getPosts")
     public ResponseEntity<List<Post>> getPosts(HttpServletRequest request) throws IOException,ExecutionException,InterruptedException {
-       // logger.info("HIT -/download | File Name : {}"+ fileName);
+        // logger.info("HIT -/download | File Name : {}"+ fileName);
         HttpSession session = request.getSession();
         String username = (String)session.getAttribute("username");
         if(username==null){
@@ -151,12 +151,12 @@ public class UserController {
     public String sendFriendRequest(HttpServletRequest request, @RequestParam("friend") String friend)throws ExecutionException,InterruptedException {
         HttpSession session = request.getSession();
         String username = (String)session.getAttribute("username");
-       // return username+" "+friend;
+        // return username+" "+friend;
         return userService.sendFriendRequest(username,friend);
     }
 
     @PostMapping("/getRequests")
-    public ResponseEntity<List<String>> getRequests(HttpServletRequest request)throws ExecutionException,InterruptedException {
+    public ResponseEntity<List<Request>> getRequests(HttpServletRequest request)throws ExecutionException,InterruptedException {
         HttpSession session = request.getSession();
         String username = (String)session.getAttribute("username");
         // return username+" "+friend;

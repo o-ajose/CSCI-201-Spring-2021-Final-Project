@@ -82,9 +82,20 @@ $(function(){ // this will be called when the DOM is ready
 
 
 // When the user clicks on createpost button, open the popup and hide posts
+// or does the opposite
 function toggle() {
-    $("#popUp").show();
-    $("#postsSpace").hide();
+    // if the pop up is already showing, then hide it
+    if($("#popUp").is(":visible")) {
+        console.log("making pop up invisible");
+        $("#popUp").hide();
+        $("#postsSpace").show();
+    }
+    // else show the pop up since it is not yet shown
+    else{
+        console.log("making pop up visible");
+        $("#popUp").show();
+        $("#postsSpace").hide();
+    }
 }
 
 // remove the create post pop up and show the posts

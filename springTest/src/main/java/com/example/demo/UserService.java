@@ -15,14 +15,21 @@ import java.util.concurrent.ExecutionException;
 
 @Service
 public class UserService {
+
     public static final String COL_NAME = "users";
 
     public String saveUserDetails(User user) throws InterruptedException, ExecutionException {
-        Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection(COL_NAME).document(user.getUsername()).set(user);
 
-       // return collectionsApiFuture.get().getUpdateTime().toString();
-        return "You have registered and logged in!";
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        DocumentReference documentReference = dbFirestore.collection(COL_NAME).document(user.getUsername());
+        ApiFuture<DocumentSnapshot> future = documentReference.get();
+        DocumentSnapshot document = future.get();
+        if (document.exists()) {
+            return "Sorry; that username is taken; please try another.";
+        } else {
+            ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection(COL_NAME).document(user.getUsername()).set(user);
+            return "SUCCESS: You have registered and logged in!";
+        }
     }
 
     public String getUserDetails(String name, String password) throws InterruptedException, ExecutionException,NullPointerException {
@@ -44,7 +51,7 @@ public class UserService {
         }
     }
 
-    public String updateUserDetails(String username,String displayName, String password, String email, String location, String bio, MultipartFile multipartFile) throws InterruptedException, ExecutionException {
+    public String updateUserDetails(String username, String password, String email, String location, String bio, MultipartFile multipartFile) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         DocumentReference documentReference = dbFirestore.collection(COL_NAME).document(username);
         Map<String, Object> map = new HashMap<>();
@@ -58,8 +65,6 @@ public class UserService {
             map.put("bio", bio);
         if(!email.equals(""))
             map.put("email", email);
-        if(!displayName.equals(""))
-            map.put("displayName",displayName);
         if(!password.equals(""))
             map.put("password", password);
         if(!location.equals(""))
@@ -164,16 +169,21 @@ public class UserService {
         ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection(COL_NAME).document(person.getName()).set(person);
         return collectionsApiFuture.get().getUpdateTime().toString();
     }*/
-public String checkForPosts(String username) throws InterruptedException, ExecutionException{
+    public String checkForPosts(String username) throws InterruptedException, ExecutionException{
         List<Post>initialList = getPosts(username);
+        long start= System.currentTimeMillis();
         while(true){
-            Thread.sleep(1000);
+            if(System.currentTimeMillis()-start>10000){
+                return "";
+            }
+            Thread.sleep(3000);
             List<Post>newList = getPosts(username);
             if(newList.size()>initialList.size()){
                 return "New posts!";
             }
         }
     }
+
     public List<Post> getPosts(String username) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         DocumentReference docRef = dbFirestore.collection("posts").document("info");
@@ -192,7 +202,11 @@ public String checkForPosts(String username) throws InterruptedException, Execut
             List<String> users = (List<String>) snapshot.get("user");
             List<Integer> posts = (List<Integer>) snapshot.get("num");
             user = document.toObject(User.class);
-            List<String> friends = user.getFriends();
+            List<Request> friendsInfo = user.getFriends();
+            List<String> friends = new ArrayList<String>();
+            for(int i = 0; i<friendsInfo.size();i++){
+                friends.add(friendsInfo.get(i).user);
+            }
             //  PostInfo posts = snapshot.toObject(PostInfo);
             // List<String> users = (List<String>) snapshot.get("user");
             //List<Integer> posts = (List<Integer>) snapshot.get("num");
@@ -223,10 +237,17 @@ public String checkForPosts(String username) throws InterruptedException, Execut
         DocumentReference documentReference = dbFirestore.collection(COL_NAME).document(friend);
         ApiFuture<DocumentSnapshot> future = documentReference.get();
         DocumentSnapshot document = future.get();
+        DocumentReference documentReference2 = dbFirestore.collection(COL_NAME).document(username);
+        ApiFuture<DocumentSnapshot> future2 = documentReference2.get();
+        DocumentSnapshot document2 = future2.get();
         User user = null;
+        User thisUser = null;
         if (document.exists()) {
+            thisUser = document2.toObject(User.class);
+            String pic = thisUser.getProfilePic();
+            String bio = thisUser.getBio();
             user = document.toObject(User.class);
-            user.addFriendRequest(username);
+            user.addFriendRequest(new Request(username,pic,bio));
             ApiFuture<WriteResult> collectionsApiFuture1 = dbFirestore.collection(COL_NAME).document(friend).set(user);
             return "Sent friend request to " + friend;
 
@@ -235,18 +256,18 @@ public String checkForPosts(String username) throws InterruptedException, Execut
         }
     }
 
-    public List<String> getRequests(String username) throws InterruptedException, ExecutionException {
+    public List<Request> getRequests(String username) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         DocumentReference documentReference = dbFirestore.collection(COL_NAME).document(username);
         ApiFuture<DocumentSnapshot> future = documentReference.get();
         DocumentSnapshot document = future.get();
         User user = null;
-        List<String> invalid = new ArrayList<>();
+        List<Request> invalid = new ArrayList<Request>();
         if (document.exists()) {
             user = document.toObject(User.class);
             return user.getFriendRequests();
         } else {
-            invalid.add("HTTP Session Timed Out; please log in again");
+            invalid.add(new Request("HTTP Session Timed Out; please log in again","",""));
             return invalid;
         }
     }
@@ -260,16 +281,19 @@ public String checkForPosts(String username) throws InterruptedException, Execut
         if (document.exists()) {
             user = document.toObject(User.class);
             // user.removeFriendRequest(username);
-            user.addFriend(username);
-
+            String friendProfilePic = user.getProfilePic();
+            String friendBio = user.getBio();
             DocumentReference documentReference1 = dbFirestore.collection(COL_NAME).document(username);
             ApiFuture<DocumentSnapshot> future1 = documentReference1.get();
             DocumentSnapshot document1 = future1.get();
             User user1 = null;
             if (document1.exists()) {
                 user1 = document1.toObject(User.class);
+                String myProfilePic = user1.getProfilePic();
+                String myBio = user1.getBio();
                 user1.removeFriendRequest(friend);
-                user1.addFriend(friend);
+                user.addFriend(new Request(username,myProfilePic,myBio));
+                user1.addFriend(new Request(friend,friendProfilePic,friendBio));
                 ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection(COL_NAME).document(username).set(user1);
                 ApiFuture<WriteResult> collectionsApiFuture1 = dbFirestore.collection(COL_NAME).document(friend).set(user);
                 return "Accepted friend request from " + friend;
