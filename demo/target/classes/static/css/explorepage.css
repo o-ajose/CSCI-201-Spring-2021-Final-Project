@@ -208,7 +208,28 @@ td {
     margin: 10px;
 }
 
-.description {
+pet {
+    text-transform: uppercase;
+    margin: 10px;
+}
+
+owner {
+    text-transform: uppercase;
+    margin: 10px;
+}
+location {
+    text-transform: uppercase;
+    margin: 10px;
+}
+breed {
+    text-transform: uppercase;
+    margin: 10px;
+}
+
+
+
+
+.bio {
     margin-bottom: 20px;
     margin: 10px;
     padding-bottom: 10px;
