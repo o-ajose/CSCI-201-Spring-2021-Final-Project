@@ -6,10 +6,15 @@ function getFeed() {
     getPosts();
 }
 
+// logs user out
+function logout() {
+    console.log("Logging user out");
+}
+
 // redirects to account page
 function getAccountPage() {
     console.log("Redirecting to account page");
-    location.href = "test.html";
+    location.href = "ProfilePage.html";
 }
 
 // nav bar redirects to different pages
