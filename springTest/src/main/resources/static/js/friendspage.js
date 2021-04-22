@@ -85,3 +85,35 @@ function acceptFriend(user) {
 function ignoreFriend(user) {
 
 }
+
+// resets inputs of friend request
+function cancelRequest() {
+    // reset the value in text area
+    document.getElementById("userInput").value = null;
+    // hide the pop up
+    $("#popUp").hide();
+    // get freshly fetched friend requests
+    getRequests();
+    $("#requestsSpace").show();
+}
+// send the friend request
+function sendRequest() {
+    var username = document.getElementById("userInput").value;
+    console.log("Trying to add: " + username);
+    // if the value of user input is empty, alert
+    if (username == "") {
+        alert("Please enter a username!");
+    }
+    // else try to send the request to servlet
+    else {
+        $.ajax({
+            type: 'POST',
+            url: 'getRequests',
+            success: function(response) {
+                // if request was a success, alert them and close pop up and fetch friend requests
+
+                // else alert user it was not a success
+            }
+        });
+    }
+}
