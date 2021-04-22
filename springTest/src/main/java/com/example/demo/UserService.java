@@ -1,3 +1,21 @@
+    package com.example.demo;
+
+import com.example.demo.User;
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.*;
+import com.google.firebase.cloud.FirestoreClient;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
+
+@Service
+public class UserService {
+
     public static final String COL_NAME = "users";
 
     public String saveUserDetails(User user) throws InterruptedException, ExecutionException {
@@ -287,6 +305,54 @@
         }
     }
 
+    public String rejectRequest(String username, String friend) throws InterruptedException, ExecutionException {
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        DocumentReference documentReference = dbFirestore.collection(COL_NAME).document(username);
+        ApiFuture<DocumentSnapshot> future = documentReference.get();
+        DocumentSnapshot document = future.get();
+        User user = null;
+        if (document.exists()) {
+            user = document.toObject(User.class);
+             user.removeFriendRequest(friend);
+            return "Rejected friend request from "+friend;
+        } else {
+            return "HTTP Session Timed Out: please log in again.";
+        }
+    }
+    public User fetchUserDetailsForProfile(String username) throws ExecutionException, InterruptedException { //this is in userService
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        DocumentReference Userdocument = dbFirestore.collection(COL_NAME).document(username);
+        ApiFuture<DocumentSnapshot> future3 = Userdocument.get();
+        DocumentSnapshot document = future3.get();
+        return document.toObject(User.class);
+    }
+
+    public List<User> getExplorePage(String location) throws ExecutionException, InterruptedException {
+        List<User> explorePage = new ArrayList<>();
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        CollectionReference users = dbFirestore.collection(COL_NAME);
+        ApiFuture<QuerySnapshot> future = users.whereEqualTo("location", location).get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        for(DocumentSnapshot document : documents){
+            User temp = document.toObject(User.class);
+            explorePage.add(temp);
+        }
+        return explorePage;
+    }
+
+    public List<User> noFilterExplorePage() throws ExecutionException, InterruptedException {
+        List<User> explorePage = new ArrayList<>();
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        CollectionReference users = dbFirestore.collection(COL_NAME);
+        ApiFuture<QuerySnapshot> future = users.get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        for(DocumentSnapshot document : documents){
+            User temp = document.toObject(User.class);
+            explorePage.add(temp);
+        }
+        return explorePage;
+    }
+
     public String deleteUser(String name) {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> writeResult = dbFirestore.collection(COL_NAME).document(name).delete();
@@ -350,3 +416,5 @@
     public String getAllPetDetails(String username) throws InterruptedException, ExecutionException {
         return "dummy";
     }
+
+}
