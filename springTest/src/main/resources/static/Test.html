@@ -60,10 +60,8 @@
         <button>Get the MP3 filepath for this user's song!</button>
     </div>
 </form>
-<form id = "addPetForm" action ="/createPet" method="POST">
+<form id = "addPetForm" action ="/createPet" enctype="multipart/form-data" method="POST">
     <div>
-        <label for="username4">What's your new username?</label>
-        <input name="username4" id="username4" >
 
         <!--<select name = "animaltype">
             <option value="dog">Dog</option>
@@ -86,6 +84,12 @@
 
         <label for="size">What's your pet's size?</label>
         <input name="size" id="size">
+
+        <label for="bio1">What's your pet's biography?</label>
+        <input name ="bio1" id="bio1">
+
+        <label for="pic">What's your pet's picture?</label>
+        <input name ="pic" id="pic" type = "file">
 
         <button>Add Pet!</button>
     </div>
