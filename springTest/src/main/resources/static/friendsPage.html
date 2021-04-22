@@ -46,45 +46,15 @@
         <tr>
             <div class="request">
                 <div class="userPic">
-                    <span class="bigCircle"><img class="profileImage" src="images/defaultProfilePic.jpeg"></span>
+                    <span class="bigCircle"><img class="profileImage" src=" requests[i].profilePic"></span>
                 </div>
                 <div class="userInfo">
-                    <h2 class="friendname">USERNAME</h2>
-                    <h4 class="bio">Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ornare urna malesuada hendrerit porta. Curabitur ut leo sit amet eturpis justo ut nisl. Quisque ut purus a nisl gravida aliquet.</h4>
+                    <h2 class="friendname">requests[i].user</h2>
+                    <h4 class="bio">Bio: + requests[i].bio</h4>
                 </div>
                 <div class="options">
-                    <button class="accept" onclick="acceptFriend()">Accept</button>
-                    <button class="ignore" onclick="ignoreFriend()">Ignore</button>
-                </div>
-            </div>
-        </tr>
-        <tr>
-            <div class="request">
-                <div class="userPic">
-                    <span class="bigCircle"><img class="profileImage" src="images/defaultProfilePic.jpeg"></span>
-                </div>
-                <div class="userInfo">
-                    <h2 class="friendname">USERNAME</h2>
-                    <h4 class="bio">Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ornare urna malesuada hendrerit porta. Curabitur ut leo sit amet eturpis justo ut nisl. Quisque ut purus a nisl gravida aliquet.</h4>
-                </div>
-                <div class="options">
-                    <button class="accept" onclick="acceptFriend()">Accept</button>
-                    <button class="ignore" onclick="ignoreFriend()">Ignore</button>
-                </div>
-            </div>
-        </tr>
-        <tr>
-            <div class="request">
-                <div class="userPic">
-                    <span class="bigCircle"><img class="profileImage" src="images/defaultProfilePic.jpeg"></span>
-                </div>
-                <div class="userInfo">
-                    <h2 class="friendname">USERNAME</h2>
-                    <h4 class="bio">Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ornare urna malesuada hendrerit porta. Curabitur ut leo sit amet eturpis justo ut nisl. Quisque ut purus a nisl gravida aliquet.</h4>
-                </div>
-                <div class="options">
-                    <button class="accept" onclick="acceptFriend()">Accept</button>
-                    <button class="ignore" onclick="ignoreFriend()">Ignore</button>
+                    <button class="accept" onclick="acceptFriend(requests[i].user)">Accept</button>
+                    <button class="ignore" onclick="ignoreFriend(requests[i].user)">Ignore</button>
                 </div>
             </div>
         </tr>
