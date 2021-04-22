@@ -169,6 +169,30 @@ public class UserController {
         String username = (String)session.getAttribute("username");
         return userService.acceptRequest(username,friend);
     }
+
+    @PostMapping("/fetchUserProfile") //this is in userController
+    public User fetchUserProfile(HttpServletRequest request) throws InterruptedException, ExecutionException {
+        HttpSession session = request.getSession();
+        String username = (String)session.getAttribute("username");
+        return userService.fetchUserDetailsForProfile(username);
+    }
+
+    @PostMapping("/getExplorePage")
+    public ResponseEntity<List<User>> getExplorePage(HttpServletRequest request, String location) throws ExecutionException, InterruptedException {
+        return ResponseEntity.ok(userService.getExplorePage(location));
+    }
+
+    @PostMapping("/noFilterExplorePage")
+    public ResponseEntity<List<User>> noFilterExplorePage(HttpServletRequest request, String location) throws ExecutionException, InterruptedException {
+        return ResponseEntity.ok(userService.noFilterExplorePage());
+    }
+
+    @PostMapping("/rejectFriendRequest")
+    public String rejectFriendRequest(HttpServletRequest request,@RequestParam("friend") String friend)throws ExecutionException,InterruptedException {
+        HttpSession session = request.getSession();
+        String username = (String)session.getAttribute("username");
+        return userService.rejectRequest(username,friend);
+    }
     @PostMapping("/areNewPosts")
     public String areNewPosts(HttpServletRequest request) throws InterruptedException, ExecutionException{
         HttpSession session = request.getSession();
