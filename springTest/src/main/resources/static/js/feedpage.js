@@ -211,7 +211,8 @@ function getPosts() {
                         "</td>" + document.getElementById("row").innerHTML;
                 }
             }
-            // start async function to check for posts from friends
+            // start async function to check for posts from friends -> UNCOMMENT FOR FINAL VERSION
+            /*
             $.ajax ({
                 type: 'POST',
                 url: 'areNewPosts',
@@ -220,6 +221,8 @@ function getPosts() {
                     getPosts();
                 }
             });
+
+             */
         }
     });
 }
