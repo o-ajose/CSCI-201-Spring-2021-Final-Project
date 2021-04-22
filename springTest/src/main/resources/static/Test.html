@@ -91,7 +91,101 @@
     </div>
 </form>
 
-        <script>
+<label for ="location1">Location:</label>
+<input name="location1" id="location1">
+<button onClick="getExplore()">get Explore page!</button>
+<button onClick="getDetails()">get details!</button>
+<script>
+    function getExplore(){
+        var location = $('#location1').val();
+        $.ajax({
+            url: "getExplorePage",
+            type:"POST",
+            //contentType: "text/plain",
+            data: {"location": location},
+            // dataType: "text/plain",
+            success: function(response) {
+                //if(response==="HERE"){
+                //window.location.href = "/loggedInHome.html";
+                //}
+                //else{
+                console.log(response);
+                /*
+                if(response.includes("Success")){
+                    //alert("yes");
+                    window.location.href = 'loggedInHome.html';
+                }
+                else{*/
+                alert(response);
+                // }
+                //	}
+            },
+            error: function(jqXHR,exception){
+                var msg = '';
+                if (jqXHR.status === 0) {
+                    msg = 'Not connect.\n Verify Network.';
+                } else if (jqXHR.status == 404) {
+                    msg = 'Requested page not found. [404]';
+                } else if (jqXHR.status == 500) {
+                    msg = 'Internal Server Error [500].';
+                } else if (exception === 'parsererror') {
+                    msg = 'Requested JSON parse failed.';
+                } else if (exception === 'timeout') {
+                    msg = 'Time out error.';
+                } else if (exception === 'abort') {
+                    msg = 'Ajax request aborted.';
+                } else {
+                    msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                }
+                alert(msg);
+            }
+        });
+    }
+
+    function getDetails(){
+        $.ajax({
+            url: "fetchUserProfile",
+            type:"POST",
+            //contentType: "text/plain",
+         //   data: {"username": username1, "password":password1},
+            // dataType: "text/plain",
+            success: function(response) {
+                //if(response==="HERE"){
+                //window.location.href = "/loggedInHome.html";
+                //}
+                //else{
+                console.log(response);
+                /*
+                if(response.includes("Success")){
+                    //alert("yes");
+                    window.location.href = 'loggedInHome.html';
+                }
+                else{*/
+                alert(response);
+                // }
+                //	}
+            },
+            error: function(jqXHR,exception){
+                var msg = '';
+                if (jqXHR.status === 0) {
+                    msg = 'Not connect.\n Verify Network.';
+                } else if (jqXHR.status == 404) {
+                    msg = 'Requested page not found. [404]';
+                } else if (jqXHR.status == 500) {
+                    msg = 'Internal Server Error [500].';
+                } else if (exception === 'parsererror') {
+                    msg = 'Requested JSON parse failed.';
+                } else if (exception === 'timeout') {
+                    msg = 'Time out error.';
+                } else if (exception === 'abort') {
+                    msg = 'Ajax request aborted.';
+                } else {
+                    msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                }
+                alert(msg);
+            }
+        });
+    }
     document.querySelector('img').src = "https://firebasestorage.googleapis.com/v0/b/csci201finalproject-310216/o/pupp2.jpg?alt=media";
     function checkLogIn(){
         var username1 = $('#username').val();
