@@ -139,7 +139,7 @@ function noFilterExplorePage(){
                             "<p id='friend' class=\"owner\">\n" + "Owner: " + users[i].username + "</p>\n" +
                             "<p class=\"location\">\n" + "Location: " + users[i].location + "</p>\n" +
                             "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
-                            "<p class=\"bio\">\n" + "Breed: " + pet.bio +
+                            "<p class=\"bio\">\n" + "Bio " + pet.bio +
                             "</p>\n" +
                             "<button id='post1' type='button' onclick='connectFriend();'>Connect!</button>" +
                             "</div>\n" +
@@ -223,7 +223,7 @@ function getExplorePageFiltered() {
                             "<p id = 'friend' class=\"owner\">\n" + "Owner: " + users[i].username + "</p>\n" +
                             "<p class=\"location\">\n" + "Location: " + users[i].location + "</p>\n" +
                             "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
-                            "<p class=\"bio\">\n" + "Breed: " + pet.bio +
+                            "<p class=\"bio\">\n" + "Bio " + pet.bio +
                             "</p>\n" +
                             "<button id='post1' type='button' onclick='displayConnectMessage();'>Connect!</button>" +
                             "</div>\n" +
@@ -246,7 +246,7 @@ function getExplorePageFiltered() {
                             "<p id = 'friend' class=\"owner\">\n" + "Owner: " + users[i].username + "</p>\n" +
                             "<p class=\"location\">\n" + "Location: " + users[i].location + "</p>\n" +
                             "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
-                            "<p class=\"bio\">\n" + "Breed: " + pet.bio +
+                            "<p class=\"bio\">\n" + "Bio " + pet.bio +
                             "</p>\n" +
                             "<button id='post2' type='button' onclick='displayConnectMessage();'>Connect!</button>" +
                             "</div>\n" +
