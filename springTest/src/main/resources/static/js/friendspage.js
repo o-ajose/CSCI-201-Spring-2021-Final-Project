@@ -1,10 +1,6 @@
 // when friends page first load call the get friend requests
-function loadFriendsPage() {
-    // load user's name and image
-    getDetails();
-}
 // gets user's profile pic and username and requests
-function getDetails() {
+function loadFriendsPage() {
     $.ajax({
         type: 'POST',
         url:'fetchUserProfile',
@@ -19,6 +15,7 @@ function getDetails() {
         }
     });
 }
+
 // gets all the friend requests
 function getRequests() {
     $.ajax({

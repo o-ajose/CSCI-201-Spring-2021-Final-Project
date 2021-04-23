@@ -1,9 +1,22 @@
 // when user gets to feed page
 function getFeed() {
-    // load user's name and image
-    // TODO
-    // load posts
-    getPosts();
+    // load user's name and image and posts
+    $.ajax({
+        type: 'POST',
+        url:'fetchUserProfile',
+        success: function(response) {
+            console.log(response);
+            // set up user's profile pic
+            document.getElementById("bigProfilePic").src = response.profilePic;
+            // set up user's username
+            document.getElementById("userBtn").innerHTML = response.username;
+            // set up the profile pic and username on the pop up
+            document.getElementById("smallProfilePic").src = response.profilePic;
+            document.getElementById("bigU").innerHTML = response.username;
+            // load all the posts
+            getPosts();
+        }
+    });
 }
 
 // logs user out
