@@ -62,10 +62,29 @@ public class UserController {
     }
 
     @PutMapping("/updatePet")
-    public String updatePet(HttpServletRequest request,@RequestBody Pet pet ) throws InterruptedException, ExecutionException {
+    public String updatePet(HttpServletRequest request,
+                            @RequestParam String name,
+                            @RequestParam String personality,
+                            @RequestParam String age,
+                            @RequestParam String breed,
+                            @RequestParam String relationshipStatus,
+                            @RequestParam String size,
+                            @RequestParam String bio1,
+                            @RequestParam MultipartFile pic) throws InterruptedException, ExecutionException {
         HttpSession session = request.getSession();
         String username = (String)session.getAttribute("username");
-        return userService.updatePetDetails(username,pet);
+        String imageURL ="";
+        if(!pic.isEmpty())
+            imageURL = fileService.upload(pic);
+        Pet newPet = null;
+        newPet = new Pet(name, Integer.parseInt(age));
+        newPet.setPersonality(personality);
+        newPet.setBreed(breed);
+        newPet.setRelationshipStatus(relationshipStatus);
+        newPet.setSize(size);
+        newPet.setBio(bio1);
+        newPet.setPic(imageURL);
+        return userService.updatePetDetails(username,newPet);
     }
 
     @PostMapping("/setSong")
@@ -83,13 +102,15 @@ public class UserController {
 
 
     @PostMapping("/createPet")
-    public String createPet(@RequestParam String username4,
+    public String createPet(HttpServletRequest request,
                             @RequestParam String name,
                             @RequestParam String personality,
                             @RequestParam String age,
                             @RequestParam String breed,
                             @RequestParam String relationshipStatus,
-                            @RequestParam String size) throws InterruptedException, ExecutionException {
+                            @RequestParam String size,
+                            @RequestParam String bio1,
+                            @RequestParam MultipartFile pic) throws InterruptedException, ExecutionException {
         Pet newPet = null;
         /*if(animaltype.equals("dog")){
             // how do you want to get the input of age? right now moving String to int
@@ -105,14 +126,17 @@ public class UserController {
             newPet.setRelationshipStatus(relationshipStatus);
             newPet.setSize(size);
         }*/
-
+        String imageURL = fileService.upload(pic);
+        HttpSession session = request.getSession();
+        String username= (String)session.getAttribute("username");
         newPet = new Pet(name, Integer.parseInt(age));
         newPet.setPersonality(personality);
         newPet.setBreed(breed);
         newPet.setRelationshipStatus(relationshipStatus);
         newPet.setSize(size);
-
-        return userService.savePetDetails(username4, newPet);
+        newPet.setBio(bio1);
+        newPet.setPic(imageURL);
+        return userService.savePetDetails(username, newPet);
     }
 
     @GetMapping("/getAllPetDetails")
@@ -168,6 +192,30 @@ public class UserController {
         HttpSession session = request.getSession();
         String username = (String)session.getAttribute("username");
         return userService.acceptRequest(username,friend);
+    }
+
+    @PostMapping("/fetchUserProfile") //this is in userController
+    public User fetchUserProfile(HttpServletRequest request) throws InterruptedException, ExecutionException {
+        HttpSession session = request.getSession();
+        String username = (String)session.getAttribute("username");
+        return userService.fetchUserDetailsForProfile(username);
+    }
+
+    @PostMapping("/getExplorePage")
+    public ResponseEntity<List<User>> getExplorePage(HttpServletRequest request, String location) throws ExecutionException, InterruptedException {
+        return ResponseEntity.ok(userService.getExplorePage(location));
+    }
+
+    @PostMapping("/noFilterExplorePage")
+    public ResponseEntity<List<User>> noFilterExplorePage(HttpServletRequest request, String location) throws ExecutionException, InterruptedException {
+        return ResponseEntity.ok(userService.noFilterExplorePage());
+    }
+
+    @PostMapping("/rejectFriendRequest")
+    public String rejectFriendRequest(HttpServletRequest request,@RequestParam("friend") String friend)throws ExecutionException,InterruptedException {
+        HttpSession session = request.getSession();
+        String username = (String)session.getAttribute("username");
+        return userService.rejectRequest(username,friend);
     }
     @PostMapping("/areNewPosts")
     public String areNewPosts(HttpServletRequest request) throws InterruptedException, ExecutionException{
