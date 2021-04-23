@@ -13,6 +13,6 @@ public class Post {
     }
     Post(){
         num = -1;
-    comments = "Please log in again; session expired.";
+        comments = "Please log in again; session expired.";
     }
 }
