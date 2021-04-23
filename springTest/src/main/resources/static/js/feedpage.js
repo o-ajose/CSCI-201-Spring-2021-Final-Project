@@ -22,6 +22,15 @@ function getFeed() {
 // logs user out
 function logout() {
     console.log("Logging user out");
+    $.ajax({
+        type: 'POST',
+        url: 'logout',
+        success: function(response) {
+            alert(response); // tell user they logged out
+            // redirect to login page
+            location.href = "loginpage.html";
+        }
+    });
 }
 
 // redirects to account page
@@ -199,12 +208,12 @@ function getPosts() {
                 "<td>\n" +
                 "<div class=\"post2\">\n" +
                 "<div class=\"photos\">\n" +
-                "<img class=\"photo\" src=\"images/karen.jpeg\">\n" +
+                "<img class=\"photo\" src=\"images/milky.jpg\">\n" +
                 "</div>\n" +
                 "<p class=\"user\">Oju Ajose</p>\n" +
                 "<p class=\"description\">\n" +
-                "Today has been ruff, but I've been up coding this website the past week! It's paw-some right???\n" +
-                "#living #staypawsitive #coder #dogs\n" +
+                "Clearly someone thinks they can do my job better than me... Mina " +
+                "has me going on treat runs for her! #dogsInTech #BayAreaDogsn\n" +
                 "</p>\n" +
                 "</div>\n" +
                 "</td>";
