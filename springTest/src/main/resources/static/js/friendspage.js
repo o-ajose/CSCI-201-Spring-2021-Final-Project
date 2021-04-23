@@ -12,6 +12,8 @@ function loadFriendsPage() {
             document.getElementById("userBtn").innerHTML = response.username;
             // load all the user's friend request
             getRequests();
+            // load all user's friends
+            getFriends();
         }
     });
 }
@@ -47,6 +49,39 @@ function getRequests() {
                     "<div class=\"options\">\n" +
                     "<button class=\"accept\" onclick=\"acceptFriend('" + requests[i].user + "')\">Accept</button>\n" +
                     "<button class=\"ignore\" onclick=\"ignoreFriend('" + requests[i].user + "')\">Ignore</button>\n" +
+                    "</div>\n" +
+                    "</div>\n" +
+                    "</td>\n" +
+                    "</tr>"
+                );
+            }
+        }
+    });
+}
+
+// gets all friends
+function getFriends() {
+    $.ajax({
+        type: 'POST',
+        url: 'fetchUserProfile',
+        success: function(response) {
+            console.log("received friends");
+            console.log(response);
+            var friends = response.friends; // array of user's friends
+            // reset to empty table in div
+            $("#friendsSpace").html("<table id=\"friends\"></table>");
+            // fill in the table with row
+            for (i = 0; i < friends.length; i++) {
+                console.log("Entered loop");
+                $("#friends").append(
+                    "<tr>\n" + "<td>\n" +
+                    "<div class=\"request\">\n" +
+                    "<div class=\"userPic\">\n" +
+                    "<span class=\"bigCircle\"><img class=\"profileImage\" src=\"" + friends[i].profilePic + "\"></span>\n" +
+                    "</div>\n" +
+                    "<div class=\"userInfo2\">\n" +
+                    "<h2 class=\"friendname\">" + friends[i].user + "</h2>\n" +
+                    "<h4 class=\"bio\">Bio: " + friends[i].bio + "</h4>\n" +
                     "</div>\n" +
                     "</div>\n" +
                     "</td>\n" +
@@ -131,7 +166,7 @@ function ignoreFriend(user) {
         data: {
             "friend": user
         },
-        url: 'acceptFriendRequest',
+        url: 'rejectFriendRequest',
         success: function(response) {
             console.log(response);
             alert(response);
