@@ -65,14 +65,42 @@ function goToFeed() {
 }
 
 
-function displayConnectMessage(){
+function connectFriend(){
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const username = urlParams.get('username');
     if(username === "guest"){
         alert("You must be logged-in to connect with friends. Make an account now!");
     }else{
-        alert("connecting...");
+        var friend = $('#friend').val();
+        $.ajax({
+            url: "requestFriend",
+            type: "POST",
+            data: {"friend": friend},
+            success: function (response) {
+                alert("Friend request sent to " + friend + "!");
+
+            },
+            error: function (jqXHR, exception) {
+                var msg = '';
+                if (jqXHR.status === 0) {
+                    msg = 'Not connect.\n Verify Network.';
+                } else if (jqXHR.status == 404) {
+                    msg = 'Requested page not found. [404]';
+                } else if (jqXHR.status == 500) {
+                    msg = 'Internal Server Error [500].';
+                } else if (exception === 'parsererror') {
+                    msg = 'Requested JSON parse failed.';
+                } else if (exception === 'timeout') {
+                    msg = 'Time out error.';
+                } else if (exception === 'abort') {
+                    msg = 'Ajax request aborted.';
+                } else {
+                    msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                }
+                alert(msg);
+            }
+        });
     }
 }
 
@@ -103,12 +131,12 @@ function noFilterExplorePage(){
                             "<img class=\"photo\" src=\"" + pet.pic + "\">\n" +
                             "</div>\n" +
                             "<p class=\"pet\">" + "Name: " + pet.name + "</p>\n" +
-                            "<p class=\"owner\">\n" + "Owner: " + users[i].username + "</p>\n" +
+                            "<p id='friend' class=\"owner\">\n" + "Owner: " + users[i].username + "</p>\n" +
                             "<p class=\"location\">\n" + "Location: " + users[i].location + "</p>\n" +
                             "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
                             "<p class=\"bio\">\n" + "Breed: " + pet.bio +
                             "</p>\n" +
-                            "<button id='post1' type='button' onclick='displayConnectMessage();'>Connect!</button>" +
+                            "<button id='post1' type='button' onclick='connectFriend();'>Connect!</button>" +
                             "</div>\n" +
                             "</td>" + document.getElementById("row").innerHTML;
                     }
@@ -125,7 +153,7 @@ function noFilterExplorePage(){
                             "<img class=\"photo\" src=\"" + pet.pic + "\">\n" +
                             "</div>\n" +
                             "<p class=\"pet\">" + "Name: " + pet.name + "</p>\n" +
-                            "<p class=\"owner\">\n" + "Owner: " + users[i].username + "</p>\n" +
+                            "<p class= id='friend' \"owner\">\n" + "Owner: " + users[i].username + "</p>\n" +
                             "<p class=\"location\">\n" + "Location: " + users[i].location + "</p>\n" +
                             "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
                             "<p class=\"bio\">\n" + "Breed: " + pet.bio +
@@ -136,6 +164,25 @@ function noFilterExplorePage(){
                     }
                 }
             }
+        },
+        error: function (jqXHR, exception) {
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            alert(msg);
         }
     });
 }
@@ -166,7 +213,7 @@ function getExplorePageFiltered() {
                             "<img class=\"photo\" src=\"" + pet.pic + "\">\n" +
                             "</div>\n" +
                             "<p class=\"pet\">" + "Name: " + pet.name + "</p>\n" +
-                            "<p class=\"owner\">\n" + "Owner: " + users[i].username + "</p>\n" +
+                            "<p id = 'friend' class=\"owner\">\n" + "Owner: " + users[i].username + "</p>\n" +
                             "<p class=\"location\">\n" + "Location: " + users[i].location + "</p>\n" +
                             "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
                             "<p class=\"bio\">\n" + "Breed: " + pet.bio +
@@ -189,7 +236,7 @@ function getExplorePageFiltered() {
                             "<img class=\"photo\" src=\"" + pet.pic + "\">\n" +
                             "</div>\n" +
                             "<p class=\"pet\">" + "Name: " + pet.name + "</p>\n" +
-                            "<p class=\"owner\">\n" + "Owner: " + users[i].username + "</p>\n" +
+                            "<p id = 'friend' class=\"owner\">\n" + "Owner: " + users[i].username + "</p>\n" +
                             "<p class=\"location\">\n" + "Location: " + users[i].location + "</p>\n" +
                             "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
                             "<p class=\"bio\">\n" + "Breed: " + pet.bio +
@@ -200,6 +247,25 @@ function getExplorePageFiltered() {
                     }
                 }
             }
+        },
+        error: function (jqXHR, exception) {
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            alert(msg);
         }
     });
 }
