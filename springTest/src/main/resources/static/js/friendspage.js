@@ -2,8 +2,19 @@
 function loadFriendsPage() {
     // load user's name and image
     // TODO
+    //getDetails();
     // load all the user's friend request
     getRequests();
+}
+// gets user's profile pic and username
+function getDetails() {
+    $.ajax({
+        type: 'POST',
+        url:'fetchUserProfile',
+        success: function(response) {
+            console.log(response);
+        }
+    });
 }
 // gets all the friend requests
 function getRequests() {
@@ -16,10 +27,15 @@ function getRequests() {
             var requests = response;
             // reset to empty table in div
             $("#requestsSpace").html("<table id=\"requests\"></table>");
+            // if there are no friend requests, alert user
+            if (requests.length == 0) {
+                alert("You don't have any friend requests right now!");
+            }
             // fill in the table with row
             for (i = 0; i < requests.length; i++) {
-                $("#requestsSpace").append(
-                    "<tr>\n" +
+                console.log("Entered loop");
+                $("#requests").append(
+                    "<tr>\n" + "<td>\n" +
                     "<div class=\"request\">\n" +
                     "<div class=\"userPic\">\n" +
                     "<span class=\"bigCircle\"><img class=\"profileImage\" src=\"" + requests[i].profilePic + "\"></span>\n" +
@@ -29,12 +45,13 @@ function getRequests() {
                     "<h4 class=\"bio\">Bio: " + requests[i].bio + "</h4>\n" +
                     "</div>\n" +
                     "<div class=\"options\">\n" +
-                    "<button class=\"accept\" onclick=\"acceptFriend(" + requests[i].user + ")\">Accept</button>\n" +
-                    "<button class=\"ignore\" onclick=\"ignoreFriend(" + requests[i].user + ")\">Ignore</button>\n" +
+                    "<button class=\"accept\" onclick=\"acceptFriend('" + requests[i].user + "')\">Accept</button>\n" +
+                    "<button class=\"ignore\" onclick=\"ignoreFriend('" + requests[i].user + "')\">Ignore</button>\n" +
                     "</div>\n" +
                     "</div>\n" +
+                    "</td>\n" +
                     "</tr>"
-                )
+                );
             }
         }
     });
@@ -79,11 +96,35 @@ function toggle() {
 
 // accepts friend request
 function acceptFriend(user) {
-
+    $.ajax({
+        type: 'POST',
+        data: {
+            "friend": user
+        },
+        url: 'acceptFriendRequest',
+        success: function(response) {
+            console.log(response);
+            alert(response);
+            // get friend requests again
+            getRequests();
+        }
+    });
 }
 // ignores/declines friend request
 function ignoreFriend(user) {
-
+    $.ajax({
+        type: 'POST',
+        data: {
+            "friend": user
+        },
+        url: 'acceptFriendRequest',
+        success: function(response) {
+            console.log(response);
+            alert(response);
+            // get friend requests again
+            getRequests();
+        }
+    });
 }
 
 // resets inputs of friend request
@@ -96,7 +137,7 @@ function cancelRequest() {
     getRequests();
     $("#requestsSpace").show();
 }
-// send the friend request
+// send the friend request to try to add a friend
 function sendRequest() {
     var username = document.getElementById("userInput").value;
     console.log("Trying to add: " + username);
@@ -108,11 +149,17 @@ function sendRequest() {
     else {
         $.ajax({
             type: 'POST',
-            url: 'getRequests',
+            data: {
+                friend:username
+            },
+            url: 'requestFriend',
             success: function(response) {
                 // if request was a success, alert them and close pop up and fetch friend requests
-
                 // else alert user it was not a success
+                console.log(response);
+                alert(response);
+                // reset values and hide pop up by calling cancel
+                cancelRequest();
             }
         });
     }
