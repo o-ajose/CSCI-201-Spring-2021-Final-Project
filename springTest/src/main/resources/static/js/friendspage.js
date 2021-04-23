@@ -75,7 +75,7 @@ function getFriends() {
                 console.log("Entered loop");
                 $("#friends").append(
                     "<tr>\n" + "<td>\n" +
-                    "<div class=\"request\">\n" +
+                    "<div class=\"friend\">\n" +
                     "<div class=\"userPic\">\n" +
                     "<span class=\"bigCircle\"><img class=\"profileImage\" src=\"" + friends[i].profilePic + "\"></span>\n" +
                     "</div>\n" +
