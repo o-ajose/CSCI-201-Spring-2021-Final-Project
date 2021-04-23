@@ -107,7 +107,7 @@ function connectFriend(){
 // once user gets on feedpage or refreshes, get all the posts to be display
 function noFilterExplorePage(){
     console.log("called noFilterExplorePage() function");
-    var users;
+    var users = [];
     var location = $('#location').val();
 
     $.ajax({
@@ -118,12 +118,17 @@ function noFilterExplorePage(){
             console.log("retrievedd json objects");
             console.log(response);
             users = response;
-            for (i = users.length - 1; i >= 0; i--) {
+            for (var i = users.length - 1; i >= 0; i--) {
                 // if we are on even number -> post1 style
-                var petList = users[i].getPetList();
+                var petList = [];
+                petList =users[i].petList;
+                console.log(users[i].username);
+                console.log(petList);
                 if (i % 2 == 0) {
-                    for (i = 0; i < petList.length; i++) {
-                        var pet = petList[i];
+                    for (var j = 0; j < petList.length; j++) {
+
+                        var pet = petList[j];
+                        console.log(pet);
                         document.getElementById("row").innerHTML =
                             "<td>\n" +
                             "<div class=\"post1\">\n" +
@@ -144,8 +149,9 @@ function noFilterExplorePage(){
                 }
                 // if we are on an odd number -> post2 style
                 else {
-                    for (i = 0; i < petList.length; i++) {
-                        var pet = petList[i];
+                    for (var j= 0; j < petList.length; j++) {
+                        var pet = petList[j];
+                        console.log(pet);
                         document.getElementById("row").innerHTML =
                             "<td>\n" +
                             "<div class=\"post2\">\n" +
@@ -156,7 +162,7 @@ function noFilterExplorePage(){
                             "<p class= id='friend' \"owner\">\n" + "Owner: " + users[i].username + "</p>\n" +
                             "<p class=\"location\">\n" + "Location: " + users[i].location + "</p>\n" +
                             "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
-                            "<p class=\"bio\">\n" + "Breed: " + pet.bio +
+                            "<p class=\"bio\">\n" + "Bio: " + pet.bio +
                             "</p>\n" +
                             "<button id='post2' type='button' onclick='displayConnectMessage();'>Connect!</button>" +
                             "</div>\n" +
@@ -189,7 +195,7 @@ function noFilterExplorePage(){
 
 function getExplorePageFiltered() {
     console.log("called getExplorePageFiltered() function");
-    var users;
+    var users = [];
     var location = $('#location').val();
 
     $.ajax({
@@ -200,12 +206,13 @@ function getExplorePageFiltered() {
             console.log("retrieved json objects");
             console.log(response);
             users = response;
-            for (i = users.length - 1; i >= 0; i--) {
+            for (var i = users.length - 1; i >= 0; i--) {
                 // if we are on even number -> post1 style
-                var petList = users[i].getPetList();
+                var petList = [];
+                petList=users[i].petList;
                 if (i % 2 == 0) {
-                    for (i = 0; i < petList.length; i++) {
-                        var pet = petList[i];
+                    for (var j = 0; j < petList.length; j++) {
+                        var pet = petList[j];
                         document.getElementById("row").innerHTML =
                             "<td>\n" +
                             "<div class=\"post1\">\n" +
@@ -222,13 +229,13 @@ function getExplorePageFiltered() {
                             "</div>\n" +
                             "</td>" + document.getElementById("row").innerHTML;
                     }
-                    var pet = petList.get(0);
+                  //  var pet = petList;
 
                 }
                 // if we are on an odd number -> post2 style
                 else {
-                    for (i = 0; i < petList.length; i++) {
-                        var pet = petList[i];
+                    for (var j = 0; j < petList.length; j++) {
+                        var pet = petList[j];
                         document.getElementById("row").innerHTML =
                             "<td>\n" +
                             "<div class=\"post2\">\n" +
