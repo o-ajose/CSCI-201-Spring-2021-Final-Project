@@ -74,7 +74,20 @@ public class User {
         return petList;
     }
     public String getBio(){return bio;}
-
+    public boolean hasFriendRequest(String username){
+        for(int i = 0; i<friendRequests.size();i++){
+            if(friendRequests.get(i).user.equals(username))
+                return true;
+        }
+        return false;
+    }
+    public boolean hasFriend(String username){
+        for(int i = 0; i<friends.size();i++){
+            if(friends.get(i).user.equals(username))
+                return true;
+        }
+        return false;
+    }
     public String getPassword(){
         return password;
     }
