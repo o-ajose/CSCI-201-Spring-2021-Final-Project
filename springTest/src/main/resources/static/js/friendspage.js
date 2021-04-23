@@ -10,6 +10,8 @@ function loadFriendsPage() {
             document.getElementById("bigProfilePic").src = response.profilePic;
             // set up user's username
             document.getElementById("userBtn").innerHTML = response.username;
+            $("#requestName").show();
+            $("#friendsName").show();
             // load all the user's friend request
             getRequests();
             // load all user's friends
@@ -25,6 +27,8 @@ function getRequests() {
         url: 'getRequests',
         success: function(response) {
             console.log("received friend requests");
+            $("#requestName").show();
+            $("#friendsName").show();
             console.log(response);
             var requests = response;
             // reset to empty table in div
@@ -66,6 +70,8 @@ function getFriends() {
         url: 'fetchUserProfile',
         success: function(response) {
             console.log("received friends");
+            $("#requestName").show();
+            $("#friendsName").show();
             console.log(response);
             var friends = response.friends; // array of user's friends
             // reset to empty table in div
@@ -134,12 +140,16 @@ function toggle() {
         console.log("making pop up invisible");
         $("#popUp").hide();
         $("#requestsSpace").show();
+        $("#requestName").show();
+        $("#friendsName").show();
     }
     // else show the pop up since it is not yet shown
     else{
         console.log("making pop up visible");
         $("#popUp").show();
         $("#requestsSpace").hide();
+        $("#requestName").hide();
+        $("#friendsName").hide();
     }
 }
 
@@ -156,6 +166,8 @@ function acceptFriend(user) {
             alert(response);
             // get friend requests again
             getRequests();
+            // get friends again
+            getFriends();
         }
     });
 }
@@ -172,6 +184,8 @@ function ignoreFriend(user) {
             alert(response);
             // get friend requests again
             getRequests();
+            // get friends again
+            getFriends();
         }
     });
 }
@@ -184,6 +198,8 @@ function cancelRequest() {
     $("#popUp").hide();
     // get freshly fetched friend requests
     getRequests();
+    // get freshly fetched friends
+    getFriends();
     $("#requestsSpace").show();
 }
 // send the friend request to try to add a friend
