@@ -141,6 +141,7 @@ function toggle() {
         $("#popUp").hide();
         $("#requestsSpace").show();
         $("#requestName").show();
+        $("#friendsSpace").show();
         $("#friendsName").show();
     }
     // else show the pop up since it is not yet shown
@@ -149,6 +150,7 @@ function toggle() {
         $("#popUp").show();
         $("#requestsSpace").hide();
         $("#requestName").hide();
+        $("#friendsSpace").hide();
         $("#friendsName").hide();
     }
 }
@@ -201,6 +203,7 @@ function cancelRequest() {
     // get freshly fetched friends
     getFriends();
     $("#requestsSpace").show();
+    $("#friendsSpace").show();
 }
 // send the friend request to try to add a friend
 function sendRequest() {
