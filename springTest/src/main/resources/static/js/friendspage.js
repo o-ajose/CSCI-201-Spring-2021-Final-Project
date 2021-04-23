@@ -56,12 +56,26 @@ function getRequests() {
         }
     });
 }
+
+// logs user out
+function logout() {
+    console.log("Logging user out");
+    $.ajax({
+        type: 'POST',
+        url: 'logout',
+        success: function(response) {
+            alert(response); // tell user they logged out
+            // redirect to login page
+            location.href = "loginpage.html";
+        }
+    });
+}
+
 // redirects to account page
 function getAccountPage() {
     console.log("Redirecting to account page");
     location.href = "ProfilePage.html";
 }
-
 // nav bar redirects to different pages
 function goToFriends() {
     console.log("Redirecting to friends page");
