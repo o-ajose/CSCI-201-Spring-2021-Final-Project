@@ -5,10 +5,11 @@
     <title>Tirebiters Profile</title>
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/ProfilePage.css">
+    <script src="js/ProfilePage.js"></script>
+    <script src="https://ajax.google.apis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
-<!-- TODO: update this with the needed servlet / webSocket to pull user information -->
-<body onload="">
-    <!-- Code for navigation bar -->
+<body onload="return pullUserInfo() & pullPetInfo() & pullSongInfo();">
+    <!-- Code for navigation bar todo: update with karen's new nav bar -->
     <div id="feedHeader" class = "navbar">
         <div id="icons">
             <button type="button" class="iconBtn" onclick=""><img class="icon" src="images/exploreIcon.webp"></button>
@@ -30,6 +31,7 @@
                     assignment 4, then we'd have a cookie that would tell us if the user is logged in or not,
                     so if there's been a cookie set that matches the username of the visited profile page, then
                     dynamically show the add friend button or the edit profile page button-->
+
     <div class="AddFriend">
         <button class="button" onclick="window.location.href='feedpage.html'"> Add Friend</button>
     </div>
@@ -53,8 +55,8 @@
             *** NOTE: thinking I might make everything smaller if we decide to add the user's past posts to this page?
                     Since there'd be less space that needs to be filled by the profile info
                 -->
-    <div class = "UserContainer">
-        <div class="userImage">
+    <div class = "UserContainer" id="UserContainer">
+        <!-- <div class="userImage">
             <img src="images/tommy.jpeg" alt="Tommy's Profile Picture">
         </div>
         <div class="userText">
@@ -62,41 +64,24 @@
             <p>Name: Tommy Trojan</p>
             <p>Location: Los Angeles, CA</p>
         </div>
-        <br>
+        <br> -->
     </div>
-    <div class="audio">
-        <audio id="song" src="Music/Dog%20Days%20Are%20Over.mp3" preload="auto">
+    <div class="audio" id="audio">
+        <!-- <audio id="song" src="Music/Dog%20Days%20Are%20Over.mp3" preload="auto">
             <p>If you are reading this, it is because your browser does not support the audio element.</p>
         </audio>
         <button class="button" onclick="playPause()">Chosen Song: Dog Days Are Over - Florence + The Machine</button>
-
-        <!-- Script to play the song, might move this to it's own JS for profilePage if we end up using more JS functions -->
-        <script>
-            var play = document.getElementById('song');
-
-            function playPause() {
-                return play.paused ? play.play() : play.pause();
-            }
-        </script>
+            -->
     </div>
     <br>
 
+    <!-- Divider for Printing out Pet Info -->
+    <hr style="size:10px; color:#C19770"> <!-- Divides the page into user and pets -->
 
-    <!-- Divider for Printing out Pet Info
-            Main groups:
-                - Pet's picture (if given)
-                - Pet's info
-           Would most likely have to be that when we're pulling it in the
-                servlet, we iterate through all the pets and after every two pets
-                we add a break line, and the petContainer is actually an empty div that gets
-                filled with servlet info
-    -->
-    <hr style="size:10px; color:#C19770"> <!-- Break line to divide the page into user and pets -->
-
-    <h1 style="font-size: 30px; padding-left: 10px">Tommy's Pets</h1>
-    <div class = "PetContainer">
+    <h1 id="petHeader" style="font-size: 30px; padding-left: 10px"><!--Tommy's Pets --> </h1>
+    <div class = "PetContainer" id="PetContainer">
         <div class="row">
-            <div class="column">
+           <!--  <div class="column">
                 <div class="image">
                     <img src="images/milky.jpg" alt="Milky">
                 </div>
@@ -131,7 +116,7 @@
                     <p>Age: 1 year (15 cat years) </p>
                     <p>Personality: Goofy, curious, loves playing with his older brothers</p>
                     <p>Relationship status: It's my first year out, I'm just here </p>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
