@@ -4,9 +4,76 @@ function getExplorePage() {
     noFilterExplorePage();
 }
 
+// logs user out
+function logout() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const username = urlParams.get('username');
+    if(username === "guest"){
+        alert("Make an account to access this function!");
+    }else{
+        console.log("Logging user out");
+    }
+}
+
+// redirects to account page
+function getAccountPage() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const username = urlParams.get('username');
+    if(username === "guest"){
+        alert("Make an account to access this function!");
+    } else{
+        console.log("Redirecting to account page");
+        location.href = "ProfilePage.html";
+    }
+}
+
+// nav bar redirects to different pages
+function goToFriends() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const username = urlParams.get('username');
+    if(username === "guest"){
+        alert("Make an account to access this function!");
+    }else{
+        console.log("Redirecting to friends page");
+        location.href = "friendsPage.html";
+    }
+
+}
+// nav bar redirects to different pages
+function goToExplore() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const username = urlParams.get('username');
+    console.log("Redirecting to explore page");
+    location.href = "explorepage.html?username=" + username;
+}
+// nav bar redirects to different pages
+function goToFeed() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const username = urlParams.get('username');
+    if(username === "guest"){
+        alert("Make an account to access this function!");
+    }else{
+        console.log("Redirecting to feed page");
+        location.href = "feedpage.html";
+    }
+
+}
+
 
 function displayConnectMessage(){
-    alert("You must be logged-in to connect. Make an account now!");
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const username = urlParams.get('username');
+    if(username === "guest"){
+        alert("You must be logged-in to connect with friends. Make an account now!");
+    }else{
+        alert("connecting...");
+    }
 }
 
 // once user gets on feedpage or refreshes, get all the posts to be display
@@ -41,7 +108,7 @@ function noFilterExplorePage(){
                             "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
                             "<p class=\"bio\">\n" + "Breed: " + pet.bio +
                             "</p>\n" +
-                            "<button id='post1' type='button' onclick='displayConnectMessage();'>Connect!</input>" +
+                            "<button id='post1' type='button' onclick='displayConnectMessage();'>Connect!</button>" +
                             "</div>\n" +
                             "</td>" + document.getElementById("row").innerHTML;
                     }
@@ -63,7 +130,7 @@ function noFilterExplorePage(){
                             "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
                             "<p class=\"bio\">\n" + "Breed: " + pet.bio +
                             "</p>\n" +
-                            "<button id='post2' type='button' onclick='displayConnectMessage();'>Connect!</input>" +
+                            "<button id='post2' type='button' onclick='displayConnectMessage();'>Connect!</button>" +
                             "</div>\n" +
                             "</td>" + document.getElementById("row").innerHTML;
                     }
@@ -104,7 +171,7 @@ function getExplorePageFiltered() {
                             "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
                             "<p class=\"bio\">\n" + "Breed: " + pet.bio +
                             "</p>\n" +
-                            "<button id='post1' type='button' onclick='displayConnectMessage();'>Connect!</input>" +
+                            "<button id='post1' type='button' onclick='displayConnectMessage();'>Connect!</button>" +
                             "</div>\n" +
                             "</td>" + document.getElementById("row").innerHTML;
                     }
@@ -127,7 +194,7 @@ function getExplorePageFiltered() {
                             "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
                             "<p class=\"bio\">\n" + "Breed: " + pet.bio +
                             "</p>\n" +
-                            "<button id='post2' type='button' onclick='displayConnectMessage();'>Connect!</input>" +
+                            "<button id='post2' type='button' onclick='displayConnectMessage();'>Connect!</button>" +
                             "</div>\n" +
                             "</td>" + document.getElementById("row").innerHTML;
                     }

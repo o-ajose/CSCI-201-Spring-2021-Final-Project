@@ -79,10 +79,15 @@
         <button onclick="document.getElementById('registerForm').style.display='block'"> Don't have an account? Register here</button>
     </div>
 
+    <script>
+        function navigateGuest(){
+            window.location.href = 'explorepage.html?username=guest';
+        }
+
+    </script>
+
     <div id="GuestNavigate" class="GuestNavigate">
-        <form action = "explorepage.html">
-            <button type="submit" name = "guestNavigate" id = "guestNavigate" >Navigate with a guest account</button>
-        </form>
+        <button type="submit" name = "guestNavigate" id = "guestNavigate" onclick="navigateGuest()" >Navigate with a guest account</button>
     </div>
 
 </div>
