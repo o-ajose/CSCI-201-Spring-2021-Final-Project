@@ -6,9 +6,7 @@ body {
 }
 
 
-/* Button for Adding Friends, TODO: need to add a button for Edit Profile and see which should be displayed based on if
-                               the user is logged in or not --> will mostly be dependent on how we do the onload function
-                                */
+/* Button for Adding Friends */
 .AddFriend {
     position: absolute;
     display: none;
@@ -41,8 +39,7 @@ body {
     height: auto;
 }
 
-.userText { /* This text is slightly larger than the header and pet text, might make it smaller depending on
-                    aesthetics */
+.userText { /* This text is slightly larger than the header and pet text */
     font-size: 35px;
     padding-left: 25px;
     align-items: center;
@@ -63,6 +60,7 @@ body {
     padding-left: 25px;
     padding-right: 10px;
 }
+
 .text {
     font-size: 20px;
     padding-left: 20px;
@@ -88,12 +86,13 @@ body {
     display: flex;
     width: 450px;
     height: auto;
-    border: 5px solid black;
 }
+
 .box{
     width: 250px;
 
 }
+
 .text {
     font-size: 20px;
     padding-left: 20px;
@@ -171,7 +170,7 @@ td {
 #userBtn {
     border: none;
     background-color: #b6a697;
-    font-family: Righteous;
+    font-family: Righteous, sans-serif;
     margin: 5px 0px;
     color: white;
 }
@@ -208,7 +207,7 @@ td {
     margin-block-end: 1em;
     border-radius: 12px;
     color: black;
-    font-family: Righteous;
+    font-family: Righteous, sans-serif;
     font-size: larger;
     text-align: center;
 }

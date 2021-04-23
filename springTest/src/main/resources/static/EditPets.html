@@ -6,24 +6,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/EditPage.css">
     <script src="js/EditPets.js"></script>
+    <script src="js/feedpage.js"></script>
 </head>
 <body onload="getPetDetails()">
 
-    <!-- Code for navigation bar todo: add Karen's new code for the nav bar-->
+    <!-- Code for navigation bar -->
     <div id="feedHeader" class = "navbar">
         <div id="icons">
-            <button type="button" class="iconBtn"><img class="icon" src="../../../../../demo/target/classes/static/images/exploreIcon.webp"></button>
-            <button type="button" class="iconBtn"><img class="icon" src="../../../../../demo/target/classes/static/images/feedIcon.png"></button>
-            <button type="button" class="iconBtn"><img class="icon" src="../../../../../demo/target/classes/static/images/messageIcon.png"></button>
+            <button type="button" class="iconBtn" onclick="goToExplore()"><img class="icon" src="images/exploreIcon.webp"></button>
+            <button type="button" class="iconBtn" onclick="goToFeed()"><img class="icon" src="images/feedIcon.png"></button>
+            <button type="button" class="iconBtn" onclick="goToFriends()"><img class="icon" src="images/friendReq.jpeg"></button>
+            <button type="button" class="iconBtn" onclick="logout()"><img class="icon" src="images/logoutIcon.png"></button>
         </div>
-        <span><img class="dogBoneIcon" src="../../../../../demo/target/classes/static/images/dogBoneIcon.png"></span>
-        <h3 class="websiteName">Tirebiters</h3>
+        <span><img class="dogBoneIcon" src="images/dogBoneIcon.png"></span>
+        <h3 class="websiteName"><a href="#" class="effect-shine">Tirebiters</a></h3>
         <div id="userDisplay">
-            <span class="circle"><img class="profileImage" src="../../../../../demo/target/classes/static/images/defaultProfilePic.jpeg"></span>
-            <h4 class="username">USERNAME</h4>
+            <span class="circle"><img class="profileImage" src="images/defaultProfilePic.jpeg"></span>
+            <button id="userBtn" class="username" onclick="getAccountPage()">USERNAME</button>
         </div>
     </div>
-    <br>
+    <div id="createPostArea">
+        <p class="pageName">Newsfeed</p>
+        <button type="button" id="createPost" onclick="toggle()">Create Post
+        </button>
+    </div>
 
     <!-- Allows user to switch between their info and the pet info -->
     <div class="Edit">

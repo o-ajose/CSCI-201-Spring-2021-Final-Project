@@ -6,27 +6,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
     <script src="https://ajax.google.apis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/EditPage.js"></script>
+    <script src="js/feedpage.js"></script>
     <link rel="stylesheet" href="css/EditPage.css">
 </head>
 <body onload="return pullUserInfo()"> <!-- calls all the servlet to get the user info and places it accordingly-->
 
-    <!-- Code for navigation bar TODO: update this with Karen's new push -->
+    <!-- Code for navigation bar -->
     <div id="feedHeader" class = "navbar">
         <div id="icons">
-            <button type="button" class="iconBtn"><img class="icon" src="images/exploreIcon.webp"></button>
-            <!-- TODO: could set this onclick to redirect to the feedPage for all navs -->
-            <button type="button" class="iconBtn"><img class="icon" src="images/feedIcon.png"></button>
-            <button type="button" class="iconBtn"><img class="icon" src="images/messageIcon.png"></button>
+            <button type="button" class="iconBtn" onclick="goToExplore()"><img class="icon" src="images/exploreIcon.webp"></button>
+            <button type="button" class="iconBtn" onclick="goToFeed()"><img class="icon" src="images/feedIcon.png"></button>
+            <button type="button" class="iconBtn" onclick="goToFriends()"><img class="icon" src="images/friendReq.jpeg"></button>
+            <button type="button" class="iconBtn" onclick="logout()"><img class="icon" src="images/logoutIcon.png"></button>
         </div>
-        <span><img class="dogBoneIcon" src="../../../../../demo/target/classes/static/images/dogBoneIcon.png"></span>
-        <h3 class="websiteName">Tirebiters</h3>
+        <span><img class="dogBoneIcon" src="images/dogBoneIcon.png"></span>
+        <h3 class="websiteName"><a href="#" class="effect-shine">Tirebiters</a></h3>
         <div id="userDisplay">
-            <!-- TODO: mentioned changes from ProfilePage to make sure this directs to the user's page-->
             <span class="circle"><img class="profileImage" src="images/defaultProfilePic.jpeg"></span>
-            <h4 class="username">USERNAME</h4>
+            <button id="userBtn" class="username" onclick="getAccountPage()">USERNAME</button>
         </div>
     </div>
-    <br>
+    <div id="createPostArea">
+        <p class="pageName">Newsfeed</p>
+        <button type="button" id="createPost" onclick="toggle()">Create Post
+        </button>
+    </div>
 
     <!-- Code for Editing the User's info -->
     <div class="Edit">

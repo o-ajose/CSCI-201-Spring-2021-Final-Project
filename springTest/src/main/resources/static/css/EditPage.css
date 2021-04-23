@@ -6,7 +6,7 @@ body {
 }
 /* ***** Edit Person page ***** */
 .editPersonPage {
-    width: 400px; /* TODO: figure out how to make the form size smaller so it's not as ugly */
+    width: 400px;
 }
 
 .inputPersonInfo {
@@ -72,7 +72,6 @@ textarea {
 }
 
 /* ***** Code for navigation bar formatting ***** */
-
 td {
     padding:0 10px;
     width: 300px;
@@ -107,6 +106,7 @@ td {
     font-size: xxx-large;
     font-weight: lighter;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 0px;
 }
 
 .dogBoneIcon {
@@ -118,18 +118,24 @@ td {
 .username {
     display: inline-block;
     align-content: center;
-    font-size: large;
+    font-size: 30px;
+    color: white;
+}
+
+#userBtn {
+    border: none;
+    background-color: #b6a697;
+    font-family: Righteous, sans-serif;
+    margin: 5px 0px;
     color: white;
 }
 
 .circle {
     display: inline-block;
-    position: relative;
     width: 50px;
     height: 50px;
     overflow: hidden;
     border-radius: 50%;
-    margin-top: 10%;
 }
 
 .profileImage {
@@ -156,7 +162,7 @@ td {
     margin-block-end: 1em;
     border-radius: 12px;
     color: black;
-    font-family: Righteous;
+    font-family: Righteous, sans-serif;
     font-size: larger;
     text-align: center;
 }
@@ -178,6 +184,7 @@ td {
     border-radius: 0px;
     background: transparent;
     align-items: center;
+    float: left;
 }
 
 .icon {

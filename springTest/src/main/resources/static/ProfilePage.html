@@ -9,13 +9,13 @@
     <script src="https://ajax.google.apis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body onload="return pullUserInfo() & pullPetInfo() & pullSongInfo();">
-    <!-- Code for navigation bar todo: update with karen's new nav bar -->
+    <!-- Code for navigation bar -->
     <div id="feedHeader" class = "navbar">
         <div id="icons">
-            <button type="button" class="iconBtn" onclick=""><img class="icon" src="images/exploreIcon.webp"></button>
-            <button type="button" class="iconBtn"><img class="icon" src="images/feedIcon.png"></button>
-            <button type="button" class="iconBtn"><img class="icon" src="images/friendReq.jpeg"></button>
-            <button type="button" class="iconBtn"><img class="icon" src="images/logoutIcon.png"></button>
+            <button type="button" class="iconBtn" onclick="goToExplore()"><img class="icon" src="images/exploreIcon.webp"></button>
+            <button type="button" class="iconBtn" onclick="goToFeed()"><img class="icon" src="images/feedIcon.png"></button>
+            <button type="button" class="iconBtn" onclick="goToFriends()"><img class="icon" src="images/friendReq.jpeg"></button>
+            <button type="button" class="iconBtn" onclick="logout()"><img class="icon" src="images/logoutIcon.png"></button>
         </div>
         <span><img class="dogBoneIcon" src="images/dogBoneIcon.png"></span>
         <h3 class="websiteName"><a href="#" class="effect-shine">Tirebiters</a></h3>
@@ -23,6 +23,11 @@
             <span class="circle"><img class="profileImage" src="images/defaultProfilePic.jpeg"></span>
             <button id="userBtn" class="username" onclick="getAccountPage()">USERNAME</button>
         </div>
+    </div>
+    <div id="createPostArea">
+        <p class="pageName">Newsfeed</p>
+        <button type="button" id="createPost" onclick="toggle()">Create Post
+        </button>
     </div>
 
     <!-- TODO: add a function that checks with the backend if the user is the owner of the page. If they are, present the
