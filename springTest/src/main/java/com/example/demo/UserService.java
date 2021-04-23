@@ -246,16 +246,29 @@ public class UserService {
         User user = null;
         User thisUser = null;
         if (document.exists()) {
-            thisUser = document2.toObject(User.class);
-            String pic = thisUser.getProfilePic();
-            String bio = thisUser.getBio();
-            user = document.toObject(User.class);
-            user.addFriendRequest(new Request(username,pic,bio));
-            ApiFuture<WriteResult> collectionsApiFuture1 = dbFirestore.collection(COL_NAME).document(friend).set(user);
-            return "Sent friend request to " + friend;
-
-        } else {
-            return "HTTP Session Timed Out: please log in again.";
+            if(document2.exists()){
+                thisUser = document2.toObject(User.class);
+                user = document.toObject(User.class);
+                if(thisUser.hasFriendRequest(user.getUsername())){
+                    return user.getUsername()+" has already sent you a friend request!";
+                }
+                else if(user.hasFriendRequest(thisUser.getUsername())){
+                    return "You have already sent a friend request to "+user.getUsername();
+                }
+                else if(user.hasFriend(thisUser.getUsername())){
+                    return "You and "+user.getUsername()+" are already friends!";
+                }
+                String pic = thisUser.getProfilePic();
+                String bio = thisUser.getBio();
+                user.addFriendRequest(new Request(username,pic,bio));
+                ApiFuture<WriteResult> collectionsApiFuture1 = dbFirestore.collection(COL_NAME).document(friend).set(user);
+                return "Sent friend request to " + friend;
+            }
+            else {
+                return "HTTP Session Timed Out: please log in again.";
+            }
+        } else{
+            return "The user you have requested to be friends with is not in our database";
         }
     }
 
