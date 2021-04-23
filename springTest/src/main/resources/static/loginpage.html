@@ -18,6 +18,8 @@
         document.getElementById("login_div").style.display = "block";
     </script>
 
+
+
     <script>
         function validateLogin(){
             //alert("test");
@@ -66,7 +68,7 @@
         <h2 style="text-align:center"> Log in to tirebiters </h2>
         <input type="text" placeholder="Username" name="username" id="username" required>
         <input type="password" placeholder="Password" name="password" id="password" required>
-        <input type="submit" name="login" value="Login" onclick="validateLogin();">
+        <input type="button" name="login" value="Login" onclick="validateLogin();">
 
 
         <!-- does not use servlets
@@ -79,10 +81,15 @@
         <button onclick="document.getElementById('registerForm').style.display='block'"> Don't have an account? Register here</button>
     </div>
 
-    <div id="GuestNavigate2" class="GuestNavigate">
-        <form action = "explorepage.html">
-            <button type="submit" name = "guestNavigate" id = "guestNavigate" >Navigate with a guest account</button>
-        </form>
+    <script>
+        function navigateGuest(){
+            window.location.href = 'explorepage.html?username=guest';
+        }
+
+    </script>
+
+    <div id="GuestNavigate" class="GuestNavigate">
+        <button type="submit" name = "guestNavigate" id = "guestNavigate" onclick="navigateGuest()" >Navigate with a guest account</button>
     </div>
 
 </div>
@@ -92,24 +99,69 @@
     function validateRegister(){
         if(document.getElementById('password1').value != document.getElementById('confirmPassword').value){
             alert("Please make sure the passwords match.");
-            return false;
+
         }
 
         if(document.getElementById('password1').value.length < 8){
             alert("Password must be at least 8 characters!");
-            return false;
+
+        }
+        else {
+            var user = $('#username1').val();
+            var pass = $('#password1').val();
+            var email = $('#email1').val();
+            var bio = $('#bio').val();
+            var name = $('#name').val();
+            var location = $('#location').val();
+
+            $.ajax({
+                url: "register",
+                type: "POST",
+                data: {"username1": user, "password1": pass, "email1": email, "bio": bio, "location": location,"name":name},
+                success: function (response) {
+                    console.log(response);
+                    console.log(response);
+                    if (response.includes("SUCCESS")) {
+                        alert("Your account has been made!");
+                        window.location.href = 'explorepage.html';
+                    } else {
+                        alert(response);
+                    }
+                },
+                error: function (jqXHR, exception) {
+                    var msg = '';
+                    if (jqXHR.status === 0) {
+                        msg = 'Not connect.\n Verify Network.';
+                    } else if (jqXHR.status == 404) {
+                        msg = 'Requested page not found. [404]';
+                    } else if (jqXHR.status == 500) {
+                        msg = 'Internal Server Error [500].';
+                    } else if (exception === 'parsererror') {
+                        msg = 'Requested JSON parse failed.';
+                    } else if (exception === 'timeout') {
+                        msg = 'Time out error.';
+                    } else if (exception === 'abort') {
+                        msg = 'Ajax request aborted.';
+                    } else {
+                        msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                    }
+                    alert(msg);
+                }
+            })
         }
     }
 </script>
 
 <div id="registerForm" class="registerForm">
     <span onclick="document.getElementById('registerForm').style.display='none'" class="close" title="Close registerForm">&times;</span>
-    <form id="signUpForm" class = "registerFormContent"  action ="/register" method="POST" onsubmit="return validateRegister()">
+    <form id="signUpForm" class = "registerFormContent"   method="POST" >
         <!-- content within register form. Only opens up when click on register-->
         <div class="container">
             <h1>Register for Tirebiters! </h1>
             <p>Enter the information below to join tirebiters</p>
             <hr>
+            <label for="name">Name</label>
+            <input id ="name" type="text" placeholder = "Enter Name" name="name" required>
             <label for="email1"><b>Email</b></label>
             <input id="email1" type="text" placeholder="Enter Email" name="email1" required>
 
@@ -191,7 +243,7 @@
             <!-- when pressing cancel or register -->
             <div class="clear">
                 <button type="button" onclick="document.getElementById('registerForm').style.display='none'" class="cancelbtn">Cancel</button>
-                <input type="submit" class="signupbtn" value="Register">
+                <input type="button" class="signupbtn" value="Register" onClick = "validateRegister()">
             </div>
         </div>
     </form>
