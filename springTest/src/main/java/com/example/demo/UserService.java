@@ -330,6 +330,7 @@ public class UserService {
         if (document.exists()) {
             user = document.toObject(User.class);
              user.removeFriendRequest(friend);
+         ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection(COL_NAME).document(username).set(user);
             return "Rejected friend request from "+friend;
         } else {
             return "HTTP Session Timed Out: please log in again.";
