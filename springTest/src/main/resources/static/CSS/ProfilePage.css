@@ -271,7 +271,7 @@ a.effect-shine:hover {
         margin-right: 25%;
     }
 }
-/* On screens that are 1100px or less, set the background color to blue */
+/* On screens that are 1100px or less */
 @media screen and (max-width: 1100px) {
     #icons {
         margin-right: 10%;
@@ -297,7 +297,7 @@ a.effect-shine:hover {
         height: 38px;
     }
 }
-/* On screens that are 900px or less, set the background color to blue */
+/* On screens that are 900px or less */
 @media screen and (max-width: 900px) {
     #icons {
         margin-right: 10%;
@@ -323,7 +323,7 @@ a.effect-shine:hover {
         height: 38px;
     }
 }
-/* On screens that are 800px or less, set the background color to blue */
+/* On screens that are 800px or less */
 @media screen and (max-width: 800px) {
     #icons {
         margin-right: 5%;
@@ -349,7 +349,7 @@ a.effect-shine:hover {
         height: 35px;
     }
 }
-/* On screens that are 600px or less, set the background color to olive */
+/* On screens that are 600px or less */
 @media screen and (max-width: 600px) {
     #icons {
         margin-right: 0%;
