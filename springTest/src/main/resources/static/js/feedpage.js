@@ -219,8 +219,8 @@ function getPosts() {
                 "</td>";
             // append from old to new posts
             for (i = posts.length - 1; i >= 0; i--) {
-                // if we are on even number -> post1 style
-                if (i % 2 == 0) {
+                // if we are on odd number -> post1 style
+                if (i % 2 != 0) {
                     document.getElementById("row").innerHTML =
                         "<td>\n" +
                         "<div class=\"post1\">\n" +
@@ -233,7 +233,7 @@ function getPosts() {
                         "</div>\n" +
                         "</td>" + document.getElementById("row").innerHTML;
                 }
-                // if we are on an odd number -> post2 style
+                // if we are on an even number -> post2 style
                 else {
                     document.getElementById("row").innerHTML =
                         "<td>\n" +
