@@ -94,7 +94,8 @@ function connectFriend(){
     if(username === "guest"){
         alert("You must be logged-in to connect with friends. Make an account now!");
     }else{
-        var friend = $('#friend').val();
+        var friend = $('#friend').html();
+        console.log(friend);
         $.ajax({
             url: "requestFriend",
             type: "POST",
@@ -220,7 +221,7 @@ function noFilterExplorePage(){
                             "<img class=\"photo\" src=\"" + pet.pic + "\">\n" +
                             "</div>\n" +
                             "<p class=\"pet\">" + "Name: " + pet.name + "</p>\n" +
-                            "<p id='friend' class=\"owner\">\n" + "Owner: " + users[i].username + "</p>\n" +
+                            "<p id='friend' class=\"owner\">\n" + users[i].username + "</p>\n" +
                             "<p class=\"location\">\n" + "Location: " + users[i].location + "</p>\n" +
                             "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
                             "<p class=\"bio\">\n" + pet.bio +

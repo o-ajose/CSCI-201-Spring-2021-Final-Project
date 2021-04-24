@@ -22,8 +22,6 @@
 
     <script>
         function validateLogin(){
-            //alert("test");
-
             var user = $('#username').val();
             var pass = $('#password').val();
 
@@ -64,18 +62,16 @@
     </script>
 
 
-    <form name="loginForm" method = "GET">
+    <div class="loginForm">
         <h2 style="text-align:center"> Log in to tirebiters </h2>
         <input type="text" placeholder="Username" name="username" id="username" required>
         <input type="password" placeholder="Password" name="password" id="password" required>
-        <input type="button" name="login" value="Login" onclick="validateLogin();">
+    </div>
 
+    <div id="loginButton" class="loginButton">
+        <input type="submit" name="login" value="Login" onclick="validateLogin();">
+    </div>
 
-        <!-- does not use servlets
-        <button onclick="login()">Login </button>
-        <button onclick="register()">or input new user info and click to register.</button>
-        -->
-    </form>
     <!-- open register form when clicked on "Don't have an account? Register here" -->
     <div id="Registerbtn" class="Registerbtn">
         <button onclick="document.getElementById('registerForm').style.display='block'"> Don't have an account? Register here</button>
@@ -106,7 +102,7 @@
             alert("Password must be at least 8 characters!");
 
         }
-        else {
+        if(document.getElementById('password1').value === document.getElementById('confirmPassword').value && document.getElementById('password1').value.length >= 8) {
             var user = $('#username1').val();
             var pass = $('#password1').val();
             var email = $('#email1').val();
@@ -154,16 +150,16 @@
 
 <div id="registerForm" class="registerForm">
     <span onclick="document.getElementById('registerForm').style.display='none'" class="close" title="Close registerForm">&times;</span>
-    <form id="signUpForm" class = "registerFormContent"   method="POST" >
+    <div id="signUpForm" class = "registerFormContent">
         <!-- content within register form. Only opens up when click on register-->
         <div class="container">
             <h1>Register for Tirebiters! </h1>
             <p>Enter the information below to join tirebiters</p>
             <hr>
             <label for="name">Name</label>
-            <input id ="name" type="text" placeholder = "Enter Name" name=""name" required>
+            <input id ="name" type="text" placeholder = "Enter Name" name="name" required>
             <label for="email1"><b>Email</b></label>
-            <input id="email1" type="text" placeholder="Enter Email" name="email1" required>
+            <input id="email1" type="email" placeholder="Enter Email" name="email1" required>
 
             <label for="username1"><b>Display Name</b></label>
             <input id="username1" type="text" placeholder="Enter a display name" name="username1" required>
@@ -230,7 +226,7 @@
             <br>
             <br>
 
-            <label for="password1"><b>Password</b></label>
+            <label for="password1"><b>Password (must be at least 8 characters)</b></label>
             <input id="password1" type="password" placeholder="Enter Password" name="password1" required>
 
             <label for="confirmPassword"><b>Please re-type your password to confirm</b></label>
@@ -243,10 +239,10 @@
             <!-- when pressing cancel or register -->
             <div class="clear">
                 <button type="button" onclick="document.getElementById('registerForm').style.display='none'" class="cancelbtn">Cancel</button>
-                <input type="button" class="signupbtn" value="Register" onClick = "validateRegister()">
+                <input type="button" class="signupbtn" value="Register" onclick ="validateRegister()">
             </div>
         </div>
-    </form>
+    </div>
 </div>
 
 <!-- script that handles closing register form -->
