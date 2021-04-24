@@ -142,6 +142,16 @@ function pullUserInfo() {
 // logs user out
 function logout() {
     console.log("Logging user out");
+    // added this - karen
+    $.ajax({
+        type: 'POST',
+        url: 'logout',
+        success: function(response) {
+            alert(response); // tell user they logged out
+            // redirect to login page
+            location.href = "loginpage.html";
+        }
+    });
 }
 
 // redirects to account page
