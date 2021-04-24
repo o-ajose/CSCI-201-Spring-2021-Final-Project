@@ -1,0 +1,232 @@
+/* Login page */
+
+body {
+    background: #fff;
+    background-image: url("https://utahvalley360.com/wp-content/uploads/2015/05/Pets.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Righteous', sans-serif;
+    font-size: 16px;
+}
+
+/* This is the Login to Tirebiters on the Login Page */
+h2{
+    color: rgb(215, 197, 155);
+}
+
+/* input and button fonts */
+input, button {
+    font-family: 'Righteous', sans-serif;
+    font-weight: 700;
+}
+
+
+/* Styles for log in section */
+.main-div, .loggedin-div {
+    width: 30%;
+    margin: 0px auto;
+    margin-top: 150px;
+    padding: 0px;
+    display: none;
+}
+
+/* Style for input in the login section */
+.main-div input {
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+    padding: 15px;
+    outline: none;
+    width: 100%;
+    margin-bottom: 20px;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+}
+
+
+/* Style for the submit button (input) */
+.main-div input[type=submit]{
+    background: rgb(215, 197, 155);
+    color: #fff;
+    border: 1px solid black;
+    border-radius: 100px;
+    padding: 15px;
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+}
+
+
+
+
+
+/* When you hover over the submit button (input), change colors */
+.main-div input[type=submit]:hover{
+    background: #fff;
+    color: black;
+    border: 1px solid black;
+    cursor: pointer;
+}
+/* When you click in box, change style */
+.main-div input:focus {
+    border: 1px solid #777;
+}
+
+/* Style of register button */
+.Registerbtn button{
+    background: rgb(215, 197, 155);;
+    color: #fff;
+    border: 1px solid black;
+    border-radius: 100px;
+    padding: 15px;
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+}
+
+/* Style for guest navigate button */
+.GuestNavigate button{
+    background: rgb(215, 197, 155);;
+    color: #fff;
+    border: 1px solid black;
+    border-radius: 100px;
+    padding: 15px;
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+}
+
+/* Enables changes with hovering for buttons in main-div (login buttons basically) */
+.main-div button:hover, .loggedin-div button:hover {
+    background: #fff;
+    color: black;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+
+
+/*-------------------------------Register Page--------------------------------*/
+
+
+/* Full-width input fields */
+input[type=text], input[type=password], input[type=email] {
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+/* When user clicks on input box, background of box changes color to darker grey */
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+/* Set style for register button in register form */
+
+
+
+/* background and padding for cancel button */
+.cancelbtn {
+    padding: 14px 20px;
+    background-color: #ff0000;
+    border-radius: 25px;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+    float: left;
+    width: 100%;
+}
+.signupbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+    border-radius: 25px;
+}
+
+/* Add padding to container elements */
+.container {
+    padding: 16px;
+}
+
+/* The register form background */
+.registerForm {
+    display: none; /* Hidden by default (only displays when clicked)*/
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: white;
+    padding-top: 50px;
+}
+
+/* Register form box */
+.registerFormContent {
+    background-color: rgb(215, 197, 155);
+    margin: 5% auto 15% auto;
+    border: 1px solid #888;
+    border-radius: 25px;
+    width: 50%;
+}
+
+/* Style hr (the horizontal line separating title and content) */
+hr {
+    border: .5px solid white;
+    margin-bottom: 25px;
+}
+
+/* The X button on the register form (top right) */
+.close {
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    font-size: 80px;
+    font-weight: bold;
+    color: red;
+}
+
+/* change cursos to pointer when hovering over X button */
+.close:hover{
+    cursor: pointer;
+}
+
+/* Clear */
+.clear::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Change styles for cancel/register button on small screens */
+@media screen and (max-width: 300px) {
+    .cancelbtn, .signupbtn {
+        width: 100%;
+    }
+}
