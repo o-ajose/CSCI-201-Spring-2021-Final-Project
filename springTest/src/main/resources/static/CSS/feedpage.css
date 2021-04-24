@@ -38,6 +38,7 @@ td {
     font-size: xxx-large;
     font-weight: lighter;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 0px;
 }
 
 .dogBoneIcon {
@@ -49,7 +50,15 @@ td {
 .username {
     display: inline-block;
     align-content: center;
-    font-size: large;
+    font-size: 30px;
+    color: white;
+}
+
+#userBtn {
+    border: none;
+    background-color: #b6a697;
+    font-family: Righteous;
+    margin: 5px 0px;
     color: white;
 }
 
@@ -59,7 +68,6 @@ td {
     height: 50px;
     overflow: hidden;
     border-radius: 50%;
-    margin-top: 10%;
 }
 
 .profileImage {
@@ -108,6 +116,7 @@ td {
     border-radius: 0px;
     background: transparent;
     align-items: center;
+    float: left;
 }
 
 .icon {
@@ -209,6 +218,10 @@ td {
 #bigCircle {
     width: 75px;
     height: 75px;
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-top: 25px;
 }
 
 #bigU {
@@ -311,10 +324,14 @@ input[type="file"] {
 #newPostsNotif {
     text-align: center;
 }
-p a {
+h3 a {
     color: #B6A697;
-    font-size: 18px;
     text-decoration: none;
+}
+
+.effect-shine {
+    text-decoration: none;
+    color: white;
 }
 
 a.effect-shine:hover {
@@ -330,5 +347,100 @@ a.effect-shine:hover {
 
     to {
         -webkit-mask-position: -50%;
+    }
+}
+
+/* responsive design for nav bar */
+@media screen and (max-width: 1800px) {
+    #icons {
+        margin-right: 25%;
+    }
+}
+/* On screens that are 1100px or less, set the background color to blue */
+@media screen and (max-width: 1100px) {
+    #icons {
+        margin-right: 10%;
+    }
+    /*icons become smaller*/
+    .icon {
+        width: 35px;
+    }
+    /* title become smaller */
+    .dogBoneIcon {
+        width: 35px;
+    }
+    .websiteName {
+        font-size: xxx-large;
+    }
+    /* image and username become smaller */
+    .username {
+        font-size: x-large;
+    }
+
+    .circle {
+        width: 38px;
+        height: 38px;
+    }
+}
+/* On screens that are 900px or less, set the background color to blue */
+@media screen and (max-width: 900px) {
+    #icons {
+        margin-right: 10%;
+    }
+    /*icons become smaller*/
+    .icon {
+        width: 35px;
+    }
+    /* title become smaller */
+    .dogBoneIcon {
+        width: 35px;
+    }
+    .websiteName {
+        font-size: xxx-large;
+    }
+    /* image and username become smaller */
+    .username {
+        font-size: x-large;
+    }
+
+    .circle {
+        width: 38px;
+        height: 38px;
+    }
+}
+/* On screens that are 800px or less, set the background color to blue */
+@media screen and (max-width: 800px) {
+    #icons {
+        margin-right: 5%;
+    }
+    /*icons become smaller*/
+    .icon {
+        width: 30px;
+    }
+    /* title become smaller */
+    .dogBoneIcon {
+        width: 30px;
+    }
+    .websiteName {
+        font-size: xx-large;
+    }
+    /* image and username become smaller */
+    .username {
+        font-size: larger;
+    }
+
+    .circle {
+        width: 35px;
+        height: 35px;
+    }
+}
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+    #icons {
+        margin-right: 0%;
+    }
+    /*icons become smaller*/
+    .icon {
+        width: 20px;
     }
 }

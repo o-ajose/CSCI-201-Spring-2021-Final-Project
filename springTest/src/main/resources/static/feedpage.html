@@ -12,16 +12,16 @@
 <body onload="getFeed()">
 <div id="feedHeader" class = "navbar">
     <div id="icons">
-        <button type="button" class="iconBtn" onclick=""><img class="icon" src="images/exploreIcon.webp"></button>
-        <button type="button" class="iconBtn"><img class="icon" src="images/feedIcon.png"></button>
-        <button type="button" class="iconBtn"><img class="icon" src="images/messageIcon.png"></button>
-        <button type="button" class="iconBtn"><img class="icon" src="images/logoutIcon.png"></button>
+        <button type="button" class="iconBtn" onclick="goToExplore()"><img class="icon" src="images/exploreIcon.webp"></button>
+        <button type="button" class="iconBtn" onclick="goToFeed()"><img class="icon" src="images/feedIcon.png"></button>
+        <button type="button" class="iconBtn" onclick="goToFriends()"><img class="icon" src="images/friendReq.jpeg"></button>
+        <button type="button" class="iconBtn" onclick="logout()"><img class="icon" src="images/logoutIcon.png"></button>
     </div>
     <span><img class="dogBoneIcon" src="images/dogBoneIcon.png"></span>
-    <h3 class="websiteName">Tirebiters</h3>
+    <h3 class="websiteName"><a href="#" class="effect-shine">Tirebiters</a></h3>
     <div id="userDisplay">
-        <span class="circle"><img class="profileImage" src="images/defaultProfilePic.jpeg"></span>
-        <h4 class="username">USERNAME</h4>
+        <span class="circle"><img id="bigProfilePic" class="profileImage" src=""></span>
+        <button id="userBtn" class="username" onclick="getAccountPage()"></button>
     </div>
 </div>
 <div id="createPostArea">
@@ -29,40 +29,36 @@
     <button type="button" id="createPost" onclick="toggle()">Create Post
     </button>
 </div>
-<!-- New Posts Available Pop Up -->
-<div id="newPostsNotif">
-    <p><a href="#" class="effect-shine">Click here to FETCH recently added posts!</a></p>
-</div>
 
 <!-- Create Post Pop Up -->
 <div id="popUp">
     <form method="POST" enctype="multipart/form-data" id ="fileUploadForm">
-    <div id="leftside">
+        <div id="leftside">
 
-        <h2 style="color:white; font-weight: lighter; font-size: 35px; font-style: normal">Share a Photo!</h2>
-        <label id="uploadHeader" for="file-upload" class="custom-file-upload" style="text-align: center">
-            <p id="uploadText">Upload your photo here!</p>
-        </label>
-        <input id="file-upload" name ="file" type="file" accept="image/*" data-errormsg="PhotoUploadErrorMsg"/>
-        <div id="previewHolder"><img id="preview" alt="Uploaded Image Preview Holder" style="height: 100%; width: 100%; object-fit: contain"/></div>
-        <p id="instructions">Recommendation: Use high-quality jpg files less than 10 MB.</p>
-    </div>
-    <div id="rightside">
-        <div id="userInfo">
-            <span id="bigCircle" class="circle"><img class="profileImage" src="images/defaultProfilePic.jpeg"></span>
-            <h4 id="bigU" class="username">USERNAME</h4>
+            <h2 style="color:white; font-weight: lighter; font-size: 35px; font-style: normal">Share a Photo!</h2>
+            <label id="uploadHeader" for="file-upload" class="custom-file-upload" style="text-align: center">
+                <p id="uploadText">Upload your photo here!</p>
+            </label>
+            <input id="file-upload" name ="file" type="file" accept="image/*" data-errormsg="PhotoUploadErrorMsg"/>
+            <div id="previewHolder"><img id="preview" alt="Uploaded Image Preview Holder" style="height: 100%; width: 100%; object-fit: contain"/></div>
+            <p id="instructions">Recommendation: Use high-quality jpg files less than 10 MB.</p>
         </div>
-        <div id="textArea">
-            <label for="descript"></label>
-            <textarea id="descript" name ="comments" rows="13" cols="45" maxlength = "280" placeholder="Add a cool caption here! Text limit is 280 characters."></textarea>
-            <div id="remaining">Characters left: 280</div>
-        </div>
-        <div id="buttons">
-            <input id="cancel" onclick="cancelFunc()" class="button" type="button" value="Cancel">
-            <input id="post" onclick="createPost()" class="button" type="button" value="Post">
-        </div>
+        <div id="rightside">
+            <div id="userInfo">
+                <span id="bigCircle"><img id="smallProfilePic" class="profileImage" src=""></span>
+                <h4 id="bigU" class="username"></h4>
+            </div>
+            <div id="textArea">
+                <label for="descript"></label>
+                <textarea id="descript" name ="comments" rows="13" cols="45" maxlength = "280" placeholder="Add a cool caption here! Text limit is 280 characters."></textarea>
+                <div id="remaining">Characters left: 280</div>
+            </div>
+            <div id="buttons">
+                <input id="cancel" onclick="cancelFunc()" class="button" type="button" value="Cancel">
+                <input id="post" onclick="createPost()" class="button" type="button" value="Post">
+            </div>
 
-    </div>
+        </div>
     </form>
 </div>
 
@@ -71,30 +67,6 @@
 <div id="postsSpace">
     <table id="posts">
         <tr id="row">
-            <!--
-            <td>
-                <div class="post1">
-                    <div class="photos">
-                        <img class="photo" src="images/dog1.jpeg">
-                    </div>
-                    <p class="user">USERNAME</p>
-                    <p class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                </div>
-            </td>
-            <td>
-                <div class="post2">
-                    <div class="photos">
-                        <img class="photo" src="images/dog2.jpeg">
-                    </div>
-                    <p class="user">USERNAME</p>
-                    <p class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                </div>
-            </td>
-            -->
         </tr>
     </table>
 </div>

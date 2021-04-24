@@ -1,15 +1,58 @@
 // when user gets to feed page
 function getFeed() {
-    // load user's name and image
-    // TODO
-    // load posts
-    getPosts();
+    // load user's name and image and posts
+    $.ajax({
+        type: 'POST',
+        url:'fetchUserProfile',
+        success: function(response) {
+            console.log(response);
+            // set up user's profile pic
+            document.getElementById("bigProfilePic").src = response.profilePic;
+            // set up user's username
+            document.getElementById("userBtn").innerHTML = response.username;
+            // set up the profile pic and username on the pop up
+            document.getElementById("smallProfilePic").src = response.profilePic;
+            document.getElementById("bigU").innerHTML = response.username;
+            // load all the posts
+            getPosts();
+        }
+    });
+}
+
+// logs user out
+function logout() {
+    console.log("Logging user out");
+    $.ajax({
+        type: 'POST',
+        url: 'logout',
+        success: function(response) {
+            alert(response); // tell user they logged out
+            // redirect to login page
+            location.href = "loginpage.html";
+        }
+    });
 }
 
 // redirects to account page
 function getAccountPage() {
-    console.log("Redirecint go account page");
-    location.href = "test.html";
+    console.log("Redirecting to account page");
+    location.href = "ProfilePage.html";
+}
+
+// nav bar redirects to different pages
+function goToFriends() {
+    console.log("Redirecting to friends page");
+    location.href = "friendsPage.html";
+}
+// nav bar redirects to different pages
+function goToExplore() {
+    console.log("Redirecting to explore page");
+    location.href = "explorepage.html";
+}
+// nav bar redirects to different pages
+function goToFeed() {
+    console.log("Redirecting to explore page");
+    location.href = "feedpage.html";
 }
 
 // when user uploads image file, it will show preview
@@ -60,10 +103,21 @@ $(function(){ // this will be called when the DOM is ready
 });
 
 
-// When the user clicks on <div>, open the popup and hide posts
+// When the user clicks on createpost button, open the popup and hide posts
+// or does the opposite
 function toggle() {
-    $("#popUp").show();
-    $("#postsSpace").hide();
+    // if the pop up is already showing, then hide it
+    if($("#popUp").is(":visible")) {
+        console.log("making pop up invisible");
+        $("#popUp").hide();
+        $("#postsSpace").show();
+    }
+    // else show the pop up since it is not yet shown
+    else{
+        console.log("making pop up visible");
+        $("#popUp").show();
+        $("#postsSpace").hide();
+    }
 }
 
 // remove the create post pop up and show the posts
@@ -90,7 +144,6 @@ function getPosts() {
     $.ajax ({
         type: 'POST',
         url: 'getPosts',
-        //dataType: 'json',
         success: function(response) {
             console.log("retrieved json post objects");
             console.log(response);
@@ -155,16 +208,16 @@ function getPosts() {
                 "<td>\n" +
                 "<div class=\"post2\">\n" +
                 "<div class=\"photos\">\n" +
-                "<img class=\"photo\" src=\"images/karen.jpeg\">\n" +
+                "<img class=\"photo\" src=\"images/milky.jpg\">\n" +
                 "</div>\n" +
                 "<p class=\"user\">Oju Ajose</p>\n" +
                 "<p class=\"description\">\n" +
-                "Today has been ruff, but I've been up coding this website the past week! It's paw-some right???\n" +
-                "#living #staypawsitive #coder #dogs\n" +
+                "Clearly someone thinks they can do my job better than me... Mina " +
+                "has me going on treat runs for her! #dogsInTech #BayAreaDogsn\n" +
                 "</p>\n" +
                 "</div>\n" +
                 "</td>";
-            // append from old to new
+            // append from old to new posts
             for (i = posts.length - 1; i >= 0; i--) {
                 // if we are on even number -> post1 style
                 if (i % 2 == 0) {
@@ -195,16 +248,18 @@ function getPosts() {
                         "</td>" + document.getElementById("row").innerHTML;
                 }
             }
-            // check if there are new posts from user's friend
-            $.ajax({
+            // start async function to check for posts from friends -> UNCOMMENT FOR FINAL VERSION
+            /*
+            $.ajax ({
                 type: 'POST',
                 url: 'areNewPosts',
-                success: function (response) {
-                    console.log(response);
-                    // if received a response, then update by calling getposts
+                success: function(response) {
+                    // returns if there are new posts so call get posts again
                     getPosts();
                 }
             });
+
+             */
         }
     });
 }
