@@ -170,10 +170,11 @@ body {
     font-size: 18px;
     margin-bottom: 0px;
     margin-top: 8px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 .options{
     display: inline-block;
-    width: 20%;
 }
 .accept {
     display: block;
@@ -349,7 +350,31 @@ a.effect-shine:hover {
         margin-right: 25%;
     }
 }
-/* On screens that are 1100px or less, set the background color to blue */
+/* responsive design for tables for screens less than 1450 px*/
+@media screen and (max-width: 1450px) {
+    /* decrease margins for tables */
+    #friendsSpace {
+        margin-left: 200px;
+        margin-right: 200px;
+    }
+    #requestsSpace {
+        margin-left: 200px;
+        margin-right: 200px;
+    }
+}
+/* responsive design for tables for screens less than 1300 px*/
+@media screen and (max-width: 1300px) {
+    /* decrease margins for tables */
+    #friendsSpace {
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+    #requestsSpace {
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+}
+/* On screens that are 1100px or less */
 @media screen and (max-width: 1100px) {
     #icons {
         margin-right: 10%;
@@ -374,8 +399,18 @@ a.effect-shine:hover {
         width: 38px;
         height: 38px;
     }
+
+    /* decrease margins for tables */
+    #friendsSpace {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+    #requestsSpace {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
 }
-/* On screens that are 900px or less, set the background color to blue */
+/* On screens that are 900px or less */
 @media screen and (max-width: 900px) {
     #icons {
         margin-right: 10%;
@@ -400,8 +435,18 @@ a.effect-shine:hover {
         width: 38px;
         height: 38px;
     }
+
+    /* decrease margins for tables */
+    #friendsSpace {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    #requestsSpace {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
 }
-/* On screens that are 800px or less, set the background color to blue */
+/* On screens that are 800px or less */
 @media screen and (max-width: 800px) {
     #icons {
         margin-right: 5%;
@@ -426,8 +471,17 @@ a.effect-shine:hover {
         width: 35px;
         height: 35px;
     }
+    /* decrease margins for tables */
+    #friendsSpace {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    #requestsSpace {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 }
-/* On screens that are 600px or less, set the background color to olive */
+/* On screens that are 600px or less */
 @media screen and (max-width: 600px) {
     #icons {
         margin-right: 0%;
@@ -435,5 +489,14 @@ a.effect-shine:hover {
     /*icons become smaller*/
     .icon {
         width: 20px;
+    }
+    /* decrease margins for tables */
+    #friendsSpace {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    #requestsSpace {
+        margin-left: 5px;
+        margin-right: 5px;
     }
 }
