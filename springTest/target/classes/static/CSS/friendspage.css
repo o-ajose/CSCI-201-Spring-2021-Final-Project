@@ -373,6 +373,15 @@ a.effect-shine:hover {
         margin-left: 100px;
         margin-right: 100px;
     }
+    /* decrease button size */
+    .accept {
+        width: 100px;
+        font-size: 25px;
+    }
+    .ignore {
+        width: 100px;
+        font-size: 25px;
+    }
 }
 /* On screens that are 1100px or less */
 @media screen and (max-width: 1100px) {
