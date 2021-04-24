@@ -1,7 +1,29 @@
 // when user gets to explore page
 function getExplorePage() {
-    // TODO
-    noFilterExplorePage();
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const username = urlParams.get('username');
+    if(username != "guest"){
+
+        $.ajax({
+            type: 'POST',
+            url: 'fetchUserProfile',
+            success: function (response) {
+                console.log(response);
+                // set up user's profile pic
+                document.getElementById("bigProfilePic").src = response.profilePic;
+                // set up user's username
+                document.getElementById("userBtn").innerHTML = response.username;
+
+                // load all the posts in explore page
+                noFilterExplorePage();
+            }
+        });
+    }else{
+        // set up user's username
+        document.getElementById("userBtn").innerHTML = "<div style='color:black;'>" + "Log In" + "</div>";
+        noFilterExplorePage();
+    }
 }
 
 // logs user out
@@ -10,19 +32,19 @@ function logout() {
     const urlParams = new URLSearchParams(queryString);
     const username = urlParams.get('username');
     if(username === "guest"){
-        alert("Make an account to access this function!");
+        alert("Make an account to be able to logout!");
     }else{
         console.log("Logging user out");
     }
 }
 
 // redirects to account page
-function getAccountPage() {
+function loginOrProfilePage() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const username = urlParams.get('username');
     if(username === "guest"){
-        alert("Make an account to access this function!");
+        location.href = "loginpage.html"
     } else{
         console.log("Redirecting to account page");
         location.href = "ProfilePage.html";
@@ -35,7 +57,7 @@ function goToFriends() {
     const urlParams = new URLSearchParams(queryString);
     const username = urlParams.get('username');
     if(username === "guest"){
-        alert("Make an account to access this function!");
+        alert("Make an account to be able to see your friends");
     }else{
         console.log("Redirecting to friends page");
         location.href = "friendsPage.html";
@@ -56,7 +78,7 @@ function goToFeed() {
     const urlParams = new URLSearchParams(queryString);
     const username = urlParams.get('username');
     if(username === "guest"){
-        alert("Make an account to access this function!");
+        alert("Make an account to be get access to your own feed page!");
     }else{
         console.log("Redirecting to feed page");
         location.href = "feedpage.html";
@@ -104,7 +126,69 @@ function connectFriend(){
     }
 }
 
-// once user gets on feedpage or refreshes, get all the posts to be display
+function clearPosts(){
+    var users = [];
+    var location = $('#location').val();
+
+    $.ajax({
+        type: 'POST',
+        url: 'noFilterExplorePage',
+        data: {"location": location},
+        success: function (response) {
+            console.log("retrievedd json objects");
+            console.log(response);
+            users = response;
+            for (var i = users.length - 1; i >= 0; i--) {
+                // if we are on even number -> post1 style
+                var petList = [];
+                petList =users[i].petList;
+                console.log(users[i].username);
+                console.log(petList);
+                if (i % 2 == 0) {
+                    for (var j = 0; j < petList.length; j++) {
+
+                        var pet = petList[j];
+                        console.log(pet);
+                        document.getElementById("row").innerHTML =
+                            "<td>\n" +
+                            "</td>";
+                    }
+
+                }
+                // if we are on an odd number -> post2 style
+                else {
+                    for (var j= 0; j < petList.length; j++) {
+                        var pet = petList[j];
+                        console.log(pet);
+                        document.getElementById("row").innerHTML =
+                            "<td>\n" +
+                            "</td>";
+                    }
+                }
+            }
+        },
+        error: function (jqXHR, exception) {
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            alert(msg);
+        }
+    });
+}
+
 function noFilterExplorePage(){
     console.log("called noFilterExplorePage() function");
     var users = [];
@@ -194,6 +278,7 @@ function noFilterExplorePage(){
 }
 
 function getExplorePageFiltered() {
+    clearPosts();
     console.log("called getExplorePageFiltered() function");
     var users = [];
     var location = $('#location').val();

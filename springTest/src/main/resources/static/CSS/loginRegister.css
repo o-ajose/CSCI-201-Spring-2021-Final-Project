@@ -96,6 +96,20 @@ input, button {
     -moz-transition: 0.3s;
 }
 
+.loginButton button{
+    background: rgb(215, 197, 155);;
+    color: #fff;
+    border: 1px solid black;
+    border-radius: 100px;
+    padding: 15px;
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+}
+
 /* Style for guest navigate button */
 .GuestNavigate button{
     background: rgb(215, 197, 155);;
