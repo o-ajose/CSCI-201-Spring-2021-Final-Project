@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/friendspage.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/friendspage.js"></script>
+    <title>Tirebiters</title>
+</head>
+<body onload="loadFriendsPage()">
+<div id="friendsHeader" class = "navbar">
+    <div id="icons">
+        <button type="button" class="iconBtn" onclick="goToExplore()"><img class="icon" src="images/exploreIcon.webp"></button>
+        <button type="button" class="iconBtn" onclick="goToFeed()"><img class="icon" src="images/feedIcon.png"></button>
+        <button type="button" class="iconBtn" onclick="goToFriends()"><img class="icon" src="images/friendReq.jpeg"></button>
+        <button type="button" class="iconBtn" onclick="logout()"><img class="icon" src="images/logoutIcon.png"></button>
+    </div>
+    <span><img class="dogBoneIcon" src="images/dogBoneIcon.png"></span>
+    <h3 class="websiteName"><a href="#" class="effect-shine">Tirebiters</a></h3>
+    <div id="userDisplay">
+        <span class="circle"><img id="bigProfilePic" class="profileImage" src=""></span>
+        <button id="userBtn" class="username" onclick="getAccountPage()"></button>
+    </div>
+</div>
+<div id="addFriendsArea">
+    <p id="requestName" class="pageName">Friend Requests</p>
+    <button type="button" id="addFriend" onclick="toggle()">Add a friend!</button>
+</div>
+
+<!-- Add Friend Pop Up -->
+<div id="popUp">
+    <div id="leftside">
+        <h3 id="addFriendTitle">Send a friend request!</h3>
+        <h4 id="question">What is your pal's username?</h4>
+        <textarea id="userInput" rows="5" cols="42" maxlength = "280" placeholder="Please enter a username."></textarea>
+        <div id="btnHolder">
+            <button id="cancelBtn" onclick="cancelRequest()">Cancel</button>
+            <button id="sendBtn" onclick="sendRequest()">Send</button>
+        </div>
+    </div>
+    <div id="rightside">
+        <img id="dogPic" src="Images/dogOutline.png">
+        <a href="#" class="effect-shine"> <h2 id="quote">Anything is paw-sible when you have dog friends!</h2></a>
+    </div>
+</div>
+
+
+<!-- Collection of Friend Requests -->
+<div id="requestsSpace">
+    <table id="requests">
+    </table>
+</div>
+
+<!-- Collection of friends -->
+<div id="friendsTitle">
+    <p id="friendsName" class="pageName">My Furry Friends</p>
+</div>
+<div id="friendsSpace">
+    <table id="friends">
+    </table>
+</div>
+
+</body>
+</html>
