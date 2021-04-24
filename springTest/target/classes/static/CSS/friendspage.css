@@ -4,12 +4,7 @@ body {
     margin: 0px;
 }
 
-td {
-    padding:0 10px;
-    width: 300px;
-}
-
-#feedHeader {
+#friendsHeader {
     position: sticky;
     width: 100%;
     height: 75px;
@@ -29,6 +24,23 @@ td {
     color: #F19830;
     font-weight: lighter;
     text-transform: uppercase;
+}
+
+#addFriendsArea {
+    display: inline-block;
+    width: 100%;
+}
+
+#addFriend {
+    float: right;
+    margin-right: 1em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    border-radius: 12px;
+    color: black;
+    font-family: Righteous;
+    font-size: larger;
+    text-align: center;
 }
 
 .websiteName {
@@ -82,22 +94,6 @@ td {
     align-items: center;
 }
 
-#createPostArea {
-    display: inline-block;
-    width: 100%;
-}
-
-#createPost {
-    float: right;
-    margin-right: 1em;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    border-radius: 12px;
-    color: black;
-    font-family: Righteous;
-    font-size: larger;
-    text-align: center;
-}
 
 #icons {
     display: inline-block;
@@ -124,206 +120,203 @@ td {
     -webkit-filter: invert(100%); /* Safari/Chrome */
     filter: invert(100%);
 }
-
-/*Wrapper for posts*/
-#postsSpace {
-    margin: 20px;
-    text-align: center;
-}
-
-/*Table (1row) used for collection of posts*/
-#posts {
-    border: 0;
+/* styling for table and friend requests section */
+#requests {
     width: 100%;
-    cellpadding: 10;
-    display: block;
 }
 
-#posts td {
-    display: inline-block;
-    text-align: left;
+#requestsSpace {
+    margin-left: 250px;
+    margin-right: 250px;
 }
-
-/* Styling for post type 1 - light gray background */
-/* contains username, photo, description */
-.post1 {
-    color: #F19830;
-    background: #ececec;
-    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
+/* Individual friend request design */
+.request {
+    background-color: #cacaca;
+    padding: 25px;
     border-radius: 18px;
-}
-
-/* Styling for post type 2 - dark gray background */
-.post2 {
-    color: cornflowerblue;
-    background: #cecece;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.49);
-    border-radius: 18px;
-}
-
-.user {
-    text-transform: uppercase;
-    margin: 10px;
-}
-
-.description {
     margin-bottom: 20px;
-    margin: 10px;
-    padding-bottom: 10px;
-    color: black;
-    font-size: smaller;
 }
-
-.photo {
-    width: 220px;
-    height: 300px;
-    object-fit: cover;
-    padding-top: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.photos {
-    text-align: center;
-}
-
-#popUp {
-    background: #B6A697;
-    width: 750px;
-    height: 500px;
-    border-radius: 30px;
-    margin: 0 auto;
-    display: none;
-}
-
-#uploadForm {
-    background-color: white;
-}
-
-#leftside {
-    text-align: center;
+.userPic {
     display: inline-block;
-    padding-left: 15px;
-    padding-top: 10px;
-    width: 300px;
-    float: left;
-    overflow: auto;
 }
-
-#rightside {
-    width: 400px;
-    float: right;
-}
-
-#bigCircle {
-    width: 75px;
-    height: 75px;
+.bigCircle {
     display: inline-block;
+    width: 125px;
+    height: 125px;
     overflow: hidden;
     border-radius: 50%;
-    margin-top: 25px;
 }
-
-#bigU {
-    font-size: 30px;
-    font-weight: lighter;
+.userInfo {
+    display: inline-block;
+    width: 60%;
+    margin-left: 15px;
+    margin-right: 15px;
+    vertical-align: top;
+}
+.friendname {
+    color: white;
+    font-size: 35px;
+    font-weight: normal;
+    font-style: normal;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin: 0px;
 }
-
-#uploadIcon {
-    width: 100px;
-    height: 100px;
-    display: block;
-    background-image: url("../images/uploadIcon.png");
-    background-repeat: no-repeat;
-    background-size: 100px 100px;
-}
-
-input[type="file"] {
-    display: none;
-}
-
-.custom-file-upload {
-    width: 250px;
-    height: 300px;
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
-    background-image: url("../images/uploadIcon.png");
-    background-repeat: no-repeat;
-    background-size: 100px 100px;
-    background-position: center;
-    background-color: white;
-}
-
-#uploadText {
-    padding-top: 200px;
-    font-size: x-large;
-    color: black;
-}
-
-#textArea {
-    height: 300px;
-}
-
-#descript {
-    margin-top: 15px;
-    background: #C4C4C4;
-    border: none;
-    padding: 10px;
+.bio {
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     font-family: Righteous;
-    color: white;
-    border-radius: 11px;;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    margin-bottom: 0px;
+    margin-top: 8px;
 }
-
-#remaining {
-    float: right;
-    margin-right: 60px;
+.options{
+    display: inline-block;
+    width: 20%;
 }
-
-#buttons {
-    padding-right: 60px;
-}
-
-.button {
+.accept {
+    display: block;
+    background-color: rgba(110, 241, 48, 0.81);
     font-family: Righteous;
     border: none;
     border-radius: 15px;
-    width: 100px;
-    height: 50px;
-    font-size: x-large;
+    width: 159px;
+    height: 63px;
+    font-size: 30px;
     color: white;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-
-#cancel {
-    float: left;
+.ignore {
+    display: block;
     background-color: #F13030;
+    font-family: Righteous;
+    border: none;
+    border-radius: 15px;
+    width: 159px;
+    height: 63px;
+    font-size: 30px;
+    color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-#post {
-    float: right;
-    background-color: rgba(110, 241, 48, 0.81);
-}
-
-/* Upload Image Preview */
-#previewHolder {
-    border-radius: 3px;
-    border: 5px solid white;
-    width:250px;
-    height:300px;
+#popUp {
     display: none;
-    background: white;
-    margin-left: 15px;
+    width: 750px;
+    height: 400px;
+    background: #BDAE9F;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.49);
+    margin: 0 auto;
+    border-radius:30px;
 }
-#instructions {
-    text-align: center;
+#leftside {
+    padding-top: 30px;
+    padding-left: 35px;
+    width: 55%;
+    display: inline-block;
+    height: 100%;
+}
+#addFriendTitle {
+    font-family: Righteous;
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 35px;
+    color: #FFFFFF;
+    text-shadow: 0px 0px 0px #F19830;
+    margin-top: 0px;
+}
+#question {
+    font-family: Righteous;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+    color: #000000;
+    text-shadow: 0px 0px 0px #F19830;
+    margin-bottom: 20px;
+}
+#userInput {
+    background: #F7F7F7;
+    padding: 10px;
+    font-family: Righteous;
+    color: black;
+    border-radius: 11px;
+    border: none;
+}
+#btnHolder {
+    margin-top: 25px;
+    width: 350px;
+}
+#cancelBtn {
+    display: inline-block;
+    background-color: #F13030;
+    font-family: Righteous;
+    border: none;
+    border-radius: 15px;
+    width: 116px;
+    height: 55px;
+    font-size: 25px;
+    color: white;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    float: left;
+}
+#sendBtn {
+    display: inline-block;
+    background-color: rgba(110, 241, 48, 0.81);
+    font-family: Righteous;
+    border: none;
+    border-radius: 15px;
+    width: 116px;
+    height: 55px;
+    font-size: 25px;
+    color: white;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    float: right;
 }
 
-/* pop up when user has new posts */
-#newPostsNotif {
+#rightside {
+    display: inline-block;
+    width: 35%;
     text-align: center;
+    padding-right: 10px;
+    vertical-align: middle;
+    height: 100%;
 }
+#quote {
+    color: white;
+    font-weight: 100;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+#dogPic {
+    width: 180px;
+    height: 180px;
+}
+
+/* styling for friend list */
+#friendsSpace {
+    margin-left: 250px;
+    margin-right: 250px;
+}
+#friends {
+    width: 100%;
+}
+.userInfo2 {
+    display: inline-block;
+    width: 80%;
+    margin-left: 15px;
+    margin-right: 15px;
+    vertical-align: top;
+}
+.friend {
+    background-color: #bdae9f;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0px 2px 4px rgb(0 0 0 / 49%);
+    margin-bottom: 20px;
+}
+
 h3 a {
     color: #B6A697;
     text-decoration: none;
