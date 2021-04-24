@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Pets</title>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/EditPage.css">
+    <script src="js/EditPets.js"></script>
+    <script src="js/feedpage.js"></script>
+</head>
+<body onload="getPetDetails()">
+
+    <!-- Code for navigation bar -->
+    <div id="feedHeader" class = "navbar">
+        <div id="icons">
+            <button type="button" class="iconBtn" onclick="goToExplore()"><img class="icon" src="images/exploreIcon.webp"></button>
+            <button type="button" class="iconBtn" onclick="goToFeed()"><img class="icon" src="images/feedIcon.png"></button>
+            <button type="button" class="iconBtn" onclick="goToFriends()"><img class="icon" src="images/friendReq.jpeg"></button>
+            <button type="button" class="iconBtn" onclick="logout()"><img class="icon" src="images/logoutIcon.png"></button>
+        </div>
+        <span><img class="dogBoneIcon" src="images/dogBoneIcon.png"></span>
+        <h3 class="websiteName"><a href="#" class="effect-shine">Tirebiters</a></h3>
+        <div id="userDisplay">
+            <span class="circle"><img class="profileImage" src="images/defaultProfilePic.jpeg"></span>
+            <button id="userBtn" class="username" onclick="getAccountPage()">USERNAME</button>
+        </div>
+    </div>
+    <div id="createPostArea">
+        <p class="pageName">Newsfeed</p>
+        <button type="button" id="createPost" onclick="toggle()">Create Post
+        </button>
+    </div>
+
+    <!-- Allows user to switch between their info and the pet info -->
+    <div class="Edit">
+        <div class="switch">
+            <button class="button" onclick="window.location.href='EditPage.html'"> You</button>
+            <br/>
+            <button class="button"> Pets</button>
+        </div>
+    </div>
+
+    <!-- Div that will be affected by the onload function to print out pet info -->
+    <div class="inputPetInfo" id="inputPetInfo" >
+        <form name="EditPetPage" id="updatePets" onsubmit="return updatePets();">
+            <div class="updatePets" >
+                <div class="row">
+                    <!-- <div class="column">
+                        <p>Change Milky's Profile Photo: </p>
+                        <label for="pet1Avi"><img class="userImage" src="images/milky.jpg"></label>
+                        <input style="display: none;" type="file" id="pet1Avi" name="pet1Avi" accept="image/*">
+                        <br/>
+
+                        Name <input type="text" name="name" placeholder="Milky" REQUIRED/> <br>
+                        Age <input type="text" name="age" placeholder="3 years"/> <br>
+                        <label for=\"size\">Size</label>
+                        <select name=\"size\" id=\"size\">
+                            <option value=\"small\">Small </option>
+                            <option value=\"medium\">Medium</option>
+                            <option value=\"large\">Large </option>
+                        </select><br>
+                        <p class="formfield">
+                            <label for="personality1" class="alignTop"> Personality</label>
+                            <textarea id="personality1" name="personality1" rows="3" cols="50" placeholder="Very friendly, playful, easily excitable" ></textarea>
+                        </p>
+                        <p class="formfield">
+                            <label for="relStatus1" style="height: 50px;"> Relationship Status</label>
+                            <textarea id="relStatus1" name="relStatus1" rows="3" cols="50" placeholder="Focused on my bros"></textarea>
+                        </p>
+                    </div>
+                    <br>
+                    <div class="column">
+                        <p>Change Boki's Profile Photo: </p>
+                        <label for="pet2Avi"><img class="userImage" src="images/boki.jpg"></label>
+                        <input style="display: none;" type="file" id="pet2Avi" name="pet2Avi" accept="image/*">
+                        <br/>
+
+                        Name <input type="text" name="name" placeholder="Boki" REQUIRED/> <br>
+                        Age <input type="text" name="age" placeholder="3 years"/> <br>
+
+                        <p class="formfield">
+                            <label for="personality2" class="alignTop"> Personality</label>
+                            <textarea id="personality2" name="personality2" rows="3" cols="50" placeholder="Regal, calm, somewhat friendly, oldest energy for sure" ></textarea>
+                        </p>
+                        <p class="formfield">
+                            <label for="relStatus2" style="height: 50px;"> Relationship Status</label>
+                            <textarea id="relStatus2" name="relStatus2" rows="3" cols="50" placeholder="'I have risen above the need for a mate' - Boki"></textarea>
+                        </p>
+                    </div>
+                    <br>
+                    <div class="column">
+                        <p>Change Tan's Profile Photo: </p>
+                        <label for="pet3Avi"><img class="userImage" src="images/tan.jpg"></label>
+                        <input style="display: none;" type="file" id="pet3Avi" name="pet3Avi" accept="image/*">
+                        <br/>
+
+                        Name <input type="text" name="name" placeholder="Tan" REQUIRED/> <br>
+                        Age <input type="text" name="age" placeholder="1 year"/> <br>
+
+                        <p class="formfield">
+                            <label for="personality3" class="alignTop"> Personality</label>
+                            <textarea id="personality3" name="personality3" rows="3" cols="50" placeholder="Goofy, curious, loves playing with his older brothers" ></textarea>
+                        </p>
+                        <p class="formfield">
+                            <label for="relStatus3" style="height: 50px;"> Relationship Status</label>
+                            <textarea id="relStatus3" name="relStatus3" rows="3" cols="50" placeholder="It's my first year out, I'm just here"></textarea>
+                        </p>
+                    </div> -->
+                </div>
+            </div>
+
+            <br>
+            <input class="button" type="submit" value="Saves Changes">
+        </form>
+        <br>
+        <div id="Pet"></div>
+
+        <div class="addPet" id="addPet">
+            <!-- If clicked, it will take away the other pets so that we can only add a new pet to save headaches -->
+            <input type="button" value="Add Another Pet" onclick="createNewElement();"
+                   style="background-color: #C19770; color: white"/>
+        </div>
+    </div>
+
+    <!-- Div that will be added if a new pet is created-->
+    <div id="newPetInfo" style="display: none">
+        <form name="addNewPet" action="/createPet" method="post">
+            <p>Add your pet's photo</p>
+            <div style="display: flex">
+                <label for="newPet"><img class="userImage" src="images/dog1.jpeg"></label>
+                <input style="display: none;" type="file" id="newPet" name="newPet" accept="image/*" required>
+            </div>
+            <br/>
+
+            Name <input type="text" name="name" REQUIRED/> <br>
+            Age <input type="text" name="age" placeholder="Add their age in human years" required/> <br>
+            Breed <input type="text" name="breed" required/><br>
+            <label for="size">Size</label>
+            <select name="size" id="size">
+                <option value="small">Small </option>
+                <option value="medium">Medium</option>
+                <option value="large">Large </option>
+            </select><br>
+            <p class="formfield">
+                <label for="personality" class="alignTop"> Personality</label>
+                <textarea id="personality" name="personality" rows="3" cols="50" placeholder="Tell us about your pet!" required></textarea>
+            </p>
+            <p class="formfield">
+                <label for="relationshipStatus" style="height: 50px;"> Relationship Status</label>
+                <textarea id="relationshipStatus" name="relationshipStatus" rows="3" cols="50" required></textarea>
+            </p>
+            <input class="button" type="submit" value="Add Pet">
+        </form>
+
+    </div>
+
+</body>
+</html>
