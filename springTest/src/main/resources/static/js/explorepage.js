@@ -109,8 +109,7 @@ function connectFriend(){
             type: "POST",
             data: {"friend": friend},
             success: function (response) {
-                alert("Friend request sent to " + friend + "!");
-
+                alert(response);
             },
             error: function (jqXHR, exception) {
                 var msg = '';
@@ -230,7 +229,7 @@ function noFilterExplorePage(){
                             "</div>\n" +
                             "<p class=\"pet\">" + "Name: " + pet.name + "</p>\n" +
                             "<p class=\"owner\">\n" + "Owner: " + "</p>" +
-                            "<p id='friend' class=\"owner\">\n" + users[i].username + "</p>\n" +
+                            "<p id='friend' class=\"owner\">" + users[i].username + "</p>\n" +
                             "<p class=\"location\">\n" + "Location: " + users[i].location + "</p>\n" +
                             "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
                             "<p class=\"bio\">\n" + pet.bio +
@@ -254,7 +253,7 @@ function noFilterExplorePage(){
                             "</div>\n" +
                             "<p class=\"pet\">" + "Name: " + pet.name + "</p>\n" +
                             "<p class=\"owner\">\n" + "Owner: " + "</p>" +
-                            "<p class= id='friend' class=\"owner\">\n" + users[i].username + "</p>\n" +
+                            "<p class= id='friend' class=\"owner\">" + users[i].username + "</p>\n" +
                             "<p class=\"location\">\n" + "Location: " + users[i].location + "</p>\n" +
                             "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
                             "<p class=\"bio\">\n" + pet.bio +
@@ -317,7 +316,7 @@ function getExplorePageFiltered() {
                             "</div>\n" +
                             "<p class=\"pet\">" + "Name: " + pet.name + "</p>\n" +
                             "<p class=\"owner\">\n" + "Owner: " + "</p>" +
-                            "<p id = 'friend' class=\"owner\">\n" + users[i].username + "</p>\n" +
+                            "<p id = 'friend' class=\"owner\">" + users[i].username + "</p>\n" +
                             "<p class=\"location\">\n" + "Location: " + users[i].location + "</p>\n" +
                             "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
                             "<p class=\"bio\">\n" + pet.bio +
@@ -341,7 +340,7 @@ function getExplorePageFiltered() {
                             "</div>\n" +
                             "<p class=\"pet\">" + "Name: " + pet.name + "</p>\n" +
                             "<p class=\"owner\">\n" + "Owner: " + "</p>" +
-                            "<p id = 'friend' class=\"owner\">\n" + users[i].username + "</p>\n" +
+                            "<p id = 'friend' class=\"owner\">" + users[i].username + "</p>\n" +
                             "<p class=\"location\">\n" + "Location: " + users[i].location + "</p>\n" +
                             "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
                             "<p class=\"bio\">\n" + pet.bio +
