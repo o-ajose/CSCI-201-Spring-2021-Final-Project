@@ -6,7 +6,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
     <script src="https://ajax.google.apis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/EditPage.js"></script>
-    <script src="js/feedpage.js"></script>
     <link rel="stylesheet" href="CSS/EditPage.css">
 </head>
 <body onload="return pullUserInfo()"> <!-- calls all the servlet to get the user info and places it accordingly-->
@@ -30,7 +29,7 @@
     <!-- Code for Editing the User's info -->
     <div class="Edit">
         <div class="switch">
-            <button class="button"> You</button>
+            <button class="button" onclick="window.location.href='EditPage.html'"> You</button>
             <br/>
             <button class="button" onclick="window.location.href='EditPets.html'"> Pets</button>
         </div>

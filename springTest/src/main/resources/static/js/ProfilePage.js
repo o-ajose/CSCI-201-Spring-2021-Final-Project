@@ -19,7 +19,6 @@ function pullUserInfo() {
             const profilePic = userInfo.profilePic;
             let bio = userInfo.bio;
             const location = userInfo.location;
-            const song = userInfo.song;
 
             var userDiv = document.getElementById("UserContainer");
             // Checks if the return value is not null before printing it out
@@ -58,7 +57,7 @@ function pullPetInfo() {
         url: 'fetchUserProfile',
         // dataType: ''
         success: function(response) {
-            console.log("retrived pet objects");
+            console.log("retrieved pet objects");
             console.log(response);
             const petsArray = response.petList;
 
@@ -139,14 +138,8 @@ function playPause() {
     return play.paused ? play.play() : play.pause();
 }
 
-/* TODO: button that checks if the user visiting the page is the owner of the page to see if the "AddFriend" button
-*       or the "EditProfile" button should be displayed */
-function setButton() {
-
-}
 
 /* *** Function for redirecting from nav bar *** */
-// logs user out
 // logs user out
 function logout() {
     console.log("Logging user out");

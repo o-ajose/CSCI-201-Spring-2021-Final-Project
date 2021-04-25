@@ -6,7 +6,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="CSS/EditPage.css">
     <script src="js/EditPets.js"></script>
-    <script src="js/feedpage.js"></script>
 </head>
 <body onload="getPetDetails()">
 
@@ -31,7 +30,7 @@
         <div class="switch">
             <button class="button" onclick="window.location.href='EditPage.html'"> You</button>
             <br/>
-            <button class="button"> Pets</button>
+            <button class="button" onclick="window.location.href='EditPets.html'"> Pets</button>
         </div>
     </div>
 
@@ -122,7 +121,7 @@
         <form name="addNewPet" onsubmit="createPet();">
             <p>Add your pet's photo</p>
             <div style="display: flex">
-                <label for="newPet"><img class="userImage" src="Images/dog1.jpeg"></label>
+                <label for="newPet"><img class="userImage" src="Images/uploadIcon.png"></label>
                 <input style="display: none;" type="file" id="newPet" name="newPet" accept="image/*" required>
             </div>
             <br/>

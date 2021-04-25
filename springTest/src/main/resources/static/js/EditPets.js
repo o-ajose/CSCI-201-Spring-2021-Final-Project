@@ -1,5 +1,3 @@
-
-
 var numPets = 0;
 // Function to get all pet details and place them accordingly on the page
 function getPetDetails() {
@@ -78,7 +76,7 @@ function updatePets() {
         console.log(pet);
 
     }
-
+    window.location.href = '../ProfilePage.html';
 }
 
 function updatePet(dataObj) {
@@ -86,7 +84,7 @@ function updatePet(dataObj) {
         type: 'POST',
         url: 'updatePet',
         contentType: 'application/json',
-        data: JSON.stringify(dataObj),
+        data: dataObj,
         success: function() {
             var msg = 'Saved ' + dataObj.name + '\'s info!'
             console.log(msg);
@@ -95,7 +93,6 @@ function updatePet(dataObj) {
             console.log(response);
         }
     });
-    return false;
 }
 
 function createPet() {
@@ -107,6 +104,7 @@ function createPet() {
         success: function(response) {
             console.log(response);
             console.log('Saved new pet!');
+            window.location.href = '../ProfilePage.html';
         },
         error: function() {
             console.log("Error found, could not save pet");
@@ -127,7 +125,6 @@ function createNewElement() {
 }
 
 /* *** Functions for redirecting from navBar **/
-// logs user out
 // logs user out
 function logout() {
     console.log("Logging user out");
