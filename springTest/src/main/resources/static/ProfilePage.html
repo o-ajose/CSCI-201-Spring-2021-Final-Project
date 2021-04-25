@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Tirebiters Profile</title>
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/ProfilePage.css">
+    <link rel="stylesheet" href="CSS/ProfilePage.css">
     <script src="js/ProfilePage.js"></script>
     <script src="https://ajax.google.apis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
@@ -12,31 +12,20 @@
     <!-- Code for navigation bar -->
     <div id="feedHeader" class = "navbar">
         <div id="icons">
-            <button type="button" class="iconBtn" onclick="goToExplore()"><img class="icon" src="images/exploreIcon.webp"></button>
-            <button type="button" class="iconBtn" onclick="goToFeed()"><img class="icon" src="images/feedIcon.png"></button>
-            <button type="button" class="iconBtn" onclick="goToFriends()"><img class="icon" src="images/friendReq.jpeg"></button>
-            <button type="button" class="iconBtn" onclick="logout()"><img class="icon" src="images/logoutIcon.png"></button>
+            <button type="button" class="iconBtn" onclick="goToExplore()"><img class="icon" src="Images/exploreIcon.webp"></button>
+            <button type="button" class="iconBtn" onclick="goToFeed()"><img class="icon" src="Images/feedIcon.png"></button>
+            <button type="button" class="iconBtn" onclick="goToFriends()"><img class="icon" src="Images/friendReq.jpeg"></button>
+            <button type="button" class="iconBtn" onclick="logout()"><img class="icon" src="Images/logoutIcon.png"></button>
         </div>
-        <span><img class="dogBoneIcon" src="images/dogBoneIcon.png"></span>
+        <span><img class="dogBoneIcon" src="Images/dogBoneIcon.png"></span>
         <h3 class="websiteName"><a href="#" class="effect-shine">Tirebiters</a></h3>
         <div id="userDisplay">
-            <span class="circle"><img class="profileImage" src="images/defaultProfilePic.jpeg"></span>
+            <span class="circle"><img class="profileImage" src="Images/defaultProfilePic.jpeg"></span>
             <button id="userBtn" class="username" onclick="getAccountPage()">USERNAME</button>
         </div>
     </div>
 
-    <!-- TODO: add a function that checks with the backend if the user is the owner of the page. If they are, present the
-            Edit Profile button. Otherwise, present the Add Friend button -->
-            <!-- This would be dependent on the onload function probably? If we're doing it similar to
-                    assignment 4, then we'd have a cookie that would tell us if the user is logged in or not,
-                    so if there's been a cookie set that matches the username of the visited profile page, then
-                    dynamically show the add friend button or the edit profile page button-->
-
-    <div class="AddFriend">
-        <button class="button" onclick="window.location.href='feedpage.html'"> Add Friend</button>
-    </div>
-
-    <div class="EditProfile">
+    <div class="EditProfile" style="display:block;">
         <button class="button" onclick="window.location.href='EditPage.html'">Edit Profile</button>
     </div>
 
