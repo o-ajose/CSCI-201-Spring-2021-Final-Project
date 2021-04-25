@@ -217,10 +217,12 @@ function getPosts() {
                 "</p>\n" +
                 "</div>\n" +
                 "</td>";
+            // variable to keep track of post style -> start with post2
+            var style = 2;
             // append from old to new posts
             for (i = posts.length - 1; i >= 0; i--) {
-                // if we are on odd number -> post1 style
-                if (i % 2 != 0) {
+                // post1 style
+                if (style == 1) {
                     document.getElementById("row").innerHTML =
                         "<td>\n" +
                         "<div class=\"post1\">\n" +
@@ -232,8 +234,10 @@ function getPosts() {
                         "</p>\n" +
                         "</div>\n" +
                         "</td>" + document.getElementById("row").innerHTML;
+                    // next style post is 2
+                    style = 2;
                 }
-                // if we are on an even number -> post2 style
+                // post2 style
                 else {
                     document.getElementById("row").innerHTML =
                         "<td>\n" +
@@ -246,6 +250,8 @@ function getPosts() {
                         "</p>\n" +
                         "</div>\n" +
                         "</td>" + document.getElementById("row").innerHTML;
+                    // next style post is 1
+                    style = 1;
                 }
             }
             // start async function to check for posts from friends -> UNCOMMENT FOR FINAL VERSION
