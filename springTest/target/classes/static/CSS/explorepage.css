@@ -53,6 +53,16 @@ td {
     color: white;
 }
 
+#userBtn {
+    border: none;
+    background-color: #b6a697;
+    font-family: Righteous;
+    margin: 5px 0px;
+}
+
+
+
+
 .circle {
     display: inline-block;
     width: 50px;
@@ -140,8 +150,8 @@ td {
 
 /* globe icon */
 .globe {
-    width: 70px;
-    height: 70px;
+    width: 105px;
+    height: 105px;
 }
 
 /* horizontal line that separates Explore! from posts */
@@ -185,6 +195,9 @@ td {
     padding: 5px;
     width: 100%;
     border-radius: 10px;
+    font-family: Righteous, Arial, sans-serif;
+
+
 }
 
 /* Connect button for blue posts */
@@ -193,6 +206,8 @@ td {
     padding: 5px;
     width: 100%;
     border-radius: 10px;
+    font-family: Righteous, Arial, sans-serif;
+
 }
 
 /* Styling for post type 2 - dark gray background */

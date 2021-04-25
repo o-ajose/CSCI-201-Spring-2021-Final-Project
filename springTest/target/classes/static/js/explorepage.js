@@ -34,7 +34,15 @@ function logout() {
     if(username === "guest"){
         alert("Make an account to be able to logout!");
     }else{
-        console.log("Logging user out");
+        $.ajax({
+            type: 'POST',
+            url: 'logout',
+            success: function(response) {
+                alert(response); // tell user they logged out
+                // redirect to login page
+                location.href = "loginpage.html";
+            }
+        });
     }
 }
 
@@ -221,6 +229,7 @@ function noFilterExplorePage(){
                             "<img class=\"photo\" src=\"" + pet.pic + "\">\n" +
                             "</div>\n" +
                             "<p class=\"pet\">" + "Name: " + pet.name + "</p>\n" +
+                            "<p class=\"owner\">\n" + "Owner: " + "</p>" +
                             "<p id='friend' class=\"owner\">\n" + users[i].username + "</p>\n" +
                             "<p class=\"location\">\n" + "Location: " + users[i].location + "</p>\n" +
                             "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
@@ -244,12 +253,13 @@ function noFilterExplorePage(){
                             "<img class=\"photo\" src=\"" + pet.pic + "\">\n" +
                             "</div>\n" +
                             "<p class=\"pet\">" + "Name: " + pet.name + "</p>\n" +
-                            "<p class= id='friend' \"owner\">\n" + "Owner: " + users[i].username + "</p>\n" +
+                            "<p class=\"owner\">\n" + "Owner: " + "</p>" +
+                            "<p class= id='friend' class=\"owner\">\n" + users[i].username + "</p>\n" +
                             "<p class=\"location\">\n" + "Location: " + users[i].location + "</p>\n" +
                             "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
                             "<p class=\"bio\">\n" + pet.bio +
                             "</p>\n" +
-                            "<button id='post2' type='button' onclick='displayConnectMessage();'>Connect!</button>" +
+                            "<button id='post2' type='button' onclick='connectFriend();'>Connect!</button>" +
                             "</div>\n" +
                             "</td>" + document.getElementById("row").innerHTML;
                     }
@@ -306,12 +316,13 @@ function getExplorePageFiltered() {
                             "<img class=\"photo\" src=\"" + pet.pic + "\">\n" +
                             "</div>\n" +
                             "<p class=\"pet\">" + "Name: " + pet.name + "</p>\n" +
-                            "<p id = 'friend' class=\"owner\">\n" + "Owner: " + users[i].username + "</p>\n" +
+                            "<p class=\"owner\">\n" + "Owner: " + "</p>" +
+                            "<p id = 'friend' class=\"owner\">\n" + users[i].username + "</p>\n" +
                             "<p class=\"location\">\n" + "Location: " + users[i].location + "</p>\n" +
                             "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
                             "<p class=\"bio\">\n" + pet.bio +
                             "</p>\n" +
-                            "<button id='post1' type='button' onclick='displayConnectMessage();'>Connect!</button>" +
+                            "<button id='post1' type='button' onclick='connectFriend();'>Connect!</button>" +
                             "</div>\n" +
                             "</td>" + document.getElementById("row").innerHTML;
                     }
@@ -329,12 +340,13 @@ function getExplorePageFiltered() {
                             "<img class=\"photo\" src=\"" + pet.pic + "\">\n" +
                             "</div>\n" +
                             "<p class=\"pet\">" + "Name: " + pet.name + "</p>\n" +
-                            "<p id = 'friend' class=\"owner\">\n" + "Owner: " + users[i].username + "</p>\n" +
+                            "<p class=\"owner\">\n" + "Owner: " + "</p>" +
+                            "<p id = 'friend' class=\"owner\">\n" + users[i].username + "</p>\n" +
                             "<p class=\"location\">\n" + "Location: " + users[i].location + "</p>\n" +
                             "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
                             "<p class=\"bio\">\n" + pet.bio +
                             "</p>\n" +
-                            "<button id='post2' type='button' onclick='displayConnectMessage();'>Connect!</button>" +
+                            "<button id='post2' type='button' onclick='connectFriend();'>Connect!</button>" +
                             "</div>\n" +
                             "</td>" + document.getElementById("row").innerHTML;
                     }

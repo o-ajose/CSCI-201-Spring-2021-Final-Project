@@ -1,5 +1,4 @@
-/* TODO:  - Start adding Karen's code for the nav pages?
- */
+
 
 var numPets = 0;
 // Function to get all pet details and place them accordingly on the page
@@ -8,12 +7,12 @@ function getPetDetails() {
 
     $.ajax({
         type: 'POST',
-        url: 'getAllPetDetails',
+        url: 'fetchUserProfile',
         // dataType: ''
         success: function(response) {
             console.log("retrieved pet objects");
             console.log(response);
-            const petsArray = response;
+            const petsArray = response.petList;
             numPets = petsArray.length;
             var petDiv = document.getElementById("row");
             for(let i = 0; i < petsArray.length; i++) {
@@ -50,6 +49,7 @@ function getPetDetails() {
             console.log("could not retrieve pet data");
         }
     });
+    return false;
 }
 
 // Function to update the pets
@@ -95,8 +95,25 @@ function updatePet(dataObj) {
             console.log(response);
         }
     });
+    return false;
 }
 
+function createPet() {
+    console.log("Calling create pet!")
+
+    $.ajax({
+        type: 'POST',
+        url: 'createPet',
+        success: function(response) {
+            console.log(response);
+            console.log('Saved new pet!');
+        },
+        error: function() {
+            console.log("Error found, could not save pet");
+        }
+    });
+    return false;
+}
 /* If the user tries to add a new pet, they can only update the pet and not also
         their other pets to save us a headache and time */
 function createNewElement() {
@@ -105,13 +122,25 @@ function createNewElement() {
 
     document.getElementById("addPet").style.display = "none";
     document.getElementById("updatePets").style.display = "none";
+    document.getElementById("Edit").style.display="block";
 
 }
 
 /* *** Functions for redirecting from navBar **/
 // logs user out
+// logs user out
 function logout() {
     console.log("Logging user out");
+    // added this - karen
+    $.ajax({
+        type: 'POST',
+        url: 'logout',
+        success: function(response) {
+            alert(response); // tell user they logged out
+            // redirect to login page
+            location.href = "loginpage.html";
+        }
+    });
 }
 
 // redirects to account page

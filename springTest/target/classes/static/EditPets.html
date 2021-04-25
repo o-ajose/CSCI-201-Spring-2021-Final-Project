@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Edit Pets</title>
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/EditPage.css">
+    <link rel="stylesheet" href="CSS/EditPage.css">
     <script src="js/EditPets.js"></script>
     <script src="js/feedpage.js"></script>
 </head>
@@ -13,26 +13,21 @@
     <!-- Code for navigation bar -->
     <div id="feedHeader" class = "navbar">
         <div id="icons">
-            <button type="button" class="iconBtn" onclick="goToExplore()"><img class="icon" src="images/exploreIcon.webp"></button>
-            <button type="button" class="iconBtn" onclick="goToFeed()"><img class="icon" src="images/feedIcon.png"></button>
-            <button type="button" class="iconBtn" onclick="goToFriends()"><img class="icon" src="images/friendReq.jpeg"></button>
-            <button type="button" class="iconBtn" onclick="logout()"><img class="icon" src="images/logoutIcon.png"></button>
+            <button type="button" class="iconBtn" onclick="goToExplore()"><img class="icon" src="Images/exploreIcon.webp"></button>
+            <button type="button" class="iconBtn" onclick="goToFeed()"><img class="icon" src="Images/feedIcon.png"></button>
+            <button type="button" class="iconBtn" onclick="goToFriends()"><img class="icon" src="Images/friendReq.jpeg"></button>
+            <button type="button" class="iconBtn" onclick="logout()"><img class="icon" src="Images/logoutIcon.png"></button>
         </div>
-        <span><img class="dogBoneIcon" src="images/dogBoneIcon.png"></span>
+        <span><img class="dogBoneIcon" src="Images/dogBoneIcon.png"></span>
         <h3 class="websiteName"><a href="#" class="effect-shine">Tirebiters</a></h3>
         <div id="userDisplay">
-            <span class="circle"><img class="profileImage" src="images/defaultProfilePic.jpeg"></span>
+            <span class="circle"><img class="profileImage" src="Images/defaultProfilePic.jpeg"></span>
             <button id="userBtn" class="username" onclick="getAccountPage()">USERNAME</button>
         </div>
     </div>
-    <div id="createPostArea">
-        <p class="pageName">Newsfeed</p>
-        <button type="button" id="createPost" onclick="toggle()">Create Post
-        </button>
-    </div>
 
     <!-- Allows user to switch between their info and the pet info -->
-    <div class="Edit">
+    <div class="Edit" id="Edit">
         <div class="switch">
             <button class="button" onclick="window.location.href='EditPage.html'"> You</button>
             <br/>
@@ -124,10 +119,10 @@
 
     <!-- Div that will be added if a new pet is created-->
     <div id="newPetInfo" style="display: none">
-        <form name="addNewPet" action="/createPet" method="post">
+        <form name="addNewPet" onsubmit="createPet();">
             <p>Add your pet's photo</p>
             <div style="display: flex">
-                <label for="newPet"><img class="userImage" src="images/dog1.jpeg"></label>
+                <label for="newPet"><img class="userImage" src="Images/dog1.jpeg"></label>
                 <input style="display: none;" type="file" id="newPet" name="newPet" accept="image/*" required>
             </div>
             <br/>

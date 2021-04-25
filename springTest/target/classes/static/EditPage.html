@@ -7,22 +7,22 @@
     <script src="https://ajax.google.apis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/EditPage.js"></script>
     <script src="js/feedpage.js"></script>
-    <link rel="stylesheet" href="css/EditPage.css">
+    <link rel="stylesheet" href="CSS/EditPage.css">
 </head>
 <body onload="return pullUserInfo()"> <!-- calls all the servlet to get the user info and places it accordingly-->
 
     <!-- Code for navigation bar -->
     <div id="feedHeader" class = "navbar">
         <div id="icons">
-            <button type="button" class="iconBtn" onclick="goToExplore()"><img class="icon" src="images/exploreIcon.webp"></button>
-            <button type="button" class="iconBtn" onclick="goToFeed()"><img class="icon" src="images/feedIcon.png"></button>
-            <button type="button" class="iconBtn" onclick="goToFriends()"><img class="icon" src="images/friendReq.jpeg"></button>
-            <button type="button" class="iconBtn" onclick="logout()"><img class="icon" src="images/logoutIcon.png"></button>
+            <button type="button" class="iconBtn" onclick="goToExplore()"><img class="icon" src="Images/exploreIcon.webp"></button>
+            <button type="button" class="iconBtn" onclick="goToFeed()"><img class="icon" src="Images/feedIcon.png"></button>
+            <button type="button" class="iconBtn" onclick="goToFriends()"><img class="icon" src="Images/friendReq.jpeg"></button>
+            <button type="button" class="iconBtn" onclick="logout()"><img class="icon" src="Images/logoutIcon.png"></button>
         </div>
-        <span><img class="dogBoneIcon" src="images/dogBoneIcon.png"></span>
+        <span><img class="dogBoneIcon" src="Images/dogBoneIcon.png"></span>
         <h3 class="websiteName"><a href="#" class="effect-shine">Tirebiters</a></h3>
         <div id="userDisplay">
-            <span class="circle"><img class="profileImage" src="images/defaultProfilePic.jpeg"></span>
+            <span class="circle"><img class="profileImage" src="Images/defaultProfilePic.jpeg"></span>
             <button id="userBtn" class="username" onclick="getAccountPage()">USERNAME</button>
         </div>
     </div>

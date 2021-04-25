@@ -32,7 +32,6 @@ body {
 }
 
 .switch {
-    position: relative;
     padding-top: 10px;
     left: 10px;
     width: 200px;
