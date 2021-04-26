@@ -26,17 +26,11 @@ function pullUserInfo() {
                 "<div class=\"userImage\">\n"+
                 "    <img src=\"" + profilePic + "\" alt=\"" + name + "'s Profile Picture\">\n" +
                 "</div>\n" +
-                "<div class=\"userText\">\n";
-            if(username !== "") {
-                userDiv.innerHTML +=  "    <p>" + username + "</p>\n";
-            }
-            userDiv.innerHTML +=
-                "    <p>Name: " + name + "</p>\n";
-            if(bio !== "") {
-                userDiv.innerHTML +=  "    <p>Biography: " + bio + "</p>";
-            }
-            userDiv.innerHTML +=
-                "    <p>Location: " + location + "</p>\n" +
+                "<div class=\"userText\">\n" + "" +
+                    "<p>" + username + "</p>\n" +
+                    "<p>Name: " + name + "</p>\n"+
+                    "<p>Biography: " + bio + "</p>" +
+                    "<p>Location: " + location + "</p>\n" +
                 "</div>\n" +
                 "<br>";
         },
@@ -61,29 +55,33 @@ function pullPetInfo() {
             console.log(response);
             const petsArray = response.petList;
 
-            document.getElementById("petHeader").innerHTML = name + "\'s Pets";
-
-            var petDiv = document.getElementById("row");
-            for(let i = 0; i < petsArray.length; i++) {
-                // iterate through the array, and after every two pets, add a breakline for a new row
-                if(i > 0 && i % 2 === 1) {
-                    // we need to add a breakline
-                    petDiv.innerHTML += "<br>\n";
+            if(petsArray.length === 0) {
+                document.getElementById("row").innerHTML += "You have no pets! Add some to get started.";
+            }
+            else {
+                document.getElementById("petHeader").innerHTML = name + "\'s Pets";
+                var petDiv = document.getElementById("row");
+                for(let i = 0; i < petsArray.length; i++) {
+                    // iterate through the array, and after every two pets, add a breakline for a new row
+                    if(i > 0 && i % 2 === 1) {
+                        // we need to add a breakline
+                        petDiv.innerHTML += "<br>\n";
+                    }
+                    petDiv.innerHTML +=
+                        "<div class=\"column\">" +
+                        "    <div class=\"image\">\n" +
+                        "        <img src=\"" + petsArray[i].URL + "\" alt=\"" + petsArray[i].name + "\">\n" +
+                        "    </div>\n" +
+                        "    <div class=\"text\">\n" +
+                        "        <p>Name: " + petsArray[i].name + "</p>\n" +
+                        "        <p>Age: " + petsArray[i].age + " years </p>\n" +
+                        "        <p>Breed: " + petsArray[i].breed + "</p>\n" +
+                        "        <p>Size: " + petsArray[i].size + "</p>\n" +
+                        "        <p>Personality: " + petsArray[i].personality + "</p>\n" +
+                        "        <p>Relationship status: " + petsArray.relationshipStatus + "</p>\n" +
+                        "    </div>\n" +
+                        "</div>";
                 }
-                petDiv.innerHTML +=
-                    "<div class=\"column\">" +
-                    "    <div class=\"image\">\n" +
-                    "        <img src=\"" + petsArray[i].URL + "\" alt=\"" + petsArray[i].name + "\">\n" +
-                    "    </div>\n" +
-                    "    <div class=\"text\">\n" +
-                    "        <p>Name: " + petsArray[i].name + "</p>\n" +
-                    "        <p>Age: " + petsArray[i].age + " years </p>\n" +
-                    "        <p>Breed: " + petsArray[i].breed + "</p>\n" +
-                    "        <p>Size: " + petsArray[i].size + "</p>\n" +
-                    "        <p>Personality: " + petsArray[i].personality + "</p>\n" +
-                    "        <p>Relationship status: " + petsArray.relationshipStatus + "</p>\n" +
-                    "    </div>\n" +
-                    "</div>";
             }
         },
         error: function() {
