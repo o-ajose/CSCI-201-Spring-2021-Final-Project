@@ -95,14 +95,17 @@ function goToFeed() {
 }
 
 
-function connectFriend(){
+function connectFriend(i){
+    console.log(i);
+    var friendi = "friend" + i;
+    console.log(friendi);
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const username = urlParams.get('username');
     if(username === "guest"){
         alert("You must be logged-in to connect with friends. Make an account now!");
     }else{
-        var friend = $('#friend').html();
+        var friend = document.getElementById(friendi).innerHTML;
         console.log(friend);
         $.ajax({
             url: "requestFriend",
@@ -152,7 +155,6 @@ function clearPosts(){
                 petList =users[i].petList;
                 console.log(users[i].username);
                 console.log(petList);
-                if (i % 2 == 0) {
                     for (var j = 0; j < petList.length; j++) {
 
                         var pet = petList[j];
@@ -161,18 +163,6 @@ function clearPosts(){
                             "<td>\n" +
                             "</td>";
                     }
-
-                }
-                // if we are on an odd number -> post2 style
-                else {
-                    for (var j= 0; j < petList.length; j++) {
-                        var pet = petList[j];
-                        console.log(pet);
-                        document.getElementById("row").innerHTML =
-                            "<td>\n" +
-                            "</td>";
-                    }
-                }
             }
         },
         error: function (jqXHR, exception) {
@@ -213,55 +203,30 @@ function noFilterExplorePage(){
             for (var i = users.length - 1; i >= 0; i--) {
                 // if we are on even number -> post1 style
                 var petList = [];
-                petList =users[i].petList;
+                petList = users[i].petList;
                 console.log(users[i].username);
                 console.log(petList);
-                if (i % 2 == 0) {
-                    for (var j = 0; j < petList.length; j++) {
 
-                        var pet = petList[j];
-                        console.log(pet);
-                        document.getElementById("row").innerHTML =
-                            "<td>\n" +
-                            "<div class=\"post1\">\n" +
-                            "<div class=\"photos\">\n" +
-                            "<img class=\"photo\" src=\"" + pet.pic + "\">\n" +
-                            "</div>\n" +
-                            "<p class=\"pet\">" + "Name: " + pet.name + "</p>\n" +
-                            "<p class=\"owner\">\n" + "Owner: " + "</p>" +
-                            "<p id='friend' class=\"owner\">" + users[i].username + "</p>\n" +
-                            "<p class=\"location\">\n" + "Location: " + users[i].location + "</p>\n" +
-                            "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
-                            "<p class=\"bio\">\n" + pet.bio +
-                            "</p>\n" +
-                            "<button id='post1' type='button' onclick='connectFriend();'>Connect!</button>" +
-                            "</div>\n" +
-                            "</td>" + document.getElementById("row").innerHTML;
-                    }
+                for (var j = 0; j < petList.length; j++) {
 
-                }
-                // if we are on an odd number -> post2 style
-                else {
-                    for (var j= 0; j < petList.length; j++) {
-                        var pet = petList[j];
-                        console.log(pet);
-                        document.getElementById("row").innerHTML =
-                            "<td>\n" +
-                            "<div class=\"post2\">\n" +
-                            "<div class=\"photos\">\n" +
-                            "<img class=\"photo\" src=\"" + pet.pic + "\">\n" +
-                            "</div>\n" +
-                            "<p class=\"pet\">" + "Name: " + pet.name + "</p>\n" +
-                            "<p class=\"owner\">\n" + "Owner: " + "</p>" +
-                            "<p class= id='friend' class=\"owner\">" + users[i].username + "</p>\n" +
-                            "<p class=\"location\">\n" + "Location: " + users[i].location + "</p>\n" +
-                            "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
-                            "<p class=\"bio\">\n" + pet.bio +
-                            "</p>\n" +
-                            "<button id='post2' type='button' onclick='connectFriend();'>Connect!</button>" +
-                            "</div>\n" +
-                            "</td>" + document.getElementById("row").innerHTML;
-                    }
+                    var pet = petList[j];
+                    console.log(pet);
+                    document.getElementById("row").innerHTML =
+                        "<td>\n" +
+                        "<div class=\"post1\">\n" +
+                        "<div class=\"photos\">\n" +
+                        "<img class=\"photo\" src=\"" + pet.pic + "\">\n" +
+                        "</div>\n" +
+                        "<p class=\"pet\">" + "Name: " + pet.name + "</p>\n" +
+                        "<p class=\"owner\">\n" + "Owner: " + "</p>" +
+                        "<p id='friend" + i + "' class=\"owner\">" + users[i].username + "</p>\n" +
+                        "<p class=\"location\">\n" + "Location: " + users[i].location + "</p>\n" +
+                        "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
+                        "<p class=\"bio\">\n" + pet.bio +
+                        "</p>\n" +
+                        '<button id="post1" type="button" onclick="connectFriend(\'' + i + '\');">Connect!</button>' +
+                        "</div>\n" +
+                        "</td>" + document.getElementById("row").innerHTML;
                 }
             }
         },
@@ -304,51 +269,25 @@ function getExplorePageFiltered() {
             for (var i = users.length - 1; i >= 0; i--) {
                 // if we are on even number -> post1 style
                 var petList = [];
-                petList=users[i].petList;
-                if (i % 2 == 0) {
-                    for (var j = 0; j < petList.length; j++) {
-                        var pet = petList[j];
-                        document.getElementById("row").innerHTML =
-                            "<td>\n" +
-                            "<div class=\"post1\">\n" +
-                            "<div class=\"photos\">\n" +
-                            "<img class=\"photo\" src=\"" + pet.pic + "\">\n" +
-                            "</div>\n" +
-                            "<p class=\"pet\">" + "Name: " + pet.name + "</p>\n" +
-                            "<p class=\"owner\">\n" + "Owner: " + "</p>" +
-                            "<p id = 'friend' class=\"owner\">" + users[i].username + "</p>\n" +
-                            "<p class=\"location\">\n" + "Location: " + users[i].location + "</p>\n" +
-                            "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
-                            "<p class=\"bio\">\n" + pet.bio +
-                            "</p>\n" +
-                            "<button id='post1' type='button' onclick='connectFriend();'>Connect!</button>" +
-                            "</div>\n" +
-                            "</td>" + document.getElementById("row").innerHTML;
-                    }
-                  //  var pet = petList;
-
-                }
-                // if we are on an odd number -> post2 style
-                else {
-                    for (var j = 0; j < petList.length; j++) {
-                        var pet = petList[j];
-                        document.getElementById("row").innerHTML =
-                            "<td>\n" +
-                            "<div class=\"post2\">\n" +
-                            "<div class=\"photos\">\n" +
-                            "<img class=\"photo\" src=\"" + pet.pic + "\">\n" +
-                            "</div>\n" +
-                            "<p class=\"pet\">" + "Name: " + pet.name + "</p>\n" +
-                            "<p class=\"owner\">\n" + "Owner: " + "</p>" +
-                            "<p id = 'friend' class=\"owner\">" + users[i].username + "</p>\n" +
-                            "<p class=\"location\">\n" + "Location: " + users[i].location + "</p>\n" +
-                            "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
-                            "<p class=\"bio\">\n" + pet.bio +
-                            "</p>\n" +
-                            "<button id='post2' type='button' onclick='connectFriend();'>Connect!</button>" +
-                            "</div>\n" +
-                            "</td>" + document.getElementById("row").innerHTML;
-                    }
+                petList = users[i].petList;
+                for (var j = 0; j < petList.length; j++) {
+                    var pet = petList[j];
+                    document.getElementById("row").innerHTML =
+                        "<td>\n" +
+                        "<div class=\"post1\">\n" +
+                        "<div class=\"photos\">\n" +
+                        "<img class=\"photo\" src=\"" + pet.pic + "\">\n" +
+                        "</div>\n" +
+                        "<p class=\"pet\">" + "Name: " + pet.name + "</p>\n" +
+                        "<p class=\"owner\">\n" + "Owner: " + "</p>" +
+                        "<p id='friend" + i + "' class=\"owner\">" + users[i].username + "</p>\n" +
+                        "<p class=\"location\">\n" + "Location: " + users[i].location + "</p>\n" +
+                        "<p class=\"breed\">\n" + "Breed: " + pet.breed + "</p>\n" +
+                        "<p class=\"bio\">\n" + pet.bio +
+                        "</p>\n" +
+                        '<button id="post1" type="button" onclick="connectFriend(\'' + i + '\');">Connect!</button>' +
+                        "</div>\n" +
+                        "</td>" + document.getElementById("row").innerHTML;
                 }
             }
         },
