@@ -2,11 +2,10 @@ let username;
 /* Function to get user info from servlet */
 function pullUserInfo() {
     console.log("Calling get user info function");
-    // todo: add click to update as well as default image if user hasn't updated yet
     $.ajax({
         type: 'POST',
         url: 'fetchUserProfile',
-        // dataType: '' todo: figure out what is being returned in case response doesn't handle it correctly
+        // dataType: ''
         success: function(response) {
             console.log("retrieved user object");
             console.log(response);
@@ -20,15 +19,15 @@ function pullUserInfo() {
                 bio = "Tell us about yourself!";
             }
             let songMap = new Map(); // map that connects the song file to the actual name to be printed out
-            songMap.set('Music/All%20You%20Need%20Is%Love.mp3', 'All You Need Is Love - The Beatles');
+            songMap.set('Music/All You Need Is Love.mp3', 'All You Need Is Love - The Beatles');
             songMap.set('Music/Dog.mp3', 'Dog - Remo Drive');
-            songMap.set('Music/Dog%20%Days%20Are%20Over.mp3', 'Dog Days Are Over - Florence + The Machine');
+            songMap.set('Music/Dog Days Are Over.mp3', 'Dog Days Are Over - Florence + The Machine');
             songMap.set('Music/Dynamite.mp3', 'Dynamite - BTS');
-            songMap.set('Music/Loving%20Is%20Easy.mp3', 'Loving Is Easy - Rex Orange County');
-            songMap.set('Music/Me%20&%20You%20Together%20Song.mp3', "Me & You Together Song - The 1975");
+            songMap.set('Music/Loving Is Easy.mp3', 'Loving Is Easy - Rex Orange County');
+            songMap.set('Music/Me & You Together Song.mp3', "Me & You Together Song - The 1975");
             songMap.set('Music/Mooo!.mp3', 'Mooo! - Doja Cat');
-            songMap.set('Music/Watermelon%20Sugar.mp3', 'Watermelon Sugar - Harry Styles');
-            songMap.set('Music/What\'s%20New%20Pussycat.mp3', 'What\'s New Pussycat - Tom Jones');
+            songMap.set('Music/Watermelon Sugar.mp3', 'Watermelon Sugar - Harry Styles');
+            songMap.set('Music/What\'s New Pussycat.mp3', 'What\'s New Pussycat - Tom Jones');
 
             var song = userInfo.song;
             if(song === "Music/Default.mp3") {
@@ -41,7 +40,7 @@ function pullUserInfo() {
                 "<form class=\"EditPersonPage\" id=\"EditPersonPage\" name=\"EditPersonPage\" enctype=\"multipart/form-data\">\n" +
                 "        <p>Change Profile Photo: </p>\n" +
                 "        <div style=\"display: flex\">\n" +
-                "            <label for=\"file\">Click Photo to Update Your Profile Picture!<img class=\"userImage\" src=\"" + profilePic + "\"></label>\n" +
+                "            <label for=\"file\">Click Photo to Update Your Profile Picture! (No more than 1 MB) <img class=\"userImage\" src=\"" + profilePic + "\"></label>\n" +
                 "        <input type=\"file\" id=\"file\" name=\"file\" accept=\"image/*\">\n" +
                 "        </div>\n" +
                 "        <br/>\n" +

@@ -81,7 +81,12 @@ public class UserController {
         if(!pic.isEmpty())
             imageURL = fileService.upload(pic);
         Pet newPet = null;
-        newPet = new Pet(name, Integer.parseInt(age));
+        if(!age.equals("")) {
+            newPet = new Pet(name, Integer.parseInt(age));
+        }
+        else {
+            newPet = new Pet(name, 0);
+        }
         newPet.setPersonality(personality);
         newPet.setBreed(breed);
         newPet.setRelationshipStatus(relationshipStatus);

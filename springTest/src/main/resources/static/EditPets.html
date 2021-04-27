@@ -37,7 +37,7 @@
 
     <!-- Div that will be affected by the onload function to print out pet info -->
     <div class="inputPetInfo" id="inputPetInfo" >
-        <form name="EditPetPage" id="updatePets" onsubmit="return updatePets();">
+        <form name="EditPetPage" id="updatePets" enctype="multipart/form-data">
             <div class="updatePets" >
                 <div class="row" id="row">
                     <!-- <div class="column">
@@ -105,7 +105,7 @@
             </div>
 
             <br>
-            <input class="button" type="submit" value="Saves Changes">
+            <input class="button" type="submit" value="Saves Changes" onclick="return updatePets();">
         </form>
         <br>
         <div id="Pet"></div>
@@ -119,17 +119,17 @@
 
     <!-- Div that will be added if a new pet is created-->
     <div id="newPetInfo" style="display: none">
-        <form name="addNewPet" onsubmit="createPet();">
+        <form name="addNewPet" enctype="multipart/form-data" id="addNewPet">
             <p>Add your pet's photo</p>
             <div style="display: flex">
-                <label for="newPet"><img class="userImage" src="Images/uploadIcon.png"></label>
-                <input style="display: none;" type="file" id="newPet" name="newPet" accept="image/*" required>
+                <label for="pic">Click to upload their photo! (no more than 1 MB)<img class="userImage" src="Images/uploadIcon.png"></label>
+                <input type="file" id="pic" name="pic" accept="image/*" required>
             </div>
             <br/>
 
-            Name <input type="text" name="name" REQUIRED/> <br>
-            Age <input type="text" name="age" placeholder="Add their age in human years" required/> <br>
-            Breed <input type="text" name="breed" required/><br>
+            Name <input type="text" name="name" id="name" REQUIRED/> <br>
+            Age <input type="text" name="age" id="age" placeholder="Add their age in human years" required/> <br>
+            Breed <input type="text" name="breed" id="breed" required/><br>
             <label for="size">Size</label>
             <select name="size" id="size">
                 <option value="small">Small </option>
@@ -145,13 +145,12 @@
                 <textarea id="relationshipStatus" name="relationshipStatus" rows="3" cols="50" required></textarea>
             </p>
             <p class="formfield">
-                <label for="bio" style="height: 50px;"> Bio</label>
-                <textarea id="bio" name="bio" rows="3" cols="50" required></textarea>
+                <label for="bio1" style="height: 50px;"> Bio</label>
+                <textarea id="bio1" name="bio1" rows="3" cols="50" required></textarea>
             </p>
-            <input class="button" type="submit" value="Add Pet">
+            <input class="button" type="submit" value="Add Pet" onclick="createPet();">
         </form>
-
+        <br><br><br>
     </div>
-
 </body>
 </html>

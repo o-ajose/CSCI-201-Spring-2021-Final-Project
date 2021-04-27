@@ -70,7 +70,7 @@ function pullPetInfo() {
                     petDiv.innerHTML +=
                         "<div class=\"column\">" +
                         "    <div class=\"image\">\n" +
-                        "        <img src=\"" + petsArray[i].URL + "\" alt=\"" + petsArray[i].name + "\">\n" +
+                        "        <img src=\"" + petsArray[i].pic + "\" alt=\"" + petsArray[i].name + "\">\n" +
                         "    </div>\n" +
                         "    <div class=\"text\">\n" +
                         "        <p>Name: " + petsArray[i].name + "</p>\n" +
@@ -79,7 +79,7 @@ function pullPetInfo() {
                         "        <p>Breed: " + petsArray[i].breed + "</p>\n" +
                         "        <p>Size: " + petsArray[i].size + "</p>\n" +
                         "        <p>Personality: " + petsArray[i].personality + "</p>\n" +
-                        "        <p>Relationship status: " + petsArray.relationshipStatus + "</p>\n" +
+                        "        <p>Relationship status: " + petsArray[i].relationshipStatus + "</p>\n" +
                         "    </div>\n" +
                         "</div>";
                 }
@@ -98,15 +98,15 @@ function pullSongInfo(username) {
     console.log(username);
     // Map to connect the filenames from the servlet to the actual names of each song
     let songMap = new Map();
-    songMap.set('Music/All%20You%20Need%20Is%Love.mp3', 'All You Need Is Love - The Beatles');
+    songMap.set('Music/All You Need Is Love.mp3', 'All You Need Is Love - The Beatles');
     songMap.set('Music/Dog.mp3', 'Dog - Remo Drive');
-    songMap.set('Music/Dog%20%Days%20Are%20Over.mp3', 'Dog Days Are Over - Florence + The Machine');
+    songMap.set('Music/Dog Days Are Over.mp3', 'Dog Days Are Over - Florence + The Machine');
     songMap.set('Music/Dynamite.mp3', 'Dynamite - BTS');
-    songMap.set('Music/Loving%20Is%20Easy.mp3', 'Loving Is Easy - Rex Orange County');
-    songMap.set('Music/Me%20&%20You%20Together%20Song.mp3', "Me & You Together Song - The 1975");
+    songMap.set('Music/Loving Is Easy.mp3', 'Loving Is Easy - Rex Orange County');
+    songMap.set('Music/Me & You Together Song.mp3', "Me & You Together Song - The 1975");
     songMap.set('Music/Mooo!.mp3', 'Mooo! - Doja Cat');
-    songMap.set('Music/Watermelon%20Sugar.mp3', 'Watermelon Sugar - Harry Styles');
-    songMap.set('Music/What\'s%20New%20Pussycat.mp3', 'What\'s New Pussycat - Tom Jones');
+    songMap.set('Music/Watermelon Sugar.mp3', 'Watermelon Sugar - Harry Styles');
+    songMap.set('Music/What\'s New Pussycat.mp3', 'What\'s New Pussycat - Tom Jones');
 
     $.ajax({
         type: 'POST',
