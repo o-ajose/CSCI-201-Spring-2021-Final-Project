@@ -3,7 +3,6 @@ let name; // Creates a global variable that can be accessed by the petInfo funct
 function pullUserInfo() {
     console.log("Calling fetchUser function!");
     var userInfo;
-    // todo: call userInfo servlet to update nav bar with user info
     $.ajax({
         type: 'POST',
         url: 'fetchUserProfile',

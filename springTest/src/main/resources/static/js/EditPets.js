@@ -9,7 +9,6 @@ var size;
 // Function to get all pet details and place them accordingly on the page
 function getPetDetails() {
     console.log("Calling pullPet function for updates!!");
-    // todo: call userInfo servlet to update nav bar with user
     $.ajax({
         type: 'POST',
         url: 'fetchUserProfile',

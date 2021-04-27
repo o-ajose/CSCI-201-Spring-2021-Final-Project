@@ -5,7 +5,6 @@ let userLocation;
 /* Function to get user info from servlet */
 function pullUserInfo() {
     console.log("Calling get user info function");
-    // todo: call the userinfo servlet to update nav bar
     $.ajax({
         type: 'POST',
         url: 'fetchUserProfile',
