@@ -5,9 +5,10 @@
     <title>Edit Pets</title>
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="CSS/EditPage.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="js/EditPets.js"></script>
 </head>
-<body onload="getPetDetails()">
+<body onload="return getPetDetails()">
 
     <!-- Code for navigation bar -->
     <div id="feedHeader" class = "navbar">
@@ -38,7 +39,7 @@
     <div class="inputPetInfo" id="inputPetInfo" >
         <form name="EditPetPage" id="updatePets" onsubmit="return updatePets();">
             <div class="updatePets" >
-                <div class="row">
+                <div class="row" id="row">
                     <!-- <div class="column">
                         <p>Change Milky's Profile Photo: </p>
                         <label for="pet1Avi"><img class="userImage" src="images/milky.jpg"></label>
@@ -142,6 +143,10 @@
             <p class="formfield">
                 <label for="relationshipStatus" style="height: 50px;"> Relationship Status</label>
                 <textarea id="relationshipStatus" name="relationshipStatus" rows="3" cols="50" required></textarea>
+            </p>
+            <p class="formfield">
+                <label for="bio" style="height: 50px;"> Bio</label>
+                <textarea id="bio" name="bio" rows="3" cols="50" required></textarea>
             </p>
             <input class="button" type="submit" value="Add Pet">
         </form>

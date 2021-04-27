@@ -42,7 +42,7 @@ function pullUserInfo() {
                 "        <p>Change Profile Photo: </p>\n" +
                 "        <div style=\"display: flex\">\n" +
                 "            <label for=\"avi\">Click Photo to Update Your Profile Picture!<img class=\"userImage\" src=\"" + profilePic + "\"></label>\n" +
-                "        <input style=\"display: none;\" type=\"file\" id=\"avi\" name=\"avi\" accept=\"image/*\">\n" +
+                "        <input type=\"file\" id=\"avi\" name=\"avi\" accept=\"image/*\">\n" +
                 "        </div>\n" +
                 "        <br/>\n" +
                 "        <fieldset class=\"fieldsetAutoWidth\" style=\"width: 40%;\">\n" +
@@ -140,15 +140,11 @@ function pullUserInfo() {
 }
 function updateUser() {
     console.log('Calling updateUser servlet');
-    console.log("pfp");
-    console.log(document.EditPersonPage.avi.value);
-    console.log("bio:");
-    console.log(document.EditPersonPage.bio.value);
     $.ajax({
-        type: 'POST',
-        url: 'updateUser',
+        type: 'post',
+        url: "updateUser",
         data: {
-            profilePic: document.EditPersonPage.avi.value,
+            multipartFile: document.EditPersonPage.avi.value,
             bio: document.EditPersonPage.bio.value,
             location: document.EditPersonPage.location.value,
             email: document.EditPersonPage.email.value,
@@ -157,9 +153,25 @@ function updateUser() {
         success: function(response) {
             console.log(response);
         },
-        error: function() {
+        error: function(jqXHR,exception){
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status === 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status === 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            alert(msg);
             console.log('could not save details');
-            alert('could not save details :/');
         }
     });
 }
@@ -183,8 +195,8 @@ function setSong() {
     console.log(username);
     console.log("Calling setSong!");
     $.ajax({
-        method: 'POST',
-        url: 'setSong',
+        method: "POST",
+        url: "setSong",
         data: {
             username: username,
             song: songFile
@@ -194,8 +206,25 @@ function setSong() {
             console.log('set song!');
             alert('Set song!');
         },
-        error: function() {
-            console.log('youre a dumbass');
+        error:function(jqXHR,exception){
+        var msg = '';
+        if (jqXHR.status === 0) {
+            msg = 'Not connect.\n Verify Network.';
+        } else if (jqXHR.status == 404) {
+            msg = 'Requested page not found. [404]';
+        } else if (jqXHR.status == 500) {
+            msg = 'Internal Server Error [500].';
+        } else if (exception === 'parsererror') {
+            msg = 'Requested JSON parse failed.';
+        } else if (exception === 'timeout') {
+            msg = 'Time out error.';
+        } else if (exception === 'abort') {
+            msg = 'Ajax request aborted.';
+        } else {
+            msg = 'Uncaught Error.\n' + jqXHR.responseText;
+        }
+        alert(msg);
+        console.log('youre a dumbass');
         }
     });
 }

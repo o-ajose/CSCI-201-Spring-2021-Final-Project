@@ -11,6 +11,10 @@ function getPetDetails() {
             console.log("retrieved pet objects");
             console.log(response);
             const petsArray = response.petList;
+            if(petsArray.length === 0) {
+                document.getElementById("row").innerHTML += "No pets added yet!";
+                return false;
+            }
             numPets = petsArray.length;
             var petDiv = document.getElementById("row");
             for(let i = 0; i < petsArray.length; i++) {
@@ -39,6 +43,10 @@ function getPetDetails() {
                     "        <label for=\"relStatus" + (i+1) + "\" style=\"height: 50px;\"> Relationship Status</label>\n" +
                     "        <textarea id=\"relStatus" + (i+1) + "\" name=\"relStatus" + (i+1) + "\" rows=\"3\" cols=\"50\" placeholder=\"" + petsArray[i].relationshipStatus + "\"></textarea>\n" +
                     "    </p>\n" +
+                    "    <p class=\"formfield\">\n" +
+                    "        <label for=\"bio" + (i+1) + "\" style=\"height: 50px;\"> Bio</label>\n" +
+                    "        <textarea id=\"bio" + (i+1) + "\" name=\"bio" + (i+1) + "\" rows=\"3\" cols=\"50\" placeholder=\"" + petsArray[i].bio + "\"></textarea>\n" +
+                    "    </p>\n" +
                     "</div>\n" +
                     "<br>";
             }
@@ -62,6 +70,7 @@ function updatePets() {
         var relationshipStatusID = 'relationshipStatus' + (i+1);
         var personalityID = 'personality' + (i+1);
         var petPic = 'pet' + (i+1) + 'Avi';
+        var bio = 'bio' + (i+2);
         var pet = {
             name: document.getElementById(nameID).valueOf(),
             age: document.getElementById(ageID).valueOf(),
@@ -69,7 +78,8 @@ function updatePets() {
             size: document.getElementById(sizeID).valueOf(),
             relationshipStatus: document.getElementById(relationshipStatusID).valueOf(),
             personality: document.getElementById(personalityID).valueOf(),
-            profilePic: document.getElementById(petPic).valueOf()
+            profilePic: document.getElementById(petPic).valueOf(),
+            bio: document.getElementById(bio).valueOf()
         };
         updatePet(pet); // calls update Pet on that object to send over pets one at a time
 
@@ -101,6 +111,16 @@ function createPet() {
     $.ajax({
         type: 'POST',
         url: 'createPet',
+        data: {
+            name: document.addNewPet.name.value,
+            age: document.addNewPet.age.value,
+            breed: document.addNewPet.breed.value,
+            size: document.addNewPet.size.value,
+            personality: document.addNewPet.personality.value,
+            relationshipStatus: document.addNewPet.relationshipStatus.value,
+            pic: document.addNewPet.newPet.value,
+            bio1: document.addNewPet.newPet.bio
+        },
         success: function(response) {
             console.log(response);
             console.log('Saved new pet!');

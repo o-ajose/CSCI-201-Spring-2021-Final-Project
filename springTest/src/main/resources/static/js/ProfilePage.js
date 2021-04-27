@@ -1,5 +1,4 @@
 let name; // Creates a global variable that can be accessed by the petInfo function when printing out the owner's name
-
 // Function to call user info to be printed out
 function pullUserInfo() {
     console.log("Calling fetchUser function!");
@@ -14,7 +13,7 @@ function pullUserInfo() {
             console.log(response);
 
             const userInfo = response;
-            const username = userInfo.username;
+            var username = userInfo.displayName;
             name = userInfo.name;
             const profilePic = userInfo.profilePic;
             let bio = userInfo.bio;
@@ -33,18 +32,19 @@ function pullUserInfo() {
                     "<p>Location: " + location + "</p>\n" +
                 "</div>\n" +
                 "<br>";
+            pullSongInfo(username);
         },
         error: function() {
             console.log("could not retrieve user data");
         }
     });
+
     return false;
 }
 
 // Function to get pet info
 function pullPetInfo() {
     console.log("Calling pullPet function!");
-    var petsArray;
 
     $.ajax({
         type: 'POST',
@@ -55,12 +55,12 @@ function pullPetInfo() {
             console.log(response);
             const petsArray = response.petList;
 
+            var petDiv = document.getElementById("row");
             if(petsArray.length === 0) {
-                document.getElementById("row").innerHTML += "You have no pets! Add some to get started.";
+                petDiv.innerHTML += "You have no pets! Add some to get started.";
             }
             else {
                 document.getElementById("petHeader").innerHTML = name + "\'s Pets";
-                var petDiv = document.getElementById("row");
                 for(let i = 0; i < petsArray.length; i++) {
                     // iterate through the array, and after every two pets, add a breakline for a new row
                     if(i > 0 && i % 2 === 1) {
@@ -74,6 +74,7 @@ function pullPetInfo() {
                         "    </div>\n" +
                         "    <div class=\"text\">\n" +
                         "        <p>Name: " + petsArray[i].name + "</p>\n" +
+                        "        <p>Bio: " + petsArray[i].bio + "</p>" +
                         "        <p>Age: " + petsArray[i].age + " years </p>\n" +
                         "        <p>Breed: " + petsArray[i].breed + "</p>\n" +
                         "        <p>Size: " + petsArray[i].size + "</p>\n" +
@@ -92,9 +93,9 @@ function pullPetInfo() {
 }
 
 // Get the song info and set up the javascript play function
-function pullSongInfo() {
+function pullSongInfo(username) {
     console.log("calling getSong!");
-
+    console.log(username);
     // Map to connect the filenames from the servlet to the actual names of each song
     let songMap = new Map();
     songMap.set('Music/All%20You%20Need%20Is%Love.mp3', 'All You Need Is Love - The Beatles');
@@ -109,22 +110,46 @@ function pullSongInfo() {
 
     $.ajax({
         type: 'POST',
-        url: 'getSong',
+        url: 'fetchUserProfile',
         // dataType: string representing the fileName
         success: function(response) {
             console.log("retrieved song object");
             console.log(response);
-            const song = response.song;
-            const songName = songMap.get(song);
+            var song = response.song;
+            if(song === "Music/Default.mp3") {
+                song = "No song chosen";
+                document.getElementById("audio").innerHTML = song;
+            }
+            else {
+                var songName = songMap.get(song);
+                document.getElementById("audio").innerHTML =
+                    "<audio id=\"song\" src=\"" + song + "\" preload=\"auto\">\n" +
+                    "<p>If you are reading this, it is because your browser does not support the audio element.</p>\n" +
+                    "</audio>\n" +
+                    "<button class=\"button\" onclick=\"playPause()\">Chosen Song: " + songName + "</button>";
+            }
 
-            document.getElementById("audio").innerHTML =
-                "<audio id=\"song\" src=\"" + song + "\" preload=\"auto\">\n" +
-                "<p>If you are reading this, it is because your browser does not support the audio element.</p>\n" +
-                "</audio>\n" +
-                "<button class=\"button\" onclick=\"playPause()\">Chosen Song: " + songName + "</button>";
         },
-        error: function() {
+        error: function(jqXHR,exception) {
             console.log("could not retrieve song data");
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status === 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status === 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            alert(msg);
+            console.log('could not save details');
         }
     });
     return false;
