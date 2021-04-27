@@ -38,11 +38,11 @@ function pullUserInfo() {
                 song = songMap.get(song);
             }
             document.getElementById("inputPersonInfo").innerHTML =
-                "<form class=\"EditPersonPage\" name=\"EditPersonPage\">\n" +
+                "<form class=\"EditPersonPage\" id=\"EditPersonPage\" name=\"EditPersonPage\" enctype=\"multipart/form-data\">\n" +
                 "        <p>Change Profile Photo: </p>\n" +
                 "        <div style=\"display: flex\">\n" +
-                "            <label for=\"avi\">Click Photo to Update Your Profile Picture!<img class=\"userImage\" src=\"" + profilePic + "\"></label>\n" +
-                "        <input type=\"file\" id=\"avi\" name=\"avi\" accept=\"image/*\">\n" +
+                "            <label for=\"file\">Click Photo to Update Your Profile Picture!<img class=\"userImage\" src=\"" + profilePic + "\"></label>\n" +
+                "        <input type=\"file\" id=\"file\" name=\"file\" accept=\"image/*\">\n" +
                 "        </div>\n" +
                 "        <br/>\n" +
                 "        <fieldset class=\"fieldsetAutoWidth\" style=\"width: 40%;\">\n" +
@@ -140,16 +140,18 @@ function pullUserInfo() {
 }
 function updateUser() {
     console.log('Calling updateUser servlet');
+    var form = $('#EditPersonPage')[0];
+    // Create an FormData object
+    var data = new FormData(form);
     $.ajax({
         type: 'post',
+        enctype: 'multipart/form-data',
         url: "updateUser",
-        data: {
-            multipartFile: document.EditPersonPage.avi.value,
-            bio: document.EditPersonPage.bio.value,
-            location: document.EditPersonPage.location.value,
-            email: document.EditPersonPage.email.value,
-            password: document.EditPersonPage.password.value
-        },
+        data: data,
+        processData: false,
+        contentType: false,
+        cache: false,
+        timeout: 600000,
         success: function(response) {
             console.log(response);
         },
@@ -179,14 +181,14 @@ function updateUser() {
 function setSong() {
     let songMap = new Map(); // map that connects the actual name taken in by the form to the song file name
     songMap.set('All You Need Is Love', '/Music/All You Need Is Love.mp3');
-    songMap.set( 'Dog', 'Music/Dog.mp3');
+    songMap.set('Dog', 'Music/Dog.mp3');
     songMap.set('Dog Days Are Over', 'Music/Dog Days Are Over.mp3');
-    songMap.set( 'Dynamite', 'Music/Dynamite.mp3');
-    songMap.set( 'Loving Is Easy', 'Music/Loving Is Easy.mp3');
-    songMap.set( "Me & You Together Song", 'Music/Me & You Together Song.mp3');
-    songMap.set( 'Mooo!','Music/Mooo!.mp3');
+    songMap.set('Dynamite', 'Music/Dynamite.mp3');
+    songMap.set('Loving Is Easy', 'Music/Loving Is Easy.mp3');
+    songMap.set("Me & You Together Song", 'Music/Me & You Together Song.mp3');
+    songMap.set('Mooo!','Music/Mooo!.mp3');
     songMap.set('Watermelon Sugar', 'Music/Watermelon Sugar.mp3');
-    songMap.set( 'What\'s New Pussycat', 'Music/What\'s New Pussycat.mp3');
+    songMap.set('What\'s New Pussycat', 'Music/What\'s New Pussycat.mp3');
 
     var songName = document.updateSong.song.value;
     console.log(songName);

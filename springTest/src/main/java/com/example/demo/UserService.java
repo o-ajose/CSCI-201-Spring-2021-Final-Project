@@ -51,16 +51,13 @@ public class UserService {
         }
     }
 
-    public String updateUserDetails(String username, String password, String email, String location, String bio, MultipartFile multipartFile) throws InterruptedException, ExecutionException {
+    public String updateUserDetails(String username, String password, String email, String location, String bio, String profilePic) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         DocumentReference documentReference = dbFirestore.collection(COL_NAME).document(username);
         Map<String, Object> map = new HashMap<>();
-        FileService fs = new FileService();
-        String profilePic;
-        if(!multipartFile.isEmpty()){
-            profilePic=fs.upload(multipartFile);
+
+
             map.put("profilePic",profilePic);
-        }
         if(!bio.equals(""))
             map.put("bio", bio);
         if(!email.equals(""))
@@ -177,7 +174,7 @@ public class UserService {
         long start= System.currentTimeMillis();
         while(true){
             if(System.currentTimeMillis()-start>10000){
-                return "";
+                return "timing out";
             }
             Thread.sleep(3000);
             List<Post>newList = getPosts(username);
@@ -236,6 +233,9 @@ public class UserService {
     }
 
     public String sendFriendRequest(String username, String friend) throws InterruptedException, ExecutionException {
+        if(username.equals(friend)){
+            return "You cannot connect with yourself!";
+        }
         Firestore dbFirestore = FirestoreClient.getFirestore();
         DocumentReference documentReference = dbFirestore.collection(COL_NAME).document(friend);
         ApiFuture<DocumentSnapshot> future = documentReference.get();

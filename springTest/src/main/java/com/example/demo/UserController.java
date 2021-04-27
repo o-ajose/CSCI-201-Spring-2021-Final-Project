@@ -54,14 +54,18 @@ public class UserController {
         String username= (String)session.getAttribute("username");
         return userService.createPost(username,imageURL,comments);
     }
-    @PutMapping("/updateUser")
-    public String updateUser(HttpServletRequest request,@RequestParam String password, @RequestParam("file") MultipartFile multipartFile,@RequestParam String email, @RequestParam String bio,@RequestParam String location) throws InterruptedException, ExecutionException {
+    @PostMapping("/updateUser")
+    public String updateUser(HttpServletRequest request,@RequestParam("password") String password, @RequestParam("file") MultipartFile multipartFile,@RequestParam("email") String email, @RequestParam("bio") String bio,@RequestParam("location") String location) throws InterruptedException, ExecutionException {
         HttpSession session = request.getSession();
         String username = (String)session.getAttribute("username");
-        return userService.updateUserDetails(username,password,email,location,bio,multipartFile);
+        String profilePic="";
+        if(!multipartFile.isEmpty()){
+            profilePic = fileService.upload(multipartFile);
+        }
+        return userService.updateUserDetails(username,password,email,location,bio,profilePic);
     }
 
-    @PutMapping("/updatePet")
+    @PostMapping("/updatePet")
     public String updatePet(HttpServletRequest request,
                             @RequestParam String name,
                             @RequestParam String personality,
@@ -88,9 +92,10 @@ public class UserController {
     }
 
     @PostMapping("/setSong")
-    @ResponseBody
-    public String setSong(@RequestParam String username2, @RequestParam String song ) throws InterruptedException, ExecutionException {
-        return userService.setUserSong(username2, song);
+    public String setSong(HttpServletRequest request, @RequestParam String song ) throws InterruptedException, ExecutionException {
+        HttpSession session = request.getSession();
+        String username = (String)session.getAttribute("username");
+        return userService.setUserSong(username, song);
     }
 
     @PostMapping("/getSong")
