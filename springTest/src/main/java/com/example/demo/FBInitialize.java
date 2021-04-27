@@ -53,7 +53,7 @@ public class FBInitialize {
     public void initialize() {
         try {
             FileInputStream serviceAccount =
-                    new FileInputStream("C:\\Users\\ojuol\\CSCI-201-Spring-2021-Final-Project\\springTest\\src\\serviceaccount.json");
+                    new FileInputStream("src/serviceaccount.json");
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                     // .setDatabaseUrl("https://csci201finalproject-310216.firebaseio.com")
