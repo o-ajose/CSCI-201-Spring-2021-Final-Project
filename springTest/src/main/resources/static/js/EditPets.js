@@ -1,8 +1,15 @@
 var numPets = 0;
+var name;
+var age;
+var breed;
+var personality;
+var relationshipStatus;
+var bio;
+var size;
 // Function to get all pet details and place them accordingly on the page
 function getPetDetails() {
     console.log("Calling pullPet function for updates!!");
-
+    // todo: call userInfo servlet to update nav bar with user
     $.ajax({
         type: 'POST',
         url: 'fetchUserProfile',
@@ -16,7 +23,17 @@ function getPetDetails() {
                 return false;
             }
             numPets = petsArray.length;
+            name = petsArray[0].name;
+            age = petsArray[0].age;
+            size = petsArray[0].size;
+            breed = petsArray[0].breed;
+            personality = petsArray[0].personality;
+            relationshipStatus = petsArray[0].relationshipStatus;
+            bio = petsArray[0].bio;
             var petDiv = document.getElementById("row");
+            if(petsArray.length === 1) {
+                document.getElementById("addPet").style.display = "none";
+            }
             for(let i = 0; i < petsArray.length; i++) {
                 petDiv.innerHTML +=
                     "<div class=\"column\" id=\'pet" + (i+1) + "\'>\n" +
@@ -26,7 +43,7 @@ function getPetDetails() {
                     "        <input type=\"file\" id=\"pic\" name=\"pic\" accept=\"image/*\">\n" +
                     "    </div>\n" +
                     "    <br/>\n" +
-                    "    Name <input type=\"text\" name=\"name\" placeholder=\"" + petsArray[i].name + "\" required/> <br>\n" +
+                    "    Name <input type=\"text\" name=\"name\" value=\'" + petsArray[i].name + "\' placeholder=\"" + petsArray[i].name + "\" required/> <br>\n" +
                     "    Age (only enter the number) <input type=\"number\" name=\"age\" placeholder=\"" + petsArray[i].age + " years\"/> <br>\n" +
                     "    <label for=\"size\">Size</label>\n" +
                     "    <select name=\"size\" id=\"size\">\n" +
@@ -47,8 +64,7 @@ function getPetDetails() {
                     "        <label for=\"bio1\" style=\"height: 50px;\"> Bio</label>\n" +
                     "        <textarea id=\"bio1\" name=\"bio1\" rows=\"3\" cols=\"50\" placeholder=\"" + petsArray[i].bio + "\"></textarea>\n" +
                     "    </p>\n" +
-                    "</div>\n" +
-                    "<br>";
+                    "</div>";
             }
         },
         error: function() {
@@ -77,6 +93,7 @@ function updatePets() {
         success: function(response) {
             console.log(response);
             console.log('Saved pet details!');
+            alert('Saved pet details!');
             window.location.href = '../ProfilePage.html';
         },
         error: function() {
@@ -167,6 +184,21 @@ function createNewElement() {
 }
 
 /* *** Functions for redirecting from navBar **/
+function getFeed() {
+    // load user's name and image and posts
+    $.ajax({
+        type: 'POST',
+        url:'fetchUserProfile',
+        success: function(response) {
+            console.log(response);
+            // set up user's profile pic
+            document.getElementById("bigProfilePic").src = response.profilePic;
+            // set up user's username
+            document.getElementById("userBtn").innerHTML = response.username;
+        }
+    });
+}
+
 // logs user out
 function logout() {
     console.log("Logging user out");

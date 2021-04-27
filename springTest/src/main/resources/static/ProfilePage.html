@@ -8,7 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="js/ProfilePage.js"></script>
 </head>
-<body onload="return pullUserInfo() & pullPetInfo();">
+<body onload="return pullUserInfo() & pullPetInfo() & getFeed();">
     <!-- Code for navigation bar -->
     <div id="feedHeader" class = "navbar">
         <div id="icons">
@@ -20,8 +20,8 @@
         <span><img class="dogBoneIcon" src="Images/dogBoneIcon.png"></span>
         <h3 class="websiteName"><a href="#" class="effect-shine">Tirebiters</a></h3>
         <div id="userDisplay">
-            <span class="circle"><img class="profileImage" src="Images/defaultProfilePic.jpeg"></span>
-            <button id="userBtn" class="username" onclick="getAccountPage()">USERNAME</button>
+            <span class="circle"><img id="bigProfilePic" class="profileImage" src=""></span>
+            <button id="userBtn" class="username" onclick="getAccountPage()"></button>
         </div>
     </div>
 

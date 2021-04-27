@@ -1,7 +1,11 @@
 let username;
+let profilePic;
+let bio;
+let userLocation;
 /* Function to get user info from servlet */
 function pullUserInfo() {
     console.log("Calling get user info function");
+    // todo: call the userinfo servlet to update nav bar
     $.ajax({
         type: 'POST',
         url: 'fetchUserProfile',
@@ -13,8 +17,9 @@ function pullUserInfo() {
             var userInfo = response;
             var name = userInfo.name;
             username = userInfo.displayName;
-            var profilePic = userInfo.profilePic;
-            var bio = userInfo.bio;
+            profilePic = userInfo.profilePic;
+            userLocation = userInfo.location;
+            bio = userInfo.bio;
             if(bio === "") {
                 bio = "Tell us about yourself!";
             }
@@ -50,6 +55,7 @@ function pullUserInfo() {
                 "                <textarea id=\"bio\" name=\"bio\" rows=\"3\" cols=\"50\" placeholder=\"" + bio + "\" ></textarea>\n" +
                 "            </p>\n" +
                 "            <hr style=\"size: 2px; width: 90%; color: black; float: left;\"> <br>\n" +
+                "            <p style=\"font-size: medium\">Current Location: " + userLocation + "</p>" +
                 "            <label for=\"location\">Location: </label>\n" +
                 "            <select name=\"location\" id=\"location\">\n" +
                 "                <option value=\"AL\">Alabama</option>\n" +
@@ -141,6 +147,16 @@ function updateUser() {
     console.log('Calling updateUser servlet');
     var form = $('#EditPersonPage')[0];
     // Create an FormData object
+    if(document.getElementById("file").valueOf() === "") {
+        document.getElementById("file").value = profilePic;
+    }
+    if(document.getElementById("bio").valueOf() === "") {
+        document.getElementById("bio").value = bio;
+    }
+    if(document.getElementById("location").valueOf() === "") {
+        document.getElementById("location").value = userLocation;
+    }
+    console.log("HERE");
     var data = new FormData(form);
     $.ajax({
         type: 'post',
@@ -153,6 +169,8 @@ function updateUser() {
         timeout: 600000,
         success: function(response) {
             console.log(response);
+            alert('Saved user\'s details!');
+            window.location.href='../ProfilePage.html'
         },
         error: function(jqXHR,exception){
             var msg = '';
@@ -206,6 +224,7 @@ function setSong() {
             console.log(response);
             console.log('set song!');
             alert('Set song!');
+            window.location.href='../ProfilePage.html'
         },
         error:function(jqXHR,exception){
         var msg = '';
@@ -252,6 +271,21 @@ function getAccountPage() {
 }
 
 // nav bar redirects to different pages
+function getFeed() {
+    // load user's name and image and posts
+    $.ajax({
+        type: 'POST',
+        url:'fetchUserProfile',
+        success: function(response) {
+            console.log(response);
+            // set up user's profile pic
+            document.getElementById("bigProfilePic").src = response.profilePic;
+            // set up user's username
+            document.getElementById("userBtn").innerHTML = response.username;
+        }
+    });
+}
+
 function goToFriends() {
     console.log("Redirecting to friends page");
     location.href = "friendsPage.html";

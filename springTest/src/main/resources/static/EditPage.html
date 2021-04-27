@@ -8,7 +8,7 @@
     <script src="js/EditPage.js"></script>
     <link rel="stylesheet" href="CSS/EditPage.css">
 </head>
-<body onload="return pullUserInfo()"> <!-- calls all the servlet to get the user info and places it accordingly-->
+<body onload="return pullUserInfo() & getFeed()"> <!-- calls all the servlet to get the user info and places it accordingly-->
 
     <!-- Code for navigation bar -->
     <div id="feedHeader" class = "navbar">
@@ -21,8 +21,8 @@
         <span><img class="dogBoneIcon" src="Images/dogBoneIcon.png"></span>
         <h3 class="websiteName"><a href="#" class="effect-shine">Tirebiters</a></h3>
         <div id="userDisplay">
-            <span class="circle"><img class="profileImage" src="Images/defaultProfilePic.jpeg"></span>
-            <button id="userBtn" class="username" onclick="getAccountPage()">USERNAME</button>
+            <span class="circle"><img id="bigProfilePic" class="profileImage" src=""></span>
+            <button id="userBtn" class="username" onclick="getAccountPage()"></button>
         </div>
     </div>
 

@@ -56,8 +56,9 @@ public class UserService {
         DocumentReference documentReference = dbFirestore.collection(COL_NAME).document(username);
         Map<String, Object> map = new HashMap<>();
 
-
-            map.put("profilePic",profilePic);
+        if(!profilePic.equals("")) {
+            map.put("profilePic", profilePic);
+        }
         if(!bio.equals(""))
             map.put("bio", bio);
         if(!email.equals(""))
@@ -112,6 +113,30 @@ public class UserService {
         }
         if(pet.getPic().equals("")){
             pet.setPic(tempPetList.get(index).getPic());
+        }
+        if(pet.getBio().equals("")) {
+            pet.setBio(tempPetList.get(index).getBio());
+        }
+        if(pet.getBreed().equals("")) {
+            pet.setBreed(tempPetList.get(index).getBreed());
+        }
+        if(pet.getPersonality().equals("")) {
+            pet.setPersonality(tempPetList.get(index).getPersonality());
+        }
+        if(pet.getBio().equals("")) {
+            pet.setBio(tempPetList.get(index).getBio());
+        }
+        if(pet.getAge() == 0) {
+            pet.setAge(tempPetList.get(index).getAge());
+        }
+        if(pet.getBio().equals("")) {
+            pet.setBio(tempPetList.get(index).getBio());
+        }
+        if(!(pet.getSize().equals(tempPetList.get(index).getSize()))) {
+            pet.setSize(tempPetList.get(index).getSize());
+        }
+        if(pet.getRelationshipStatus().equals("")) {
+            pet.setRelationshipStatus(tempPetList.get(index).getRelationshipStatus());
         }
         tempPetList.set(index,pet);
         //pets = document.toObject(PetDocument.class).pets;

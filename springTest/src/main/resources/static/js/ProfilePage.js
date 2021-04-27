@@ -3,7 +3,7 @@ let name; // Creates a global variable that can be accessed by the petInfo funct
 function pullUserInfo() {
     console.log("Calling fetchUser function!");
     var userInfo;
-
+    // todo: call userInfo servlet to update nav bar with user info
     $.ajax({
         type: 'POST',
         url: 'fetchUserProfile',
@@ -126,7 +126,7 @@ function pullSongInfo(username) {
                     "<audio id=\"song\" src=\"" + song + "\" preload=\"auto\">\n" +
                     "<p>If you are reading this, it is because your browser does not support the audio element.</p>\n" +
                     "</audio>\n" +
-                    "<button class=\"button\" onclick=\"playPause()\">Chosen Song: " + songName + "</button>";
+                    "<button class=\"button\" onclick=\"playPause()\">Chosen Song (Click to Play): " + songName + "</button>";
             }
 
         },
@@ -163,6 +163,21 @@ function playPause() {
 
 
 /* *** Function for redirecting from nav bar *** */
+function getFeed() {
+    // load user's name and image and posts
+    $.ajax({
+        type: 'POST',
+        url:'fetchUserProfile',
+        success: function(response) {
+            console.log(response);
+            // set up user's profile pic
+            document.getElementById("bigProfilePic").src = response.profilePic;
+            // set up user's username
+            document.getElementById("userBtn").innerHTML = response.username;
+        }
+    });
+}
+
 // logs user out
 function logout() {
     console.log("Logging user out");
