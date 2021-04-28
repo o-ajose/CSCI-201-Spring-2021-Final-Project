@@ -37,6 +37,8 @@
 
     <!-- Div that will be affected by the onload function to print out pet info -->
     <div class="inputPetInfo" id="inputPetInfo" >
+        <label for="choosePet">Pet to update:</label>
+        <select name="choosePet" id ="choosePet" onChange="updateForm()"></select>
         <form name="EditPetPage" id="updatePets" enctype="multipart/form-data">
             <div class="updatePets" >
                 <div class="row" id="row">
@@ -104,7 +106,7 @@
                 </div>
             </div>
             <br>
-            <input class="button" type="submit" value="Saves Changes" onclick="return updatePets();">
+            <input class="button" type="button" value="Saves Changes" onclick="updatePets();">
         </form>
         <br>
         <div id="Pet"></div>
@@ -117,7 +119,7 @@
     </div>
 
     <!-- Div that will be added if a new pet is created-->
-    <div id="newPetInfo" style="display: none">
+    <div id="newPetInfo" >
         <form name="addNewPet" enctype="multipart/form-data" id="addNewPet">
             <p>Add your pet's photo</p>
             <div style="display: flex">
@@ -147,7 +149,7 @@
                 <label for="bio1" style="height: 50px;"> Bio</label>
                 <textarea id="bio1" name="bio1" rows="3" cols="50" required></textarea>
             </p>
-            <input class="button" type="submit" value="Add Pet" onclick="createPet();">
+            <input class="button" type="button" value="Add Pet" onclick="createPet();">
         </form>
         <br><br><br>
     </div>
